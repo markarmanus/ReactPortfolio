@@ -2,6 +2,7 @@ import styled from "styled-components";
 import UiContext from "../../Contexts/UI";
 import Background from "../Background";
 import React from "react";
+import DoubleText from "../DoubleText";
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -24,6 +25,7 @@ function Landing() {
         src={process.env.PUBLIC_URL + "/Images/Background/Rocket.png"}
         smallerDimension={uiContext.dimensions.smaller}
       />
+      <DoubleText text="Mark Armanious" />
     </Container>
   );
 }
