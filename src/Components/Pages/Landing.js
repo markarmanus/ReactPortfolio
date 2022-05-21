@@ -5,7 +5,7 @@ import React from "react";
 import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
-import AboutMe from "./PortfolioContainer";
+import PortfolioContainer from "./PortfolioContainer";
 
 const Container = styled(motion.div)`
   width: 100%;
@@ -65,28 +65,31 @@ const idleAnimation = {
 function Landing() {
   const uiContext = React.useContext(UiContext);
   const [clickedRocket, setClickedRocket] = React.useState(false);
-  const controls = useAnimation();
-  const sequence = async () => {
-    if (!clickedRocket) {
-      // on Mount Animation (hides rocket before starting)
-      await controls.start({
-        translateY: [200, 20],
-        transition: { duration: 4 },
-      });
-    }
-    await controls.start(clickedRocket ? flyUpAnimation : idleAnimation);
+  const rocketAnimationController = useAnimation();
+  const initialSequence = async () => {
+    // on Mount Animation (hides rocket before starting)
+    await rocketAnimationController.start({
+      translateY: [200, 20],
+      transition: { duration: 4 },
+    });
+    await rocketAnimationController.start("idle");
   };
   React.useEffect(() => {
-    sequence();
-  }, [clickedRocket]);
-
+    initialSequence();
+  });
+  const rocketVariants = {
+    idle: idleAnimation,
+    rocketClicked: flyUpAnimation,
+  };
   return (
     <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.7 }}>
       <Background showPlanets={true} />
 
       <Rocket
-        animate={controls}
-        onTap={() => setClickedRocket(true)}
+        animate={rocketAnimationController}
+        initial={null}
+        variants={rocketVariants}
+        onTap={() => rocketAnimationController.start("rocketClicked")}
         src={process.env.PUBLIC_URL + "/Images/Background/Rocket.png"}
         smallerDimension={uiContext.dimensions.smaller}
       />
@@ -142,7 +145,7 @@ function Landing() {
         </InnerTextContainer>
         <InnerTextContainer flex={1} />
       </TextContainer>
-      <AboutMe clickedRocket={clickedRocket} />
+      <PortfolioContainer clickedRocket={clickedRocket} />
     </Container>
   );
 }
