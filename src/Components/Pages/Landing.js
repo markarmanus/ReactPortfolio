@@ -15,7 +15,7 @@ const Rocket = styled(motion.img)`
   position: absolute;
   left: 47%;
   bottom: 0%;
-  width: ${({ smallerDimension }) => (10 / 100) * smallerDimension}px;
+  width: ${({ smallerDimension }) => 0.1 * smallerDimension}px;
   height: auto;
   cursor: pointer;
   -webkit-transform-origin-y: 5%;
