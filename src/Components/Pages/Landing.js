@@ -64,9 +64,10 @@ const idleAnimation = {
 };
 function Landing() {
   const uiContext = React.useContext(UiContext);
-  const [clickedRocket, setClickedRocket] = React.useState(false);
   const rocketAnimationController = useAnimation();
+  const mainController = useAnimation();
   const initialSequence = async () => {
+    mainController.start("visible");
     // on Mount Animation (hides rocket before starting)
     await rocketAnimationController.start({
       translateY: [200, 20],
@@ -77,19 +78,27 @@ function Landing() {
   React.useEffect(() => {
     initialSequence();
   });
+  const onClickRocket = () => {
+    rocketAnimationController.start("rocketClicked");
+    mainController.start("rocketClicked");
+  };
   const rocketVariants = {
     idle: idleAnimation,
     rocketClicked: flyUpAnimation,
   };
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { delay: 0.5, duration: 0.7 } },
+  };
   return (
-    <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.7 }}>
-      <Background showPlanets={true} />
+    <Container initial={"hidden"} variants={containerVariants} animate={mainController}>
+      <Background animate={false} showPlanets={true} />
 
       <Rocket
         animate={rocketAnimationController}
         initial={null}
         variants={rocketVariants}
-        onTap={() => rocketAnimationController.start("rocketClicked")}
+        onTap={onClickRocket}
         src={process.env.PUBLIC_URL + "/Images/Background/Rocket.png"}
         smallerDimension={uiContext.dimensions.smaller}
       />
@@ -145,7 +154,7 @@ function Landing() {
         </InnerTextContainer>
         <InnerTextContainer flex={1} />
       </TextContainer>
-      <PortfolioContainer clickedRocket={clickedRocket} />
+      <PortfolioContainer />
     </Container>
   );
 }

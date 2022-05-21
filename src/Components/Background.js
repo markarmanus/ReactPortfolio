@@ -4,12 +4,13 @@ import UiContext from "../Contexts/UI";
 import { motion } from "framer-motion";
 import { COLORS } from "../Constants/COLOR";
 
-const Container = styled(motion.div)`
+const AnimatedContainer = styled(motion.div)`
   background-image: url(${process.env.PUBLIC_URL + "/Images/Background/LandingBackground.png"});
   width: 100%;
   position: absolute;
   height: 100%;
 `;
+
 const earthSize = 45;
 const Earth = styled.div`
   background-image: url(${process.env.PUBLIC_URL + "/Images/Background/Earth.png"});
@@ -53,22 +54,21 @@ const BlueBackground = styled.div`
   background-color: ${COLORS["main-blue"]};
 `;
 const variants = {
-  visible: { opacity: 1, transition: { duration: 4 } },
   hidden: { opacity: 0, transition: { duration: 6 } },
+  rocketClicked: { opacity: 1, transition: { duration: 4 } },
 };
-
 function Background(props) {
   const uiContext = React.useContext(UiContext);
   return (
     <BlueBackground>
-      <Container variants={variants}>
+      <AnimatedContainer variants={props.animate ? variants : {}}>
         {props.showPlanets && (
           <Earth smallerDimension={uiContext.dimensions.smaller}>
             <Astronaut />
             <Moon />
           </Earth>
         )}
-      </Container>
+      </AnimatedContainer>
     </BlueBackground>
   );
 }

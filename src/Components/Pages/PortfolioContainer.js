@@ -12,31 +12,24 @@ const Container = styled(motion.div)`
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 100%;
   left: 0;
 `;
 
 function PortfolioContainer(props) {
   const uiContext = React.useContext(UiContext);
-  const controls = useAnimation();
-  const sequence = async () => {
-    if (props.clickedRocket) {
-      controls.start({
-        translateY: [0, -1 * uiContext.dimensions.height],
-        transition: { delay: 0.5, duration: 3, ease: "easeOut" },
-      });
-      controls.start("visible");
-    }
+
+  const variants = {
+    hidden: { translateY: uiContext.dimensions.height },
+    rocketClicked: {
+      translateY: [uiContext.dimensions.height, 0],
+      transition: { delay: 0.5, duration: 3, ease: "easeOut" },
+    },
   };
-  React.useEffect(() => {
-    sequence();
-  }, []);
 
   return (
-    <Container initial="hidden" animate={controls}>
-      <Background></Background>
+    <Container variants={variants}>
+      <Background animate={true}></Background>
       <AboutMe />
-
       <Navbar />
     </Container>
   );
