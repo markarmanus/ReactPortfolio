@@ -21,7 +21,11 @@ const TextContainer = styled.div`
   height: 100%;
   @media (max-width: 1000px) {
     width: 100%;
-    height: 50%;
+    height: 70%;
+  }
+  @media (max-height: 800px) {
+    width: 100%;
+    height: 70%;
   }
   position: absolute;
   display: flex;
