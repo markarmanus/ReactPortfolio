@@ -1,7 +1,14 @@
 import styled from "styled-components";
 import React from "react";
 import UiContext from "../Contexts/UI";
-const Container = styled.div`
+import { motion } from "framer-motion";
+import { COLORS } from "../Constants/COLOR";
+// const Container = styled.div`
+//   background-image: url(${process.env.PUBLIC_URL + "/Images/Background/LandingBackground.png"});
+//   width: 100%;
+//   height: 100%;
+// `;
+const Container = styled(motion.div)`
   background-image: url(${process.env.PUBLIC_URL + "/Images/Background/LandingBackground.png"});
   width: 100%;
   height: 100%;

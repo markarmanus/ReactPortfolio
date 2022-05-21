@@ -3,6 +3,7 @@ import styled from "styled-components";
 import React from "react";
 import { debounce } from "./Helpers/UI";
 import { UIContextProvider } from "./Contexts/UI";
+import { COLORS } from "./Constants/COLOR";
 const Container = styled.div`
   width: ${(props) => props.dimensions.width}px;
   height: ${(props) => props.dimensions.height}px;
@@ -29,12 +30,16 @@ function App() {
       window.removeEventListener("resize", debouncedHandleResize);
     };
   });
-
+  const FallBackGround = styled.div`
+    background-color: ${COLORS["main-blue"]};
+  `;
   return (
     <UIContextProvider value={{ dimensions }}>
-      <Container dimensions={dimensions}>
-        <Landing />
-      </Container>
+      <FallBackGround>
+        <Container dimensions={dimensions}>
+          <Landing />
+        </Container>
+      </FallBackGround>
     </UIContextProvider>
   );
 }

@@ -7,7 +7,7 @@ import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
 import AboutMe from "./PortfolioContainer";
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   width: 100%;
   height: 100%;
 `;
@@ -78,7 +78,7 @@ function Landing() {
   }, [clickedRocket]);
 
   return (
-    <Container>
+    <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 0.7 }}>
       <Background showPlanets={true} />
 
       <Rocket

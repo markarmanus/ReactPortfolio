@@ -19,7 +19,6 @@ function PortfolioContainer(props) {
   const uiContext = React.useContext(UiContext);
   const controls = useAnimation();
   const sequence = async () => {
-    console.log(props.clickedRocket);
     if (props.clickedRocket) {
       await controls.start({
         translateY: [0, -1 * uiContext.dimensions.height],
@@ -33,6 +32,7 @@ function PortfolioContainer(props) {
   return (
     <Container animate={controls}>
       <Background />
+
       <Navbar />
     </Container>
   );
