@@ -40,14 +40,16 @@ const Moon = styled.div`
   width: 65%;
   height: 65%;
 `;
-function Background() {
+function Background(props) {
   const uiContext = React.useContext(UiContext);
   return (
     <Container>
-      <Earth smallerDimension={uiContext.dimensions.smaller}>
-        <Astronaut />
-        <Moon />
-      </Earth>
+      {props.showPlanets && (
+        <Earth smallerDimension={uiContext.dimensions.smaller}>
+          <Astronaut />
+          <Moon />
+        </Earth>
+      )}
     </Container>
   );
 }

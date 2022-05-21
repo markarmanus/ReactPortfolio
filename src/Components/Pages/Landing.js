@@ -4,17 +4,22 @@ import Background from "../Background";
 import React from "react";
 import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";
+import { motion, useAnimation } from "framer-motion";
+import AboutMe from "./AboutMe";
+
 const Container = styled.div`
   width: 100%;
   height: 100%;
 `;
-const Rocket = styled.img`
+const Rocket = styled(motion.img)`
   position: absolute;
-  left: 50%;
-  transform: translate(-50%, 30%);
+  left: 47%;
   bottom: 0%;
   width: ${({ smallerDimension }) => (10 / 100) * smallerDimension}px;
   height: auto;
+  cursor: pointer;
+  -webkit-transform-origin-y: 5%;
+  translate: -50%;
 `;
 const TextContainer = styled.div`
   width: 50%;
@@ -38,12 +43,47 @@ const InnerTextContainer = styled.div`
   margin-left: ${({ marginLeft }) => marginLeft};
   margin-top: ${({ marginTop }) => marginTop};
 `;
+const flyUpAnimation = {
+  rotateZ: [null, 0],
+  translateY: [null, -1080],
+  transition: {
+    rotateZ: { ease: "linear", duration: 1, repeat: 0 },
+    translateY: { ease: "easeOut", duration: 3, repeat: 0 },
+  },
+};
+const idleAnimation = {
+  rotateZ: [0, 5, 0, -5, 0],
+  translateY: [20, 80, 20],
+  transition: {
+    rotateZ: { ease: "linear", duration: 1, repeat: "Infinity" },
+    translateY: { ease: "linear", duration: 3, repeat: "Infinity" },
+  },
+};
 function Landing() {
   const uiContext = React.useContext(UiContext);
+  const [clickedRocket, setClickedRocket] = React.useState(false);
+  const controls = useAnimation();
+  const sequence = async () => {
+    if (!clickedRocket) {
+      // on Mount Animation (hides rocket before starting)
+      await controls.start({
+        translateY: [200, 20],
+        transition: { duration: 4 },
+      });
+    }
+    await controls.start(clickedRocket ? flyUpAnimation : idleAnimation);
+  };
+  React.useEffect(() => {
+    sequence();
+  }, [clickedRocket]);
+
   return (
     <Container>
-      <Background />
+      <Background showPlanets={true} />
+
       <Rocket
+        animate={controls}
+        onTap={() => setClickedRocket(true)}
         src={process.env.PUBLIC_URL + "/Images/Background/Rocket.png"}
         smallerDimension={uiContext.dimensions.smaller}
       />
@@ -99,6 +139,7 @@ function Landing() {
         </InnerTextContainer>
         <InnerTextContainer flex={1} />
       </TextContainer>
+      <AboutMe clickedRocket={clickedRocket} />
     </Container>
   );
 }
