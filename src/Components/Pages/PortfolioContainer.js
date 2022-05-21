@@ -5,13 +5,17 @@ import React from "react";
 import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
+import Navbar from "../Navbar";
 
 const Container = styled(motion.div)`
   width: 100%;
   height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
 `;
 
-function AboutMe(props) {
+function PortfolioContainer(props) {
   const uiContext = React.useContext(UiContext);
   const controls = useAnimation();
   const sequence = async () => {
@@ -29,8 +33,9 @@ function AboutMe(props) {
   return (
     <Container animate={controls}>
       <Background />
+      <Navbar />
     </Container>
   );
 }
 
-export default AboutMe;
+export default PortfolioContainer;

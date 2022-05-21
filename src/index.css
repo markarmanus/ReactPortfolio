@@ -14,3 +14,7 @@ code {
   font-family: "Pixeboy";
   src: local("Pixeboy"), url(./Fonts/Pixeboy.ttf) format("truetype");
 }
+@font-face {
+  font-family: "Poly";
+  src: local("Poly"), url(./Fonts/Poly-Regular.ttf) format("truetype");
+}

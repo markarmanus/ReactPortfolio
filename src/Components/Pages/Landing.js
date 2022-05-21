@@ -5,7 +5,7 @@ import React from "react";
 import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
-import AboutMe from "./AboutMe";
+import AboutMe from "./PortfolioContainer";
 
 const Container = styled.div`
   width: 100%;
