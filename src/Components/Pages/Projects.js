@@ -17,7 +17,7 @@ const Container = styled(motion.div)`
   position: relative;
 `;
 
-function AboutMe(props) {
+function Projects(props) {
   const uiContext = React.useContext(UiContext);
 
   return (
@@ -30,4 +30,4 @@ function AboutMe(props) {
   );
 }
 
-export default AboutMe;
+export default Projects;

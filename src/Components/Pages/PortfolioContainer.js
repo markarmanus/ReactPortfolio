@@ -2,11 +2,10 @@ import styled from "styled-components";
 import UiContext from "../../Contexts/UI";
 import Background from "../Background";
 import React, { useState } from "react";
-import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Navbar from "../Navbar";
-import AboutMe from "./AboutMe";
+import TabsContainer from "./TabsContainer";
 
 const Container = styled(motion.div)`
   width: 100%;
@@ -14,10 +13,44 @@ const Container = styled(motion.div)`
   position: absolute;
   left: 0;
 `;
+const PleaseHoldTight = styled.p`
+  font-family: "Poly";
+  width: fit-content;
+  color: ${COLORS["main-yellow"]};
+  margin: 0;
+  font-weight: bold;
+`;
+const ContentContainer = styled(motion.div)`
+  height: 100%;
+  position: absolute;
+  width: 100%;
+`;
+const Rocket = styled(motion.img)`
+  top: 50%;
+  left: -20%;
+  transform: translate(25%, -50%) rotate(90deg);
 
+  width: ${({ smallerDimension }) => 0.15 * smallerDimension}px;
+  height: auto;
+`;
+const RocketContainer = styled(motion.div)`
+  position: absolute;
+  top: 50%;
+  left: 0%;
+`;
+const TextContainer = styled(motion.div)`
+  position: absolute;
+  transform: translate(25%, -50%);
+  top: 40%;
+`;
 function PortfolioContainer(props) {
   const uiContext = React.useContext(UiContext);
-
+  const controller1 = useAnimation();
+  const controller2 = useAnimation();
+  const rocketController = useAnimation();
+  const textController = useAnimation();
+  const [active, setActive] = useState(0);
+  const [selectedTab, setSelectedTab] = useState(props.initialSelectedTab);
   const variants = {
     hidden: { translateY: uiContext.dimensions.height },
     rocketClicked: {
@@ -25,12 +58,62 @@ function PortfolioContainer(props) {
       transition: { delay: 0.5, duration: 3, ease: "easeOut" },
     },
   };
+  const textAnimation = {
+    opacity: [0, 1, 0],
+    transition: { duration: 2, delay: 0.4, times: [0, 0.35, 0.65, 1] },
+  };
+  const rocketAnimation = {
+    translateX: [-100, uiContext.dimensions.width / 2, uiContext.dimensions.width / 2, uiContext.dimensions.width],
+    transition: {
+      translateX: { duration: 2, times: [0, 0.35, 0.65, 1], delay: 0.4 },
+      rotate: { duration: 0 },
+      translateY: { duration: 0 },
+    },
+  };
+  const sequence = async () => {
+    if (active == 0) {
+      controller1.start("hide");
+      rocketController.start(rocketAnimation);
+      textController.start(textAnimation);
+      controller2.start("show");
+      setActive(1);
+    } else {
+      controller1.start("show");
+      rocketController.start(rocketAnimation);
+      textController.start(textAnimation);
+      controller2.start("hide");
+      setActive(0);
+    }
+  };
+  const onSelectTab = (tab) => {
+    if (tab === selectedTab) return;
+    sequence();
+    setTimeout(() => {
+      setSelectedTab(tab);
+    }, 1400);
+  };
 
   return (
     <Container variants={variants}>
       <Background animate={true}></Background>
-      <AboutMe />
-      <Navbar />
+      <ContentContainer animate={controller1} initial="show">
+        <TabsContainer selectedTab={selectedTab} />
+      </ContentContainer>
+      <RocketContainer initial={{ translateX: -100 }} animate={rocketController}>
+        <Rocket
+          src={process.env.PUBLIC_URL + "/Images/Background/Rocket.png"}
+          smallerDimension={uiContext.dimensions.smaller}
+        />
+        <TextContainer initial={{ opacity: 0 }} animate={textController}>
+          <PleaseHoldTight>Please Hold Tight</PleaseHoldTight>
+        </TextContainer>
+      </RocketContainer>
+
+      <ContentContainer animate={controller2} initial="hide">
+        <TabsContainer selectedTab={selectedTab} />
+      </ContentContainer>
+
+      <Navbar onSelectTab={onSelectTab} selectedTab={selectedTab} />
     </Container>
   );
 }

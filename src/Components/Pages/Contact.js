@@ -17,17 +17,17 @@ const Container = styled(motion.div)`
   position: relative;
 `;
 
-function AboutMe(props) {
+function Contact(props) {
   const uiContext = React.useContext(UiContext);
 
   return (
     <Container>
       <div style={{ display: "flex", height: "50%", width: "100%", flexDirection: "column", justifyContent: "center" }}>
-        <div style={{ flex: 1, height: "100px", margin: "10px", backgroundColor: COLORS["secondary-blue"] }}></div>
-        <div style={{ flex: 1, height: "100px", margin: "10px", backgroundColor: COLORS["secondary-blue"] }}></div>
+        <div style={{ flex: 1, height: "100px", margin: "10px", backgroundColor: COLORS["main-brown"] }}></div>
+        <div style={{ flex: 1, height: "100px", margin: "10px", backgroundColor: COLORS["main-brown"] }}></div>
       </div>
     </Container>
   );
 }
 
-export default AboutMe;
+export default Contact;

@@ -101,7 +101,7 @@ function Landing() {
     visible: { opacity: 1, transition: { delay: 0.5, duration: 0.7 } },
   };
   const contentVariants = {
-    hidden: { opacity: 0, transition: { delay: 0.5, duration: 1 } },
+    hidden: { opacity: 0, transition: { delay: 0.5, duration: 2 } },
     visible: { opacity: 1 },
   };
   return (
@@ -171,7 +171,7 @@ function Landing() {
         smallerDimension={uiContext.dimensions.smaller}
       />
 
-      <PortfolioContainer selectedTab={TABS.ABOUT_ME} />
+      <PortfolioContainer initialSelectedTab={TABS.ABOUT_ME} />
     </Container>
   );
 }
