@@ -20,19 +20,20 @@ function PortfolioContainer(props) {
   const controls = useAnimation();
   const sequence = async () => {
     if (props.clickedRocket) {
-      await controls.start({
+      controls.start({
         translateY: [0, -1 * uiContext.dimensions.height],
         transition: { delay: 0.5, duration: 3, ease: "easeOut" },
       });
+      controls.start("visible");
     }
   };
   React.useEffect(() => {
     sequence();
   });
-  return (
-    <Container animate={controls}>
-      <Background />
 
+  return (
+    <Container initial="hidden" animate={controls}>
+      <Background />
       <Navbar />
     </Container>
   );

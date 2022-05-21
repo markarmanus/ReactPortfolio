@@ -43,17 +43,30 @@ const Moon = styled.div`
   width: 65%;
   height: 65%;
 `;
+
+const BlueBackground = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: ${COLORS["main-blue"]};
+`;
+const variants = {
+  visible: { opacity: 1, transition: { duration: 4 } },
+  hidden: { opacity: 0, transition: { duration: 6 } },
+};
+
 function Background(props) {
   const uiContext = React.useContext(UiContext);
   return (
-    <Container>
-      {props.showPlanets && (
-        <Earth smallerDimension={uiContext.dimensions.smaller}>
-          <Astronaut />
-          <Moon />
-        </Earth>
-      )}
-    </Container>
+    <BlueBackground>
+      <Container variants={variants}>
+        {props.showPlanets && (
+          <Earth smallerDimension={uiContext.dimensions.smaller}>
+            <Astronaut />
+            <Moon />
+          </Earth>
+        )}
+      </Container>
+    </BlueBackground>
   );
 }
 
