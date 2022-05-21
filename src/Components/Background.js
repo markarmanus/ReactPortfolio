@@ -7,6 +7,7 @@ import { COLORS } from "../Constants/COLOR";
 const Container = styled(motion.div)`
   background-image: url(${process.env.PUBLIC_URL + "/Images/Background/LandingBackground.png"});
   width: 100%;
+  position: absolute;
   height: 100%;
 `;
 const earthSize = 45;
@@ -47,6 +48,8 @@ const Moon = styled.div`
 const BlueBackground = styled.div`
   width: 100%;
   height: 100%;
+  position: absolute;
+
   background-color: ${COLORS["main-blue"]};
 `;
 const variants = {

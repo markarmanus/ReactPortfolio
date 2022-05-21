@@ -1,17 +1,18 @@
 import styled from "styled-components";
 import UiContext from "../../Contexts/UI";
 import Background from "../Background";
-import React from "react";
+import React, { useState } from "react";
 import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
 import Navbar from "../Navbar";
+import AboutMe from "./AboutMe";
 
 const Container = styled(motion.div)`
   width: 100%;
   height: 100%;
-  position: relative;
-  top: 0;
+  position: absolute;
+  top: 100%;
   left: 0;
 `;
 
@@ -29,11 +30,13 @@ function PortfolioContainer(props) {
   };
   React.useEffect(() => {
     sequence();
-  });
+  }, []);
 
   return (
     <Container initial="hidden" animate={controls}>
-      <Background />
+      <Background></Background>
+      <AboutMe />
+
       <Navbar />
     </Container>
   );
