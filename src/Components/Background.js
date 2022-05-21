@@ -54,8 +54,8 @@ const BlueBackground = styled.div`
   background-color: ${COLORS["main-blue"]};
 `;
 const variants = {
-  hidden: { opacity: 0, transition: { duration: 6 } },
-  rocketClicked: { opacity: 1, transition: { duration: 4 } },
+  hidden: { opacity: 0, transition: { duration: 2 } },
+  rocketClicked: { opacity: 1, transition: { duration: 5 } },
 };
 function Background(props) {
   const uiContext = React.useContext(UiContext);

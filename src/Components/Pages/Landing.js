@@ -6,6 +6,7 @@ import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
 import PortfolioContainer from "./PortfolioContainer";
+import { TABS } from "../../Constants/PAGES";
 
 const Container = styled(motion.div)`
   width: 100%;
@@ -41,6 +42,13 @@ const TextContainer = styled.div`
   right: 0;
   top: 0;
 `;
+const ContentContainer = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+`;
 const InnerTextContainer = styled.div`
   flex: ${({ flex }) => flex};
   margin-left: ${({ marginLeft }) => marginLeft};
@@ -66,6 +74,7 @@ function Landing() {
   const uiContext = React.useContext(UiContext);
   const rocketAnimationController = useAnimation();
   const mainController = useAnimation();
+  const pageContentController = useAnimation();
   const initialSequence = async () => {
     mainController.start("visible");
     // on Mount Animation (hides rocket before starting)
@@ -81,18 +90,77 @@ function Landing() {
   const onClickRocket = () => {
     rocketAnimationController.start("rocketClicked");
     mainController.start("rocketClicked");
+    pageContentController.start("hidden");
   };
   const rocketVariants = {
     idle: idleAnimation,
     rocketClicked: flyUpAnimation,
   };
-  const containerVariants = {
+  const mainContainerVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { delay: 0.5, duration: 0.7 } },
   };
+  const contentVariants = {
+    hidden: { opacity: 0, transition: { delay: 0.5, duration: 1 } },
+    visible: { opacity: 1 },
+  };
   return (
-    <Container initial={"hidden"} variants={containerVariants} animate={mainController}>
-      <Background animate={false} showPlanets={true} />
+    <Container initial={"hidden"} variants={mainContainerVariants} animate={mainController}>
+      <ContentContainer initial="visible" variants={contentVariants} animate={pageContentController}>
+        <Background animate={false} showPlanets={true} />
+        <TextContainer>
+          <InnerTextContainer flex={0.5} marginLeft={"10vmin"} marginTop={"5vh"}>
+            <DoubleText
+              offset={7}
+              firstColor={COLORS["main-black"]}
+              secondColor={COLORS["main-yellow"]}
+              size={"12vmin"}
+              font="Pixeboy"
+              height="100%"
+              text="Mark Armanious"
+            />
+          </InnerTextContainer>
+          <InnerTextContainer flex={1} marginLeft={"15vmin"}>
+            <DoubleText
+              offset={7}
+              firstColor={COLORS["main-black"]}
+              secondColor={COLORS["main-green"]}
+              size={"10vmin"}
+              height="10vmin"
+              font="Pixeboy"
+              text="Hi,"
+            />
+            <DoubleText
+              offset={7}
+              firstColor={COLORS["main-black"]}
+              secondColor={COLORS["main-yellow"]}
+              size={"10vmin"}
+              height="10vmin"
+              font="Pixeboy"
+              text="I'am Mark,"
+            />
+            <DoubleText
+              offset={7}
+              firstColor={COLORS["main-black"]}
+              secondColor={COLORS["main-yellow"]}
+              size={"10vmin"}
+              height="10vmin"
+              font="Pixeboy"
+              text="Software Developer"
+            />
+            <DoubleText
+              offset={0}
+              firstColor={COLORS["main-green"]}
+              secondColor={COLORS["main-green"]}
+              size={"3vmin"}
+              height="10vmin"
+              font="Pixeboy"
+              text="React - React Native Expert"
+            />
+          </InnerTextContainer>
+          <InnerTextContainer flex={1} />
+        </TextContainer>
+      </ContentContainer>
 
       <Rocket
         animate={rocketAnimationController}
@@ -102,59 +170,8 @@ function Landing() {
         src={process.env.PUBLIC_URL + "/Images/Background/Rocket.png"}
         smallerDimension={uiContext.dimensions.smaller}
       />
-      <TextContainer>
-        <InnerTextContainer flex={0.5} marginLeft={"10vmin"} marginTop={"5vh"}>
-          <DoubleText
-            offset={7}
-            firstColor={COLORS["main-black"]}
-            secondColor={COLORS["main-yellow"]}
-            size={"12vmin"}
-            font="Pixeboy"
-            height="100%"
-            text="Mark Armanious"
-          />
-        </InnerTextContainer>
-        <InnerTextContainer flex={1} marginLeft={"15vmin"}>
-          <DoubleText
-            offset={7}
-            firstColor={COLORS["main-black"]}
-            secondColor={COLORS["main-green"]}
-            size={"10vmin"}
-            height="10vmin"
-            font="Pixeboy"
-            text="Hi,"
-          />
-          <DoubleText
-            offset={7}
-            firstColor={COLORS["main-black"]}
-            secondColor={COLORS["main-yellow"]}
-            size={"10vmin"}
-            height="10vmin"
-            font="Pixeboy"
-            text="I'am Mark,"
-          />
-          <DoubleText
-            offset={7}
-            firstColor={COLORS["main-black"]}
-            secondColor={COLORS["main-yellow"]}
-            size={"10vmin"}
-            height="10vmin"
-            font="Pixeboy"
-            text="Software Developer"
-          />
-          <DoubleText
-            offset={0}
-            firstColor={COLORS["main-green"]}
-            secondColor={COLORS["main-green"]}
-            size={"3vmin"}
-            height="10vmin"
-            font="Pixeboy"
-            text="React - React Native Expert"
-          />
-        </InnerTextContainer>
-        <InnerTextContainer flex={1} />
-      </TextContainer>
-      <PortfolioContainer />
+
+      <PortfolioContainer selectedTab={TABS.ABOUT_ME} />
     </Container>
   );
 }
