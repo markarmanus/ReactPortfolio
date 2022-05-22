@@ -6,7 +6,7 @@ import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
 import Navbar from "../Navbar";
-import AboutMe from "./AboutMe";
+import AboutMe from "./AboutMe/AboutMe";
 import { TABS } from "../../Constants/PAGES";
 import Skills from "./Skills";
 import Projects from "./Projects";

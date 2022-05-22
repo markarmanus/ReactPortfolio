@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import UiContext from "../../Contexts/UI";
-import Background from "../Background";
+import UiContext from "../../../Contexts/UI";
+import Background from "../../Background";
 import React from "react";
-import DoubleText from "../DoubleText";
-import { COLORS } from "../../Constants/COLOR";
+import DoubleText from "../../DoubleText";
+import { COLORS } from "../../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
-import Navbar from "../Navbar";
-import DotWithText from "../DotWithText";
-import Card from "../Card";
+import Navbar from "../../Navbar";
+import DotWithText from "../../DotWithText";
+import Card from "../../Card";
 import { AiOutlineFieldTime, AiOutlineCoffee } from "react-icons/ai";
 import { BsCodeSlash } from "react-icons/bs";
+import Icon from "./Icon";
 const Container = styled(motion.div)`
   width: 100%;
   height: 100%;
@@ -21,20 +22,16 @@ const Container = styled(motion.div)`
   left: 0%;
   background-color: ${COLORS["main-blue-rgba"](0.4)};
 `;
-
 const Rectangle = styled.div`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   display: inline-block;
   transform: translate(0, -50%);
   top: 50%;
-
   background-color: ${(props) => props.bgColor};
 `;
-const Bold = styled.span`
-  font-weight: bold;
-`;
-const ProgressContainer = styled.div`
+
+const BottomRightContainer = styled.div`
   flex: 1;
   padding-right: 5%;
   align-items: center;
@@ -78,20 +75,12 @@ const CardsContainer = styled.div`
   justify-content: center;
   align-content: center;
 `;
-const IconContainer = styled.div`
-  position: relative;
-  text-align: center;
-`;
-const IconProps = {
-  size: "50%",
-  color: COLORS["main-yellow"],
-};
-const IconTitle = styled.p`
-  color: ${COLORS["main-yellow"]};
-  font-size: large;
+const TopRightHalf = styled(BottomRightContainer)`
+  justify-content: flex-end;
+  padding-bottom: 6%;
+  flex: 0.6;
 `;
 function AboutMe(props) {
-  const uiContext = React.useContext(UiContext);
   const dotSize = "25px";
   return (
     <Container>
@@ -118,10 +107,8 @@ function AboutMe(props) {
         <Quote>Faviroute Quete: “Programming is a social activity.” - Uncle Bob</Quote>
       </LeftContainer>
       <RightContainer>
-        <ProgressContainer style={{ justifyContent: "flex-end", paddingBottom: "6%", flex: 0.6 }}>
-          <div style={{ width: "80%", flex: 1.3 }}></div>
-
-          <CardsContainer>
+        <TopRightHalf>
+          <CardsContainer style={{ flex: 0.5 }}>
             <Card
               title="Bachelor Of Science - Honours"
               details={[
@@ -134,8 +121,8 @@ function AboutMe(props) {
               ]}
             />
           </CardsContainer>
-        </ProgressContainer>
-        <ProgressContainer>
+        </TopRightHalf>
+        <BottomRightContainer>
           <div style={{ width: "100%", flex: 0.5 }}>
             <div style={{ position: "relative", width: "100%" }}>
               <DotWithText title="Sept 2016" left="0%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
@@ -174,27 +161,12 @@ function AboutMe(props) {
           </CardsContainer>
           <div style={{ width: "90%", flex: 1.5 }}>
             <div style={{ display: "flex", justifyContent: "space-between", paddingTop: "5%" }}>
-              <IconContainer>
-                <BsCodeSlash {...IconProps} />
-                <IconTitle>
-                  <Bold>8000+</Bold> Lines Of Code
-                </IconTitle>
-              </IconContainer>
-              <IconContainer>
-                <AiOutlineFieldTime {...IconProps} />
-                <IconTitle>
-                  <Bold>8000+</Bold> Hours
-                </IconTitle>
-              </IconContainer>
-              <IconContainer>
-                <AiOutlineCoffee {...IconProps} />
-                <IconTitle>
-                  <Bold>8000+</Bold> Cups Of Coffe
-                </IconTitle>
-              </IconContainer>
+              <Icon iconComponent={BsCodeSlash} bold={"8000+"} title={"Lines Of Code"} />
+              <Icon iconComponent={AiOutlineFieldTime} bold={"8000+"} title={"Hours"} />
+              <Icon iconComponent={AiOutlineCoffee} bold={"8000+"} title={"Cups of Coffee"} />
             </div>
           </div>
-        </ProgressContainer>
+        </BottomRightContainer>
       </RightContainer>
     </Container>
   );
