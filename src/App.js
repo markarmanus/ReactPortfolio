@@ -4,6 +4,7 @@ import React from "react";
 import { debounce } from "./Helpers/UI";
 import { UIContextProvider } from "./Contexts/UI";
 import { COLORS } from "./Constants/COLOR";
+import { ToastContainer } from "react-toastify";
 const Container = styled.div`
   width: ${(props) => props.dimensions.width}px;
   height: ${(props) => props.dimensions.height}px;
@@ -35,6 +36,7 @@ function App() {
   `;
   return (
     <UIContextProvider value={{ dimensions }}>
+      <ToastContainer />
       <FallBackGround>
         <Container dimensions={dimensions}>
           <Landing />

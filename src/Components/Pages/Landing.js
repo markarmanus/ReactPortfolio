@@ -5,7 +5,7 @@ import React from "react";
 import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
-import PortfolioContainer from "./PortfolioContainer";
+import PortfolioContainer from "../PortfolioContainer";
 import { TABS } from "../../Constants/PAGES";
 
 const Container = styled(motion.div)`
@@ -173,7 +173,7 @@ function Landing() {
         smaller_dimension={uiContext.dimensions.smaller}
       />
 
-      <PortfolioContainer initialSelectedTab={TABS.SKILLS} />
+      <PortfolioContainer initialSelectedTab={TABS.ABOUT_ME} />
     </Container>
   );
 }

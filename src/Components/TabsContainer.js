@@ -1,16 +1,16 @@
 import styled from "styled-components";
-import UiContext from "../../Contexts/UI";
-import Background from "../Background";
+import UiContext from "../Contexts/UI";
+import Background from "./Background";
 import React from "react";
-import DoubleText from "../DoubleText";
-import { COLORS } from "../../Constants/COLOR";
+import DoubleText from "./DoubleText";
+import { COLORS } from "../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
-import Navbar from "../Navbar";
-import AboutMe from "./AboutMe/AboutMe";
-import { TABS } from "../../Constants/PAGES";
-import Skills from "./Skills/Skills";
-import Projects from "./Projects";
-import Contact from "./Contact";
+import Navbar from "./Navbar";
+import AboutMe from "./Pages/AboutMe/AboutMe";
+import { TABS } from "../Constants/PAGES";
+import Skills from "./Pages/Skills/Skills";
+import Projects from "./Pages/Projects";
+import Contact from "./Pages/Contact/Contact";
 
 const Container = styled(motion.div)`
   width: 100%;

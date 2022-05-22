@@ -89,8 +89,6 @@ const TechImageContainer = styled.div`
 `;
 const loadInAnimation = {
   opacity: [0, 1],
-  transformX: ["-40%", "0%"],
-  transformY: ["-40%", "0"],
   scale: [0, 1],
   transition: {
     delay: 0.5,
@@ -106,11 +104,11 @@ const disappearAnimation = {
 };
 const barAnimation = () => {
   return {
-    scaleX: [1, Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 1],
-    scaleY: [1, Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 1],
+    scaleX: [0, Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 1],
+    scaleY: [0, Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 1],
     transition: {
-      duration: 3,
-      type: "spring",
+      duration: 2,
+      ease: "linear",
     },
   };
 };
@@ -119,7 +117,7 @@ const containerVariants = {
   hide: disappearAnimation,
 };
 const barVariants = {
-  postLoad: barAnimation,
+  show: barAnimation,
 };
 function Skills(props) {
   return (

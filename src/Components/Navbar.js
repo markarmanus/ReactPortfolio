@@ -26,9 +26,9 @@ const Container = styled.div`
 
 const Tab = styled.p`
   color: ${(props) => (props.selected ? COLORS["main-yellow"] : "white")};
-  font-size: 20px;
+  font-size: 1.5em;
   font-family: "Poly";
-  height: 60px;
+  height: 50px;
   width: 100%;
   border-bottom: 1px ${COLORS["main-yellow"]} solid;
   display: flex;

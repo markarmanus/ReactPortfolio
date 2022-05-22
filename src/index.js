@@ -7,6 +7,8 @@ import "./Fonts/Pixeboy.ttf";
 import "./Fonts/Poly-Regular.ttf";
 import "./Fonts/Prompt.ttf";
 import "./Fonts/Puritan.ttf";
+import "react-toastify/dist/ReactToastify.css";
+
 process.env.IMAGES_URL = process.env.PUBLIC_URL + "/Images";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
