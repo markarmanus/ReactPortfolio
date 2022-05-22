@@ -48,6 +48,10 @@ function PortfolioContainer(props) {
   const controller1 = useAnimation();
   const controller2 = useAnimation();
   const rocketController = useAnimation();
+  const [tabs, setTabs] = useState({
+    first: props.initialSelectedTab,
+    second: null,
+  });
   const textController = useAnimation();
   const [active, setActive] = useState(0);
   const [selectedTab, setSelectedTab] = useState(props.initialSelectedTab);
@@ -74,8 +78,8 @@ function PortfolioContainer(props) {
     rotateZ: [0, 5, 0, -5, 0],
     transition: {
       translateX: { duration: 0.5, delay: 0.4 },
-      rotateX: { duration: 0.75, repeat: 2, ease: "linear" },
-      rotateZ: { duration: 0.75, repeat: 2, ease: "linear" },
+      rotateX: { duration: 0.75, repeat: 1, ease: "linear" },
+      rotateZ: { duration: 0.75, repeat: 1, ease: "linear" },
     },
   };
   const secondRocketAnimation = {
@@ -90,20 +94,27 @@ function PortfolioContainer(props) {
   };
   const sequence = async (tab) => {
     if (active == 0) {
+      setSelectedTab(tab);
+      setTabs({
+        first: tabs.first,
+        second: tab,
+      });
       controller1.start("hide");
       textController.start(firstTextAnimation);
       await rocketController.start(fistRocketAnimation);
-      setSelectedTab(tab);
-      textController.start(secondTextAnimation);
       rocketController.start(secondRocketAnimation);
+      textController.start(secondTextAnimation);
       controller2.start("show");
       setActive(1);
     } else {
+      setTabs({
+        first: tab,
+        second: tabs.second,
+      });
+      setSelectedTab(tab);
       controller2.start("hide");
-
       textController.start(firstTextAnimation);
       await rocketController.start(fistRocketAnimation);
-      setSelectedTab(tab);
       rocketController.start(secondRocketAnimation);
       textController.start(secondTextAnimation);
       controller1.start("show");
@@ -123,7 +134,7 @@ function PortfolioContainer(props) {
     <Container variants={variants}>
       <Background animate={true}></Background>
       <ContentContainer animate={controller1} initial="show">
-        <TabsContainer nav_bar_width={nav_bar_width} selectedTab={selectedTab} />
+        <TabsContainer nav_bar_width={nav_bar_width} selectedTab={tabs.first} />
       </ContentContainer>
       <RocketContainer initial={{ translateX: -100 }} animate={rocketController}>
         <Rocket
@@ -136,7 +147,7 @@ function PortfolioContainer(props) {
       </RocketContainer>
 
       <ContentContainer animate={controller2} initial="hide">
-        <TabsContainer nav_bar_width={nav_bar_width} selectedTab={selectedTab} />
+        <TabsContainer nav_bar_width={nav_bar_width} selectedTab={tabs.second} />
       </ContentContainer>
 
       <Navbar nav_bar_width={nav_bar_width} onSelectTab={onSelectTab} selectedTab={selectedTab} />
