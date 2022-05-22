@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import React, { useEffect, useRef } from "react";
-import DoubleText from "../DoubleText";
-import { COLORS } from "../../Constants/COLOR";
+import DoubleText from "../../DoubleText";
+import { COLORS } from "../../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
+import { biggestIcon, technologies } from "./TechnologisConfig";
 
 const Container = styled(motion.div)`
   width: 100%;
@@ -36,12 +37,15 @@ const TitleContainer = styled.div`
   height: 8vmin;
 `;
 const RightContainer = styled.div`
-  flex: 1;
+  flex: 0.75;
   width: 100%;
-  height: 100%;
+  height: 90%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding-left: 15%;
+  padding-right: 15%;
   align-items: center;
+
   flex-direction: column;
 `;
 const Description = styled.p`
@@ -61,6 +65,25 @@ const TopRightHalf = styled(BottomRightContainer)`
   flex: 0.6;
 `;
 
+const TechContainer = styled(motion.div)`
+  width: 100%;
+  display: flex;
+
+  align-items: center;
+`;
+const TechBar = styled(motion.div)`
+  display: inline-block;
+  width: ${(props) => props.width};
+  height: 1.1vh;
+  background-color: ${(props) => props.color};
+`;
+const TechImage = styled.img`
+  width: ${(props) => props.size}vh;
+  height: auto;
+`;
+const TechImageContainer = styled.div`
+  width: ${biggestIcon + "vh"};
+`;
 function Skills(props) {
   const initialSequence = async () => {};
   useEffect(() => {
@@ -92,8 +115,16 @@ function Skills(props) {
         <Quote>Quote: “Programming is a social activity.” - Uncle Bob</Quote>
       </LeftContainer>
       <RightContainer>
-        <TopRightHalf></TopRightHalf>
-        <BottomRightContainer></BottomRightContainer>
+        {technologies.map((tech, i) => {
+          return (
+            <TechContainer>
+              <TechImageContainer>
+                <TechImage size={tech.size} src={tech.imgSrc} />
+              </TechImageContainer>
+              <TechBar color={tech.color} width={tech.experience} />
+            </TechContainer>
+          );
+        })}
       </RightContainer>
     </Container>
   );

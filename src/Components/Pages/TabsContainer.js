@@ -8,7 +8,7 @@ import { motion, useAnimation } from "framer-motion";
 import Navbar from "../Navbar";
 import AboutMe from "./AboutMe/AboutMe";
 import { TABS } from "../../Constants/PAGES";
-import Skills from "./Skills";
+import Skills from "./Skills/Skills";
 import Projects from "./Projects";
 import Contact from "./Contact";
 
