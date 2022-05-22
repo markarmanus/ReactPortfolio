@@ -193,7 +193,6 @@ function AboutMe(props) {
     ref: hoursRef,
     start: 0,
     end: 8000,
-    preserveValue: true,
     startOnMount: false,
     suffix: "+",
     duration: 10,
@@ -202,7 +201,6 @@ function AboutMe(props) {
     ref: cupsOfCoffeeRef,
     start: 0,
     end: 1500,
-    preserveValue: true,
     suffix: "+",
     duration: 10,
     startOnMount: false,
@@ -211,7 +209,6 @@ function AboutMe(props) {
     ref: linedOfCodeRef,
     start: 0,
     end: 1000000,
-    preserveValue: true,
     suffix: "+",
     startOnMount: false,
     duration: 10,
@@ -342,19 +339,19 @@ function AboutMe(props) {
               <IconContainer>
                 <BsCodeSlash {...IconProps} />
                 <IconTitle>
-                  <Numbers ref={linedOfCodeRef} /> Lines Of Code
+                  <Numbers ref={linedOfCodeRef}>0</Numbers> Lines Of Code
                 </IconTitle>
               </IconContainer>
               <IconContainer>
                 <AiOutlineFieldTime {...IconProps} />
                 <IconTitle>
-                  <Numbers ref={hoursRef} /> Professional Work Hours
+                  <Numbers ref={hoursRef}>0</Numbers> Professional Work Hours
                 </IconTitle>
               </IconContainer>
               <IconContainer>
                 <AiOutlineCoffee {...IconProps} />
                 <IconTitle>
-                  <Numbers ref={cupsOfCoffeeRef} /> Cups of Coffee
+                  <Numbers ref={cupsOfCoffeeRef}>0</Numbers> Cups of Coffee
                 </IconTitle>
               </IconContainer>
             </div>
