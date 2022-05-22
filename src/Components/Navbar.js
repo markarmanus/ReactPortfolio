@@ -5,15 +5,18 @@ import { COLORS } from "../Constants/COLOR";
 import DoubleText from "./DoubleText";
 import { SocialMediaIconsReact } from "social-media-icons-react";
 import { TABS } from "../Constants/PAGES";
+import { FaGithubSquare, FaFacebookSquare, FaLinkedin } from "react-icons/fa";
+import { IconContext } from "react-icons";
+
 const Container = styled.div`
-  width: 200px;
+  width: ${({ width }) => width.default};
   height: 100%;
   flex-direction: column;
   @media (max-width: 1000px) {
-    width: 150px;
+    width: ${({ width }) => width["1000px"]};
   }
   @media (max-width: 700px) {
-    width: 100px;
+    width: ${({ width }) => width["700px"]};
   }
   display: flex;
   position: absolute;
@@ -60,17 +63,16 @@ const TabsContainer = styled.div`
   justify-content: end;
 `;
 const IconProps = {
-  borderColor: COLORS["secondary-blue"],
-  roundness: "5px",
-  iconColor: COLORS["secondary-blue"],
-  backgroundColor: "white",
-  size: "20",
-  style: { margin: "0 10px" },
+  color: "white",
+  size: 30,
 };
+const Link = styled.a`
+  height: fit-content;
+`;
 function Navbar(props) {
   const uiContext = React.useContext(UiContext);
   return (
-    <Container width={props.width} height={props.height}>
+    <Container width={props.navBarWidth}>
       <InitialsContainer>
         <DoubleText
           offset={8}
@@ -98,13 +100,15 @@ function Navbar(props) {
         </Tab>
       </TabsContainer>
       <IconContainer>
-        <SocialMediaIconsReact {...IconProps} icon="facebook" url="https://www.facebook.com/mark.armanus" />
-        <SocialMediaIconsReact {...IconProps} icon="github" url="https://github.com/markarmanus" />
-        <SocialMediaIconsReact
-          {...IconProps}
-          icon="linkedin"
-          url="https://www.linkedin.com/in/mark-armanious-a6b707150/"
-        />
+        <Link target="_blank" href="https://www.linkedin.com/in/mark-armanious-a6b707150/">
+          <FaLinkedin {...IconProps} />
+        </Link>
+        <Link target="_blank" href="https://www.facebook.com/mark.armanus">
+          <FaFacebookSquare className="icon-link" {...IconProps} />
+        </Link>
+        <Link target="_blank" href="https://github.com/markarmanus">
+          <FaGithubSquare {...IconProps} />
+        </Link>
       </IconContainer>
     </Container>
   );

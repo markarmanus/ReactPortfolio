@@ -92,12 +92,16 @@ function PortfolioContainer(props) {
       setSelectedTab(tab);
     }, 1400);
   };
-
+  const navBarWidth = {
+    default: "200px",
+    "1000px": "150px",
+    "700px": "100px",
+  };
   return (
     <Container variants={variants}>
       <Background animate={true}></Background>
       <ContentContainer animate={controller1} initial="show">
-        <TabsContainer selectedTab={selectedTab} />
+        <TabsContainer navBarWidth={navBarWidth} selectedTab={selectedTab} />
       </ContentContainer>
       <RocketContainer initial={{ translateX: -100 }} animate={rocketController}>
         <Rocket
@@ -110,10 +114,10 @@ function PortfolioContainer(props) {
       </RocketContainer>
 
       <ContentContainer animate={controller2} initial="hide">
-        <TabsContainer selectedTab={selectedTab} />
+        <TabsContainer navBarWidth={navBarWidth} selectedTab={selectedTab} />
       </ContentContainer>
 
-      <Navbar onSelectTab={onSelectTab} selectedTab={selectedTab} />
+      <Navbar navBarWidth={navBarWidth} onSelectTab={onSelectTab} selectedTab={selectedTab} />
     </Container>
   );
 }

@@ -18,8 +18,14 @@ const Container = styled(motion.div)`
   justify-content: end;
   align-content: flex-end;
   margin: auto;
-  padding-top: 100px;
   position: relative;
+  padding-left: ${({ navBarWidth }) => navBarWidth.default};
+  @media (max-width: 1000px) {
+    width: ${({ navBarWidth }) => navBarWidth["1000px"]};
+  }
+  @media (max-width: 700px) {
+    width: ${({ navBarWidth }) => navBarWidth["700px"]};
+  }
 `;
 
 function TabsContainer(props) {
@@ -32,7 +38,7 @@ function TabsContainer(props) {
     hide: { scaleX: 0, originX: "100%", transition: { scaleX: { duration: 1 }, originX: { duration: 0 } } },
   };
   return (
-    <Container variants={variants}>
+    <Container navBarWidth={props.navBarWidth} variants={variants}>
       {props.selectedTab === TABS.ABOUT_ME && <AboutMe />}
       {props.selectedTab === TABS.CONTACT && <Contact />}
       {props.selectedTab === TABS.PROJECTS && <Projects />}

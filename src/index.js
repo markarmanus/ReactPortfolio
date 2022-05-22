@@ -5,7 +5,8 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./Fonts/Pixeboy.ttf";
 import "./Fonts/Poly-Regular.ttf";
-
+import "./Fonts/Prompt.ttf";
+import "./Fonts/Puritan.ttf";
 process.env.IMAGES_URL = process.env.PUBLIC_URL + "/Images";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

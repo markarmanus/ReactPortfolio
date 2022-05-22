@@ -5,4 +5,5 @@ export const COLORS = {
   "secondary-blue": "#41465F",
   "main-blue": "#030C18",
   "main-brown": "#644848",
+  "main-blue-rgba": (alpha) => `rgba(3,12,24,${alpha})`,
 };

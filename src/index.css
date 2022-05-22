@@ -18,3 +18,15 @@ code {
   font-family: "Poly";
   src: local("Poly"), url(./Fonts/Poly-Regular.ttf) format("truetype");
 }
+@font-face {
+  font-family: "Prompt";
+  src: local("Prompt"), url(./Fonts/Prompt.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Puritan";
+  src: local("Puritan"), url(./Fonts/Puritan.ttf) format("truetype");
+}
+.icon-link:hover {
+  color: "#FCE78A" !important;
+}
