@@ -270,7 +270,7 @@ function AboutMe(props) {
           <br></br> Well-organised person, problem solver, independent employee with high attention to detail. Fan of
           MMA, outdoor activities, TV series and English literature. A family person and father of two fractious boys,
         </Description>
-        <Quote>Faviroute Quete: “Programming is a social activity.” - Uncle Bob</Quote>
+        <Quote>Favorite Quote: “Programming is a social activity.” - Uncle Bob</Quote>
       </LeftContainer>
       <RightContainer>
         <TopRightHalf>
@@ -352,7 +352,7 @@ function AboutMe(props) {
                 </IconTitle>
               </IconContainer>
               <IconContainer>
-                <AiOutlineFieldTime {...IconProps} />
+                <AiOutlineCoffee {...IconProps} />
                 <IconTitle>
                   <Numbers ref={cupsOfCoffeeRef} /> Cups of Coffee
                 </IconTitle>
