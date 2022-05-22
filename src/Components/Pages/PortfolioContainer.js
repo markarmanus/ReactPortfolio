@@ -6,6 +6,7 @@ import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Navbar from "../Navbar";
 import TabsContainer from "./TabsContainer";
+import { debounce } from "../../Helpers/UI";
 
 const Container = styled(motion.div)`
   width: 100%;
@@ -104,7 +105,8 @@ function PortfolioContainer(props) {
       await rocketController.start(fistRocketAnimation);
       rocketController.start(secondRocketAnimation);
       textController.start(secondTextAnimation);
-      controller2.start("show");
+      await controller2.start("show");
+      controller2.start("postLoad");
       setActive(1);
     } else {
       setTabs({
@@ -117,7 +119,8 @@ function PortfolioContainer(props) {
       await rocketController.start(fistRocketAnimation);
       rocketController.start(secondRocketAnimation);
       textController.start(secondTextAnimation);
-      controller1.start("show");
+      await controller1.start("show");
+      controller1.start("postLoad");
       setActive(0);
     }
   };
@@ -130,6 +133,7 @@ function PortfolioContainer(props) {
     "1000px": "150px",
     "700px": "100px",
   };
+
   return (
     <Container variants={variants}>
       <Background animate={true}></Background>

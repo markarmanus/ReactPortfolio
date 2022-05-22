@@ -37,12 +37,12 @@ const TitleContainer = styled.div`
   height: 8vmin;
 `;
 const RightContainer = styled.div`
-  flex: 0.75;
+  flex: 0.65;
   width: 100%;
   height: 90%;
   display: flex;
   justify-content: space-between;
-  padding-left: 15%;
+  padding-left: 10%;
   padding-right: 15%;
   align-items: center;
 
@@ -68,13 +68,16 @@ const TopRightHalf = styled(BottomRightContainer)`
 const TechContainer = styled(motion.div)`
   width: 100%;
   display: flex;
-
+  -webkit-perspective-origin-x: 0%;
+  -webkit-transform-origin-x: 0%;
   align-items: center;
 `;
 const TechBar = styled(motion.div)`
   display: inline-block;
   width: ${(props) => props.width};
   height: 1.1vh;
+  -webkit-perspective-origin-x: 0%;
+  -webkit-transform-origin-x: 0%;
   background-color: ${(props) => props.color};
 `;
 const TechImage = styled.img`
@@ -84,12 +87,41 @@ const TechImage = styled.img`
 const TechImageContainer = styled.div`
   width: ${biggestIcon + "vh"};
 `;
+const loadInAnimation = {
+  opacity: [0, 1],
+  transformX: ["-40%", "0%"],
+  transformY: ["-40%", "0"],
+  scale: [0, 1],
+  transition: {
+    delay: 0.5,
+    duration: 0.5,
+  },
+};
+const disappearAnimation = {
+  opacity: [1, 0],
+  transition: {
+    delay: 0,
+    duration: 0.1,
+  },
+};
+const barAnimation = () => {
+  return {
+    scaleX: [1, Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 1],
+    scaleY: [1, Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 1],
+    transition: {
+      duration: 3,
+      type: "spring",
+    },
+  };
+};
+const containerVariants = {
+  show: loadInAnimation,
+  hide: disappearAnimation,
+};
+const barVariants = {
+  postLoad: barAnimation,
+};
 function Skills(props) {
-  const initialSequence = async () => {};
-  useEffect(() => {
-    initialSequence();
-  }, []);
-
   return (
     <Container>
       <LeftContainer>
@@ -117,11 +149,11 @@ function Skills(props) {
       <RightContainer>
         {technologies.map((tech, i) => {
           return (
-            <TechContainer>
+            <TechContainer key={i} variants={containerVariants}>
               <TechImageContainer>
                 <TechImage size={tech.size} src={tech.imgSrc} />
               </TechImageContainer>
-              <TechBar color={tech.color} width={tech.experience} />
+              <TechBar variants={barVariants} color={tech.color} width={tech.experience} />
             </TechContainer>
           );
         })}

@@ -173,7 +173,7 @@ function Landing() {
         smaller_dimension={uiContext.dimensions.smaller}
       />
 
-      <PortfolioContainer initialSelectedTab={TABS.ABOUT_ME} />
+      <PortfolioContainer initialSelectedTab={TABS.SKILLS} />
     </Container>
   );
 }
