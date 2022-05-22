@@ -29,7 +29,7 @@ const Rocket = styled(motion.img)`
   top: 50%;
   left: -20%;
   transform: translate(0, -50%);
-  width: ${({ smallerDimension }) => 0.2 * smallerDimension}px;
+  width: ${({ smaller_dimension }) => 0.2 * smaller_dimension}px;
   height: auto;
 `;
 const RocketContainer = styled(motion.div)`
@@ -95,7 +95,7 @@ function PortfolioContainer(props) {
       setSelectedTab(tab);
     }, 1400);
   };
-  const navBarWidth = {
+  const nav_bar_width = {
     default: "200px",
     "1000px": "150px",
     "700px": "100px",
@@ -104,12 +104,12 @@ function PortfolioContainer(props) {
     <Container variants={variants}>
       <Background animate={true}></Background>
       <ContentContainer animate={controller1} initial="show">
-        <TabsContainer navBarWidth={navBarWidth} selectedTab={selectedTab} />
+        <TabsContainer nav_bar_width={nav_bar_width} selectedTab={selectedTab} />
       </ContentContainer>
       <RocketContainer initial={{ translateX: -100 }} animate={rocketController}>
         <Rocket
           src={process.env.PUBLIC_URL + "/Images/Background/Rocket-Right.png"}
-          smallerDimension={uiContext.dimensions.smaller}
+          smaller_dimension={uiContext.dimensions.smaller}
         />
         <TextContainer initial={{ opacity: 0 }} animate={textController}>
           <PleaseHoldTight>Please Hold Tight</PleaseHoldTight>
@@ -117,10 +117,10 @@ function PortfolioContainer(props) {
       </RocketContainer>
 
       <ContentContainer animate={controller2} initial="hide">
-        <TabsContainer navBarWidth={navBarWidth} selectedTab={selectedTab} />
+        <TabsContainer nav_bar_width={nav_bar_width} selectedTab={selectedTab} />
       </ContentContainer>
 
-      <Navbar navBarWidth={navBarWidth} onSelectTab={onSelectTab} selectedTab={selectedTab} />
+      <Navbar nav_bar_width={nav_bar_width} onSelectTab={onSelectTab} selectedTab={selectedTab} />
     </Container>
   );
 }

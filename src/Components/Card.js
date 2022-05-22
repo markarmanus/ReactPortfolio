@@ -48,9 +48,9 @@ function Card(props) {
         ))}
       {props.bulletPoints &&
         props.bulletPoints.map((point, i) => (
-          <BulletPointContainer>
+          <BulletPointContainer key={i}>
             <PointCircle />
-            <BulletPoint key={i}>{point}</BulletPoint>
+            <BulletPoint>{point}</BulletPoint>
           </BulletPointContainer>
         ))}
     </Container>

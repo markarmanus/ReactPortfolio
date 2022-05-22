@@ -19,7 +19,7 @@ const Rocket = styled(motion.img)`
   position: absolute;
   left: 47%;
   bottom: 0%;
-  width: ${({ smallerDimension }) => 0.1 * smallerDimension}px;
+  width: ${({ smaller_dimension }) => 0.1 * smaller_dimension}px;
   height: auto;
   cursor: pointer;
   -webkit-transform-origin-y: 5%;
@@ -170,7 +170,7 @@ function Landing() {
         variants={rocketVariants}
         onTap={onClickRocket}
         src={process.env.PUBLIC_URL + "/Images/Background/Rocket.png"}
-        smallerDimension={uiContext.dimensions.smaller}
+        smaller_dimension={uiContext.dimensions.smaller}
       />
 
       <PortfolioContainer initialSelectedTab={TABS.ABOUT_ME} />

@@ -10,9 +10,7 @@ function Icon(props) {
     size: "50%",
     color: COLORS["main-yellow"],
   };
-  const Bold = styled.span`
-    font-weight: bold;
-  `;
+
   const IconTitle = styled.p`
     color: ${COLORS["main-yellow"]};
     font-size: large;
@@ -21,10 +19,7 @@ function Icon(props) {
   return (
     <IconContainer>
       <IconComponent {...IconProps} />
-      <IconTitle>
-        <Bold>{props.bold}</Bold>
-        {props.title}
-      </IconTitle>
+      <IconTitle>{props.children}</IconTitle>
     </IconContainer>
   );
 }

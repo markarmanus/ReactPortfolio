@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import UiContext from "../../../Contexts/UI";
-import Background from "../../Background";
+import { useCountUp } from "react-countup";
 import React, { useEffect, useRef } from "react";
 import DoubleText from "../../DoubleText";
 import { COLORS } from "../../../Constants/COLOR";
@@ -32,7 +31,7 @@ const Rectangle = styled.div`
 `;
 
 const BottomRightContainer = styled.div`
-  flex: 1;
+  flex: 1.2;
   padding-right: 5%;
   align-items: center;
   flex-direction: column;
@@ -94,6 +93,23 @@ const TopRightHalf = styled(BottomRightContainer)`
   justify-content: flex-end;
   padding-bottom: 6%;
   flex: 0.6;
+`;
+const Numbers = styled.div`
+  font-weight: bold;
+  font-size: 25px;
+`;
+const IconContainer = styled.div`
+  position: relative;
+  text-align: center;
+`;
+const IconProps = {
+  size: "50%",
+  color: COLORS["main-yellow"],
+};
+
+const IconTitle = styled.p`
+  color: ${COLORS["main-yellow"]};
+  font-size: large;
 `;
 const popInAnimation = {
   scale: [0, 1.15, 1],
@@ -170,16 +186,63 @@ function AboutMe(props) {
   useEffect(() => {
     initialSequence();
   }, []);
+  const linedOfCodeRef = React.useRef(null);
+  const hoursRef = React.useRef(null);
+  const cupsOfCoffeeRef = React.useRef(null);
+  const { start: startHours, pauseResume: pauseResumeHours } = useCountUp({
+    ref: hoursRef,
+    start: 0,
+    end: 8000,
+    preserveValue: true,
+    startOnMount: false,
+    suffix: "+",
+    duration: 10,
+  });
+  const { start: startCoffee, pauseResume: pauseResumeCoffee } = useCountUp({
+    ref: cupsOfCoffeeRef,
+    start: 0,
+    end: 1500,
+    preserveValue: true,
+    suffix: "+",
+    duration: 10,
+    startOnMount: false,
+  });
+  const { start: startLines, pauseResume: pauseResumeLines } = useCountUp({
+    ref: linedOfCodeRef,
+    start: 0,
+    end: 1000000,
+    preserveValue: true,
+    suffix: "+",
+    startOnMount: false,
+    duration: 10,
+  });
+  const startNumbers = () => {
+    startLines();
+    startHours();
+    startCoffee();
+  };
+  const pauseResumeNumbers = () => {
+    pauseResumeLines();
+    pauseResumeCoffee();
+    pauseResumeHours();
+  };
   const onTapRocket = async () => {
     if (clickedRocket) return;
     setClickedRocket(true);
     const barWidth = progressBar.current.offsetWidth;
+    startNumbers();
     await rocketController.start(getRocketAnimation.toHeyOrca(barWidth));
+    pauseResumeNumbers();
     await heyorcaCardController.start(popInAnimation);
+    pauseResumeNumbers();
     await rocketController.start(getRocketAnimation.toMysa(barWidth));
+    pauseResumeNumbers();
     await mysaCardController.start(popInAnimation);
+    pauseResumeNumbers();
     await rocketController.start(getRocketAnimation.toGraduation(barWidth));
+    pauseResumeNumbers();
     await graduationCardController.start(popInAnimation);
+    pauseResumeNumbers();
     await rocketController.start(getRocketAnimation.toStop(barWidth));
     await rocketController.start(getRocketAnimation.stop());
   };
@@ -228,7 +291,7 @@ function AboutMe(props) {
           </CardsContainer>
         </TopRightHalf>
         <BottomRightContainer>
-          <div style={{ width: "100%", flex: 0.5 }}>
+          <div style={{ width: "100%", flex: 0.6 }}>
             <div style={{ position: "relative", width: "100%" }}>
               <Rocket
                 initial={{ translateX: "-50%", translateY: "-50%" }}
@@ -274,11 +337,26 @@ function AboutMe(props) {
               />
             </AnimatedCard>
           </CardsContainer>
-          <div style={{ width: "90%", flex: 1.5 }}>
+          <div style={{ width: "90%", flex: 1.3 }}>
             <div style={{ display: "flex", justifyContent: "space-between", paddingTop: "5%" }}>
-              <Icon iconComponent={BsCodeSlash} bold={"8000+"} title={"Lines Of Code"} />
-              <Icon iconComponent={AiOutlineFieldTime} bold={"8000+"} title={"Hours"} />
-              <Icon iconComponent={AiOutlineCoffee} bold={"8000+"} title={"Cups of Coffee"} />
+              <IconContainer>
+                <BsCodeSlash {...IconProps} />
+                <IconTitle>
+                  <Numbers ref={linedOfCodeRef} /> Lines Of Code
+                </IconTitle>
+              </IconContainer>
+              <IconContainer>
+                <AiOutlineFieldTime {...IconProps} />
+                <IconTitle>
+                  <Numbers ref={hoursRef} /> Professional Work Hours
+                </IconTitle>
+              </IconContainer>
+              <IconContainer>
+                <AiOutlineFieldTime {...IconProps} />
+                <IconTitle>
+                  <Numbers ref={cupsOfCoffeeRef} /> Cups of Coffee
+                </IconTitle>
+              </IconContainer>
             </div>
           </div>
         </BottomRightContainer>

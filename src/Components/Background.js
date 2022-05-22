@@ -14,8 +14,8 @@ const AnimatedContainer = styled(motion.div)`
 const earthSize = 45;
 const Earth = styled.div`
   background-image: url(${process.env.PUBLIC_URL + "/Images/Background/Earth.png"});
-  width: ${({ smallerDimension }) => (earthSize / 100) * smallerDimension}px;
-  height: ${({ smallerDimension }) => (earthSize / 100) * smallerDimension}px;
+  width: ${({ smaller_dimension }) => (earthSize / 100) * smaller_dimension}px;
+  height: ${({ smaller_dimension }) => (earthSize / 100) * smaller_dimension}px;
   position: relative;
   background-size: contain;
   top: 90%;
@@ -63,7 +63,7 @@ function Background(props) {
     <BlueBackground>
       <AnimatedContainer variants={props.animate ? variants : {}}>
         {props.showPlanets && (
-          <Earth smallerDimension={uiContext.dimensions.smaller}>
+          <Earth smaller_dimension={uiContext.dimensions.smaller}>
             <Astronaut />
             <Moon />
           </Earth>

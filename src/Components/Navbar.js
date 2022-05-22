@@ -71,7 +71,7 @@ const Link = styled.a`
 function Navbar(props) {
   const uiContext = React.useContext(UiContext);
   return (
-    <Container width={props.navBarWidth}>
+    <Container width={props.nav_bar_width}>
       <InitialsContainer>
         <DoubleText
           offset={8}
