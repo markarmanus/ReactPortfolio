@@ -56,6 +56,8 @@ function PortfolioContainer(props) {
   const textController = useAnimation();
   const [active, setActive] = useState(0);
   const [selectedTab, setSelectedTab] = useState(props.initialSelectedTab);
+  const [lastClicked, setLastClicked] = useState(performance.now());
+  const [disabled, setDisabled] = useState(false);
   const variants = {
     hidden: { translateY: uiContext.dimensions.height },
     rocketClicked: {
@@ -105,8 +107,7 @@ function PortfolioContainer(props) {
       await rocketController.start(fistRocketAnimation);
       rocketController.start(secondRocketAnimation);
       textController.start(secondTextAnimation);
-      await secondTabContainerController.start("show");
-      secondTabContainerController.start("postLoad");
+      await secondTabContainerController.start("show").then(() => setDisabled(false));
       setActive(1);
     } else {
       setTabs({
@@ -119,13 +120,15 @@ function PortfolioContainer(props) {
       await rocketController.start(fistRocketAnimation);
       rocketController.start(secondRocketAnimation);
       textController.start(secondTextAnimation);
-      await firstTabContainerController.start("show");
-      firstTabContainerController.start("postLoad");
+      await firstTabContainerController.start("show").then(() => setDisabled(false));
       setActive(0);
     }
   };
+
   const onSelectTab = (tab) => {
     if (tab === selectedTab) return;
+    if (disabled) return;
+    setDisabled(true);
     sequence(tab);
   };
   const nav_bar_width = {
@@ -154,7 +157,7 @@ function PortfolioContainer(props) {
         <TabsContainer nav_bar_width={nav_bar_width} selectedTab={tabs.second} />
       </ContentContainer>
 
-      <Navbar nav_bar_width={nav_bar_width} onSelectTab={onSelectTab} selectedTab={selectedTab} />
+      <Navbar nav_bar_width={nav_bar_width} disabled={disabled} onSelectTab={onSelectTab} selectedTab={selectedTab} />
     </Container>
   );
 }

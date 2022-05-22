@@ -29,11 +29,12 @@ const Tab = styled.p`
   font-size: 1.5em;
   font-family: "Poly";
   height: 50px;
+  opacity: ${(props) => (props.disabled ? 0.3 : 1)};
   width: 100%;
   border-bottom: 1px ${COLORS["main-yellow"]} solid;
   display: flex;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${(props) => (props.disabled ? "no-drop" : "pointer")};
   &:hover {
     color: ${COLORS["main-yellow"]};
   }
@@ -85,16 +86,32 @@ function Navbar(props) {
         />
       </InitialsContainer>
       <TabsContainer>
-        <Tab onClick={() => props.onSelectTab(TABS.ABOUT_ME)} selected={props.selectedTab == TABS.ABOUT_ME}>
+        <Tab
+          disabled={props.disabled}
+          onClick={() => props.onSelectTab(TABS.ABOUT_ME)}
+          selected={props.selectedTab == TABS.ABOUT_ME}
+        >
           About me
         </Tab>
-        <Tab onClick={() => props.onSelectTab(TABS.SKILLS)} selected={props.selectedTab == TABS.SKILLS}>
+        <Tab
+          disabled={props.disabled}
+          onClick={() => props.onSelectTab(TABS.SKILLS)}
+          selected={props.selectedTab == TABS.SKILLS}
+        >
           Skills
         </Tab>
-        <Tab onClick={() => props.onSelectTab(TABS.PROJECTS)} selected={props.selectedTab == TABS.PROJECTS}>
+        <Tab
+          disabled={props.disabled}
+          onClick={() => props.onSelectTab(TABS.PROJECTS)}
+          selected={props.selectedTab == TABS.PROJECTS}
+        >
           Projects
         </Tab>
-        <Tab onClick={() => props.onSelectTab(TABS.CONTACT)} selected={props.selectedTab == TABS.CONTACT}>
+        <Tab
+          disabled={props.disabled}
+          onClick={() => props.onSelectTab(TABS.CONTACT)}
+          selected={props.selectedTab == TABS.CONTACT}
+        >
           Contact
         </Tab>
       </TabsContainer>
