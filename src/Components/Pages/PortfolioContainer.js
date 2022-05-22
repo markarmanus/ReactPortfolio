@@ -58,42 +58,61 @@ function PortfolioContainer(props) {
       transition: { delay: 0.5, duration: 3, ease: "easeOut" },
     },
   };
-  const textAnimation = {
-    opacity: [0, 1, 0],
-    transition: { duration: 2, delay: 0.4, times: [0, 0.35, 0.65, 1] },
+
+  const firstTextAnimation = {
+    opacity: [0, 1],
+    transition: { duration: 0.75, delay: 0.4 },
   };
-  const rocketAnimation = {
-    translateX: [-100, uiContext.dimensions.width / 2, uiContext.dimensions.width / 2, uiContext.dimensions.width],
+  const secondTextAnimation = {
+    opacity: [1, 0],
+    transition: { duration: 1.75, delay: 0 },
+  };
+
+  const fistRocketAnimation = {
+    translateX: [-100, uiContext.dimensions.width / 2],
     rotateX: [0, 20, 0],
     rotateZ: [0, 5, 0, -5, 0],
     transition: {
-      translateX: { duration: 2, times: [0, 0.35, 0.65, 1], delay: 0.4 },
-      rotateX: { duration: 0.75, repeat: 4 },
-      rotateZ: { duration: 0.75, repeat: 4, ease: "linear" },
+      translateX: { duration: 0.5, delay: 0.4 },
+      rotateX: { duration: 0.75, repeat: 2, ease: "linear" },
+      rotateZ: { duration: 0.75, repeat: 2, ease: "linear" },
     },
   };
-
-  const sequence = async () => {
+  const secondRocketAnimation = {
+    translateX: [uiContext.dimensions.width / 2, uiContext.dimensions.width],
+    rotateX: [null, 20, 0],
+    rotateZ: [null, 5, 0, -5, 0],
+    transition: {
+      translateX: { duration: 0.5, delay: 0 },
+      rotateX: { duration: 0.75, repeat: 2, delay: 0, ease: "linear" },
+      rotateZ: { duration: 0.75, repeat: 2, delay: 0, ease: "linear" },
+    },
+  };
+  const sequence = async (tab) => {
     if (active == 0) {
       controller1.start("hide");
-      rocketController.start(rocketAnimation);
-      textController.start(textAnimation);
+      textController.start(firstTextAnimation);
+      await rocketController.start(fistRocketAnimation);
+      setSelectedTab(tab);
+      textController.start(secondTextAnimation);
+      rocketController.start(secondRocketAnimation);
       controller2.start("show");
       setActive(1);
     } else {
-      controller1.start("show");
-      rocketController.start(rocketAnimation);
-      textController.start(textAnimation);
       controller2.start("hide");
+
+      textController.start(firstTextAnimation);
+      await rocketController.start(fistRocketAnimation);
+      setSelectedTab(tab);
+      rocketController.start(secondRocketAnimation);
+      textController.start(secondTextAnimation);
+      controller1.start("show");
       setActive(0);
     }
   };
   const onSelectTab = (tab) => {
     if (tab === selectedTab) return;
-    sequence();
-    setTimeout(() => {
-      setSelectedTab(tab);
-    }, 1400);
+    sequence(tab);
   };
   const nav_bar_width = {
     default: "200px",

@@ -34,8 +34,12 @@ function TabsContainer(props) {
 
   React.useEffect(() => {});
   const variants = {
-    show: { scaleX: 1, originX: "0%", transition: { scaleX: { duration: 1, delay: 1.75 }, originX: { duration: 0 } } },
-    hide: { scaleX: 0, originX: "100%", transition: { scaleX: { duration: 1 }, originX: { duration: 0 } } },
+    show: {
+      scaleX: 1,
+      originX: "0%",
+      transition: { scaleX: { duration: 0.75, delay: 0 }, originX: { duration: 0 } },
+    },
+    hide: { scaleX: 0, originX: "100%", transition: { scaleX: { duration: 0.75 }, originX: { duration: 0 } } },
   };
   return (
     <Container nav_bar_width={props.nav_bar_width} variants={variants}>
