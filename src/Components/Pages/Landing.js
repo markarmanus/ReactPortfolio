@@ -55,10 +55,12 @@ const InnerTextContainer = styled.div`
   margin-top: ${({ marginTop }) => marginTop};
 `;
 const flyUpAnimation = {
-  rotateZ: [null, 0],
+  rotateZ: [0, 5, 0, -5, 0],
+  rotateX: [0, 20, 0],
   translateY: [null, -1080],
   transition: {
-    rotateZ: { ease: "linear", duration: 1, repeat: 0 },
+    rotateZ: { ease: "linear", duration: 1, repeat: 3 },
+    rotateX: { duration: 0.75, repeat: 4 },
     translateY: { ease: "easeOut", duration: 3, repeat: 0 },
   },
 };

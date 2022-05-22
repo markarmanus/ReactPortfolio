@@ -4,12 +4,13 @@ const Container = styled.div`
   width: 100%;
   height: 90%;
   margin: 10px;
-  padding: 1% 1.5%;
+  padding: 5px 15px;
   background-color: ${COLORS["secondary-blue"]};
 `;
 const Title = styled.p`
   color: ${COLORS["main-yellow"]};
   font-size: large;
+  font-weight: bold;
   font-family: "Puritan";
   margin-bottom: 2px;
 `;

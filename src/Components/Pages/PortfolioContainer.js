@@ -28,20 +28,20 @@ const ContentContainer = styled(motion.div)`
 const Rocket = styled(motion.img)`
   top: 50%;
   left: -20%;
-  transform: translate(25%, -50%) rotate(90deg);
-
-  width: ${({ smallerDimension }) => 0.15 * smallerDimension}px;
+  transform: translate(0, -50%);
+  width: ${({ smallerDimension }) => 0.2 * smallerDimension}px;
   height: auto;
 `;
 const RocketContainer = styled(motion.div)`
   position: absolute;
+  -webkit-transform-origin-y: 5%;
   top: 50%;
   left: 0%;
 `;
 const TextContainer = styled(motion.div)`
   position: absolute;
-  transform: translate(25%, -50%);
-  top: 40%;
+  transform: translate(20%, -50%);
+  top: 60%;
 `;
 function PortfolioContainer(props) {
   const uiContext = React.useContext(UiContext);
@@ -64,12 +64,15 @@ function PortfolioContainer(props) {
   };
   const rocketAnimation = {
     translateX: [-100, uiContext.dimensions.width / 2, uiContext.dimensions.width / 2, uiContext.dimensions.width],
+    rotateX: [0, 20, 0],
+    rotateZ: [0, 5, 0, -5, 0],
     transition: {
       translateX: { duration: 2, times: [0, 0.35, 0.65, 1], delay: 0.4 },
-      rotate: { duration: 0 },
-      translateY: { duration: 0 },
+      rotateX: { duration: 0.75, repeat: 4 },
+      rotateZ: { duration: 0.75, repeat: 4, ease: "linear" },
     },
   };
+
   const sequence = async () => {
     if (active == 0) {
       controller1.start("hide");
@@ -105,7 +108,7 @@ function PortfolioContainer(props) {
       </ContentContainer>
       <RocketContainer initial={{ translateX: -100 }} animate={rocketController}>
         <Rocket
-          src={process.env.PUBLIC_URL + "/Images/Background/Rocket.png"}
+          src={process.env.PUBLIC_URL + "/Images/Background/Rocket-Right.png"}
           smallerDimension={uiContext.dimensions.smaller}
         />
         <TextContainer initial={{ opacity: 0 }} animate={textController}>

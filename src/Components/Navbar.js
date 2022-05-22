@@ -3,7 +3,6 @@ import React from "react";
 import UiContext from "../Contexts/UI";
 import { COLORS } from "../Constants/COLOR";
 import DoubleText from "./DoubleText";
-import { SocialMediaIconsReact } from "social-media-icons-react";
 import { TABS } from "../Constants/PAGES";
 import { FaGithubSquare, FaFacebookSquare, FaLinkedin } from "react-icons/fa";
 import { IconContext } from "react-icons";

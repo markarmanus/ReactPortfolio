@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import UiContext from "../../../Contexts/UI";
 import Background from "../../Background";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import DoubleText from "../../DoubleText";
 import { COLORS } from "../../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
@@ -39,6 +39,10 @@ const BottomRightContainer = styled.div`
   display: flex;
   width: 65%;
 `;
+const AnimatedCard = styled(motion.div)`
+  width: 100%;
+  display: flex;
+`;
 const LeftContainer = styled.div`
   justify-content: center;
   align-items: center;
@@ -68,8 +72,19 @@ const Quote = styled.p`
   font-family: "Puritan";
   font-size: 18px;
 `;
+const Rocket = styled(motion.img)`
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 8%;
+  height: auto;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  -webkit-transform-origin-y: 5%;
+  z-index: 1;
+`;
 const CardsContainer = styled.div`
-  width: 90%;
+  width: 95%;
   flex: 1.3;
   display: flex;
   justify-content: center;
@@ -80,7 +95,95 @@ const TopRightHalf = styled(BottomRightContainer)`
   padding-bottom: 6%;
   flex: 0.6;
 `;
+const popInAnimation = {
+  scale: [0, 1.15, 1],
+  opacity: [0, 1],
+  transition: {
+    duration: 0.5,
+    ease: "easeInOut",
+  },
+};
 function AboutMe(props) {
+  const rocketController = useAnimation();
+  const graduationCardController = useAnimation();
+  const mysaCardController = useAnimation();
+  const heyorcaCardController = useAnimation();
+  const progressBar = useRef(null);
+  const [clickedRocket, setClickedRocket] = React.useState(false);
+  const getRocketAnimation = {
+    idle: () => {
+      return {
+        rotateX: [0, 20, 0],
+        rotateZ: [0, 5, 0, -5, 0],
+        transition: {
+          rotateX: { duration: 0.75, ease: "linear", delay: 1, repeat: "Infinity" },
+          rotateZ: { duration: 0.75, ease: "linear", delay: 1, repeat: "Infinity" },
+        },
+      };
+    },
+    toHeyOrca: (width) => {
+      return {
+        x: [0, 0.25 * width],
+        transition: {
+          x: { duration: 0.75 },
+        },
+      };
+    },
+    toMysa: (width) => {
+      return {
+        x: 0.5 * width,
+        transition: {
+          x: { duration: 0.75, delay: 0.1 },
+        },
+      };
+    },
+    toGraduation: (width) => {
+      return {
+        x: 0.75 * width,
+        transition: {
+          x: { duration: 0.75, delay: 0.1 },
+        },
+      };
+    },
+    toStop: (width) => {
+      return {
+        x: width,
+        transition: {
+          x: { duration: 0.75, delay: 0.1 },
+        },
+      };
+    },
+    stop: () => {
+      return {
+        rotateX: [null, 0],
+        rotateZ: [null, 0],
+        transition: {
+          rotateX: { duration: 0.75, ease: "linear" },
+          rotateZ: { duration: 0.75, ease: "linear" },
+        },
+      };
+    },
+  };
+  const initialSequence = async () => {
+    await rocketController.start(getRocketAnimation.idle());
+  };
+  useEffect(() => {
+    initialSequence();
+  }, []);
+  const onTapRocket = async () => {
+    if (clickedRocket) return;
+    setClickedRocket(true);
+    const barWidth = progressBar.current.offsetWidth;
+    await rocketController.start(getRocketAnimation.toHeyOrca(barWidth));
+    await heyorcaCardController.start(popInAnimation);
+    await rocketController.start(getRocketAnimation.toMysa(barWidth));
+    await mysaCardController.start(popInAnimation);
+    await rocketController.start(getRocketAnimation.toGraduation(barWidth));
+    await graduationCardController.start(popInAnimation);
+    await rocketController.start(getRocketAnimation.toStop(barWidth));
+    await rocketController.start(getRocketAnimation.stop());
+  };
+
   const dotSize = "25px";
   return (
     <Container>
@@ -109,55 +212,67 @@ function AboutMe(props) {
       <RightContainer>
         <TopRightHalf>
           <CardsContainer style={{ flex: 0.5 }}>
-            <Card
-              title="Bachelor Of Science - Honours"
-              details={[
-                { fontSize: "20px", text: "Memorial University Of Newfoundland", bold: true },
-                { fontSize: "16px", text: "Sept 2016 - Apr 2021" },
-              ]}
-              bulletPoints={[
-                "Graduated With Honours",
-                "Research In Evolutionary Machine Learning To Create Semester University Schedule",
-              ]}
-            />
+            <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={graduationCardController}>
+              <Card
+                title="Computer Science - Honours"
+                details={[
+                  { fontSize: "20px", text: "Memorial University Of Newfoundland", bold: true },
+                  { fontSize: "16px", text: "Sept 2016 - Apr 2021" },
+                ]}
+                bulletPoints={[
+                  "Graduated With Honours",
+                  "Research In Evolutionary Machine Learning To Create Semester University Schedule",
+                ]}
+              />
+            </AnimatedCard>
           </CardsContainer>
         </TopRightHalf>
         <BottomRightContainer>
           <div style={{ width: "100%", flex: 0.5 }}>
             <div style={{ position: "relative", width: "100%" }}>
+              <Rocket
+                initial={{ translateX: "-50%", translateY: "-50%" }}
+                animate={rocketController}
+                onTap={onTapRocket}
+                src={process.env.PUBLIC_URL + "/Images/Background/Rocket-Right.png"}
+              />
               <DotWithText title="Sept 2016" left="0%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
               <DotWithText title="Heyorca - Jan 2018" left="25%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
               <DotWithText title="Mysa - Jan 2020" left="50%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
-              <DotWithText title="Graduation - Apr 2021" left="80%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
-              <Rectangle width="100%" height="6px" bgColor={COLORS["main-yellow"]} />
+              <DotWithText title="Graduation - Apr 2021" left="75%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
+              <Rectangle ref={progressBar} width="100%" height="6px" bgColor={COLORS["main-yellow"]} />
               <DotWithText title="Present" left="100%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
             </div>
           </div>
           <CardsContainer>
-            <Card
-              title="Web Developer"
-              details={[
-                { fontSize: "20px", text: "Heyorca", bold: true },
-                { fontSize: "16px", text: "Jan 2018 - Oct 2019" },
-              ]}
-              bulletPoints={[
-                "Worked Heavily With PHP, Laravel, AWS and React",
-                "Member of the Devops team to create Internal dev tools",
-              ]}
-            />
-            <Card
-              title="Intermediate Software Developer"
-              details={[
-                { fontSize: "20px", text: "App Architecture Lead", bold: true },
-                { fontSize: "20px", text: "Mysa Thermostat", bold: true },
-                { fontSize: "16px", text: "Jan 2020 - Present" },
-              ]}
-              bulletPoints={[
-                "Worked as something and bla",
-                "App Arch we 7agat kter yala edenea b2a",
-                "Employe of the Week ",
-              ]}
-            />
+            <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={heyorcaCardController}>
+              <Card
+                title="Web Developer"
+                details={[
+                  { fontSize: "20px", text: "Heyorca", bold: true },
+                  { fontSize: "16px", text: "Jan 2018 - Oct 2019" },
+                ]}
+                bulletPoints={[
+                  "Worked Heavily With PHP, Laravel, AWS and React",
+                  "Member of the Devops team to create Internal dev tools",
+                ]}
+              />
+            </AnimatedCard>
+            <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={mysaCardController}>
+              <Card
+                title="Intermediate Software Developer"
+                details={[
+                  { fontSize: "20px", text: "App Architecture Lead", bold: true },
+                  { fontSize: "20px", text: "Mysa Thermostat", bold: true },
+                  { fontSize: "16px", text: "Jan 2020 - Present" },
+                ]}
+                bulletPoints={[
+                  "Worked as something and bla",
+                  "App Arch we 7agat kter yala edenea b2a",
+                  "Employe of the Week ",
+                ]}
+              />
+            </AnimatedCard>
           </CardsContainer>
           <div style={{ width: "90%", flex: 1.5 }}>
             <div style={{ display: "flex", justifyContent: "space-between", paddingTop: "5%" }}>
