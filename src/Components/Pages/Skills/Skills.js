@@ -59,12 +59,6 @@ const Quote = styled.p`
   font-size: 18px;
 `;
 
-const TopRightHalf = styled(BottomRightContainer)`
-  justify-content: flex-end;
-  padding-bottom: 6%;
-  flex: 0.6;
-`;
-
 const TechContainer = styled(motion.div)`
   width: 100%;
   display: flex;
@@ -87,13 +81,16 @@ const TechImage = styled.img`
 const TechImageContainer = styled.div`
   width: ${biggestIcon + "vh"};
 `;
-const loadInAnimation = {
-  opacity: [0, 1],
-  scale: [0, 1],
-  transition: {
-    delay: 0.5,
-    duration: 0.5,
-  },
+const loadInAnimation = (i) => {
+  return {
+    opacity: [0, 1],
+    scale: [0, 1],
+    transition: {
+      delay: 0.5 + 0.15 * i,
+      ease: "linear",
+      duration: 0.4,
+    },
+  };
 };
 const disappearAnimation = {
   opacity: [1, 0],
@@ -102,23 +99,12 @@ const disappearAnimation = {
     duration: 0.1,
   },
 };
-const barAnimation = () => {
-  return {
-    scaleX: [0, Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 1],
-    scaleY: [0, Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), Math.random(), 1],
-    transition: {
-      duration: 2,
-      ease: "linear",
-    },
-  };
-};
+
 const containerVariants = {
   show: loadInAnimation,
   hide: disappearAnimation,
 };
-const barVariants = {
-  show: barAnimation,
-};
+
 function Skills(props) {
   return (
     <Container>
@@ -147,11 +133,11 @@ function Skills(props) {
       <RightContainer>
         {technologies.map((tech, i) => {
           return (
-            <TechContainer key={i} variants={containerVariants}>
+            <TechContainer key={i} custom={i} variants={containerVariants}>
               <TechImageContainer>
                 <TechImage size={tech.size} src={tech.imgSrc} />
               </TechImageContainer>
-              <TechBar variants={barVariants} color={tech.color} width={tech.experience} />
+              <TechBar color={tech.color} width={tech.experience} />
             </TechContainer>
           );
         })}
