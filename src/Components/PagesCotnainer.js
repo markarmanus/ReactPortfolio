@@ -44,7 +44,7 @@ const TextContainer = styled(motion.div)`
   transform: translate(20%, -50%);
   top: 60%;
 `;
-function PortfolioContainer(props) {
+function PagesContainer(props) {
   const uiContext = React.useContext(UiContext);
   const firstTabContainerController = useAnimation();
   const secondTabContainerController = useAnimation();
@@ -167,4 +167,4 @@ function PortfolioContainer(props) {
   );
 }
 
-export default PortfolioContainer;
+export default PagesContainer;
