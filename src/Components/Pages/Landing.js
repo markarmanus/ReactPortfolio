@@ -80,6 +80,7 @@ function Landing() {
   const initialSequence = async () => {
     mainController.start("visible");
     // on Mount Animation (hides rocket before starting)
+    pageContentController.start("textAnimation");
     await rocketAnimationController.start({
       translateY: [200, 20],
       transition: { duration: 4 },
@@ -119,6 +120,15 @@ function Landing() {
               size={"12vmin"}
               font="Pixeboy"
               height="100%"
+              animationProps={{
+                animationColor: COLORS["main-green"],
+                translateAnimation: true,
+                duration: 0.3,
+                scaleAnimation: true,
+                absoluteDelay: 1,
+                opacityAnimation: true,
+                delayBetweenLetters: 0.05,
+              }}
               text="Mark Armanious"
             />
           </InnerTextContainer>
@@ -130,6 +140,14 @@ function Landing() {
               size={"10vmin"}
               height="10vmin"
               font="Pixeboy"
+              animationProps={{
+                animationColor: COLORS["main-yellow"],
+                duration: 0.3,
+                scaleAnimation: true,
+                absoluteDelay: 1.7,
+                opacityAnimation: true,
+                delayBetweenLetters: 0.04,
+              }}
               text="Hi,"
             />
             <DoubleText
@@ -138,6 +156,14 @@ function Landing() {
               secondColor={COLORS["main-yellow"]}
               size={"10vmin"}
               height="10vmin"
+              animationProps={{
+                animationColor: COLORS["main-green"],
+                duration: 0.3,
+                scaleAnimation: true,
+                absoluteDelay: 1.9,
+                opacityAnimation: true,
+                delayBetweenLetters: 0.04,
+              }}
               font="Pixeboy"
               text="I'am Mark,"
             />
@@ -146,6 +172,14 @@ function Landing() {
               firstColor={COLORS["main-black"]}
               secondColor={COLORS["main-yellow"]}
               size={"10vmin"}
+              animationProps={{
+                animationColor: COLORS["main-yellow"],
+                duration: 0.3,
+                scaleAnimation: true,
+                absoluteDelay: 2.2,
+                opacityAnimation: true,
+                delayBetweenLetters: 0.04,
+              }}
               height="10vmin"
               font="Pixeboy"
               text="Software Developer"
@@ -154,6 +188,14 @@ function Landing() {
               offset={0}
               firstColor={COLORS["main-green"]}
               secondColor={COLORS["main-green"]}
+              animationProps={{
+                animationColor: COLORS["main-yellow"],
+                duration: 0.3,
+                scaleAnimation: true,
+                absoluteDelay: 2.2,
+                opacityAnimation: true,
+                delayBetweenLetters: 0.02,
+              }}
               size={"3vmin"}
               height="10vmin"
               font="Pixeboy"

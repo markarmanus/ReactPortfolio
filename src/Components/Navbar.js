@@ -29,7 +29,7 @@ const Tab = styled.p`
   font-size: 1.5em;
   font-family: "Poly";
   height: 50px;
-  opacity: ${(props) => (props.disabled ? 0.3 : 1)};
+  opacity: ${(props) => (props.disabled ? 0.7 : 1)};
   width: 100%;
   border-bottom: 1px ${COLORS["main-yellow"]} solid;
   display: flex;
@@ -77,8 +77,15 @@ function Navbar(props) {
         <DoubleText
           offset={8}
           firstColor={COLORS["main-brown"]}
-          width={"65%"}
+          width={"80%"}
           secondColor={COLORS["main-yellow"]}
+          animationProps={{
+            duration: 0.9,
+            repeat: "Infinity",
+            absoluteDelay: 2,
+            animationColor: COLORS["main-green"],
+            delayBetweenLetters: 0.02,
+          }}
           size={"12vmin"}
           font="Pixeboy"
           height="100%"

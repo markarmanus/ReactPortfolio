@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import UiContext from "../Contexts/UI";
 import Background from "./Background";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { COLORS } from "../Constants/COLOR";
 import { motion, useAnimation, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Navbar from "./Navbar";
@@ -49,6 +49,7 @@ function PortfolioContainer(props) {
   const firstTabContainerController = useAnimation();
   const secondTabContainerController = useAnimation();
   const rocketController = useAnimation();
+  const navBarAnimationController = useAnimation();
   const [tabs, setTabs] = useState({
     first: props.initialSelectedTab,
     second: null,
@@ -56,7 +57,6 @@ function PortfolioContainer(props) {
   const textController = useAnimation();
   const [active, setActive] = useState(0);
   const [selectedTab, setSelectedTab] = useState(props.initialSelectedTab);
-  const [lastClicked, setLastClicked] = useState(performance.now());
   const [disabled, setDisabled] = useState(false);
   const variants = {
     hidden: { translateY: uiContext.dimensions.height },
@@ -65,7 +65,9 @@ function PortfolioContainer(props) {
       transition: { delay: 0.5, duration: 3, ease: "easeOut" },
     },
   };
-
+  useEffect(() => {
+    navBarAnimationController.start("textAnimation");
+  }, []);
   const firstTextAnimation = {
     opacity: [0, 1],
     transition: { duration: 0.75, delay: 0.4 },
@@ -107,6 +109,7 @@ function PortfolioContainer(props) {
       await rocketController.start(fistRocketAnimation);
       rocketController.start(secondRocketAnimation);
       textController.start(secondTextAnimation);
+      secondTabContainerController.start("textAnimation");
       await secondTabContainerController.start("show").then(() => setDisabled(false));
       setActive(1);
     } else {
@@ -120,6 +123,7 @@ function PortfolioContainer(props) {
       await rocketController.start(fistRocketAnimation);
       rocketController.start(secondRocketAnimation);
       textController.start(secondTextAnimation);
+      firstTabContainerController.start("textAnimation");
       await firstTabContainerController.start("show").then(() => setDisabled(false));
       setActive(0);
     }
@@ -156,8 +160,9 @@ function PortfolioContainer(props) {
       <ContentContainer animate={secondTabContainerController} initial="hide">
         <TabsContainer nav_bar_width={nav_bar_width} selectedTab={tabs.second} />
       </ContentContainer>
-
-      <Navbar nav_bar_width={nav_bar_width} disabled={disabled} onSelectTab={onSelectTab} selectedTab={selectedTab} />
+      <motion.div animate={navBarAnimationController}>
+        <Navbar nav_bar_width={nav_bar_width} disabled={disabled} onSelectTab={onSelectTab} selectedTab={selectedTab} />
+      </motion.div>
     </Container>
   );
 }

@@ -117,6 +117,15 @@ function Skills(props) {
             size={"6vmin"}
             font="Prompt"
             height="100%"
+            animationProps={{
+              animationColor: COLORS["main-green"],
+              translateAnimation: true,
+              duration: 0.3,
+              scaleAnimation: true,
+              absoluteDelay: 0.3,
+              opacityAnimation: true,
+              delayBetweenLetters: 0.05,
+            }}
             text={`Technical Skills`}
           />
         </TitleContainer>
