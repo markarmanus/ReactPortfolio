@@ -107,17 +107,20 @@ function Landing() {
     hidden: { opacity: 0, transition: { delay: 0.5, duration: 2 } },
     visible: { opacity: 1 },
   };
+  const titleFontSize = "6.5vmax";
+  const describeFontSize = "5vmax";
+  const extFontSize = "2vmax";
   return (
     <Container initial={"hidden"} variants={mainContainerVariants} animate={mainController}>
       <ContentContainer initial="visible" variants={contentVariants} animate={pageContentController}>
         <Background animate={false} showPlanets={true} />
         <TextContainer>
-          <InnerTextContainer flex={0.5} marginLeft={"10vmin"} marginTop={"5vh"}>
+          <InnerTextContainer flex={0.5} marginLeft={"5vw"} marginTop={"5vh"}>
             <DoubleText
               offset={7}
               firstColor={COLORS["main-black"]}
               secondColor={COLORS["main-yellow"]}
-              size={"12vmin"}
+              size={titleFontSize}
               font="Pixeboy"
               height="100%"
               animationProps={{
@@ -132,13 +135,13 @@ function Landing() {
               text="Mark Armanious"
             />
           </InnerTextContainer>
-          <InnerTextContainer flex={1} marginLeft={"15vmin"}>
+          <InnerTextContainer flex={1} marginLeft={"8vw"}>
             <DoubleText
               offset={7}
               firstColor={COLORS["main-black"]}
               secondColor={COLORS["main-green"]}
-              size={"10vmin"}
-              height="10vmin"
+              size={describeFontSize}
+              height={describeFontSize}
               font="Pixeboy"
               animationProps={{
                 animationColor: COLORS["main-yellow"],
@@ -154,8 +157,8 @@ function Landing() {
               offset={7}
               firstColor={COLORS["main-black"]}
               secondColor={COLORS["main-yellow"]}
-              size={"10vmin"}
-              height="10vmin"
+              size={describeFontSize}
+              height={describeFontSize}
               animationProps={{
                 animationColor: COLORS["main-green"],
                 duration: 0.3,
@@ -171,7 +174,7 @@ function Landing() {
               offset={7}
               firstColor={COLORS["main-black"]}
               secondColor={COLORS["main-yellow"]}
-              size={"10vmin"}
+              size={describeFontSize}
               animationProps={{
                 animationColor: COLORS["main-yellow"],
                 duration: 0.3,
@@ -180,7 +183,7 @@ function Landing() {
                 opacityAnimation: true,
                 delayBetweenLetters: 0.04,
               }}
-              height="10vmin"
+              height={describeFontSize}
               font="Pixeboy"
               text="Software Developer"
             />
@@ -196,8 +199,8 @@ function Landing() {
                 opacityAnimation: true,
                 delayBetweenLetters: 0.02,
               }}
-              size={"3vmin"}
-              height="10vmin"
+              size={extFontSize}
+              height={extFontSize}
               font="Pixeboy"
               text="React - React Native Expert"
             />

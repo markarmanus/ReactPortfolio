@@ -6,8 +6,9 @@ import { UIContextProvider } from "./Contexts/UI";
 import { COLORS } from "./Constants/COLOR";
 import { ToastContainer } from "react-toastify";
 const Container = styled.div`
-  width: ${(props) => props.dimensions.width}px;
-  height: ${(props) => props.dimensions.height}px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 `;
 const defaultDimensions = {
   height: window.innerHeight,
@@ -16,21 +17,8 @@ const defaultDimensions = {
 };
 
 function App() {
-  const [dimensions, setDimensions] = React.useState(defaultDimensions);
-  React.useEffect(() => {
-    const debouncedHandleResize = debounce(function handleResize() {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth,
-        smaller: window.innerHeight > window.innerWidth ? window.innerWidth : window.innerHeight,
-      });
-    }, 100);
+  const [dimensions] = React.useState(defaultDimensions);
 
-    window.addEventListener("resize", debouncedHandleResize);
-    return (_) => {
-      window.removeEventListener("resize", debouncedHandleResize);
-    };
-  });
   const FallBackGround = styled.div`
     background-color: ${COLORS["main-blue"]};
   `;
