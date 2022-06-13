@@ -6,7 +6,7 @@ import { COLORS } from "../../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
 import Navbar from "../../Navbar";
 import DotWithText from "../../DotWithText";
-import Card from "../../Card";
+import Card from "./InformationCard";
 import { AiOutlineFieldTime, AiOutlineCoffee } from "react-icons/ai";
 import { BsCodeSlash } from "react-icons/bs";
 import Icon from "./Icon";

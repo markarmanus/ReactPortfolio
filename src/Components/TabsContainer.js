@@ -9,7 +9,7 @@ import Navbar from "./Navbar";
 import AboutMe from "./Pages/AboutMe/AboutMe";
 import { TABS } from "../Constants/PAGES";
 import Skills from "./Pages/Skills/Skills";
-import Projects from "./Pages/Projects";
+import Projects from "./Pages/Projects/Projects";
 import Contact from "./Pages/Contact/Contact";
 
 const Container = styled(motion.div)`
@@ -29,9 +29,6 @@ const Container = styled(motion.div)`
 `;
 
 function TabsContainer(props) {
-  const uiContext = React.useContext(UiContext);
-  const controls = useAnimation();
-
   React.useEffect(() => {});
   const variants = {
     show: {

@@ -11,21 +11,24 @@ function DotWithText(props) {
     color: ${props.bgColor};
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 100%;
-    left: 50%;
+    top: ${(props) => (props.textOnSide ? "50%" : "100%")};
+    left: ${(props) => (props.textOnSide ? "-150%" : "50%")};
     width: max-content;
+    margin: ${(props) => props.margin || " 20px 0"};
   `;
   const CircleTitleContainer = styled.div`
     transform: translate(-50%, -50%);
     left: ${(props) => props.left};
-    top: 50%;
+    top: ${(props) => props.top || "50%"};
     position: absolute;
     display: inline-block;
   `;
   return (
-    <CircleTitleContainer left={props.left}>
+    <CircleTitleContainer top={props.top} left={props.left}>
       <Circle {...props} />
-      <CircleTitle>{props.title}</CircleTitle>
+      <CircleTitle margin={props.margin} textOnSide={props.textOnSide}>
+        {props.title}
+      </CircleTitle>
     </CircleTitleContainer>
   );
 }

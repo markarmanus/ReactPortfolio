@@ -145,7 +145,7 @@ function PagesContainer(props) {
     <Container variants={variants}>
       <Background animate={true}></Background>
       <ContentContainer animate={firstTabContainerController} initial="show">
-        <TabsContainer nav_bar_width={nav_bar_width} selectedTab={tabs.first} />
+        <TabsContainer nav_bar_width={nav_bar_width} isActive={true} selectedTab={tabs.first} />
       </ContentContainer>
       <RocketContainer initial={{ translateX: -100 }} animate={rocketController}>
         <Rocket
@@ -158,7 +158,7 @@ function PagesContainer(props) {
       </RocketContainer>
 
       <ContentContainer animate={secondTabContainerController} initial="hide">
-        <TabsContainer nav_bar_width={nav_bar_width} selectedTab={tabs.second} />
+        <TabsContainer nav_bar_width={nav_bar_width} isActive={true} selectedTab={tabs.second} />
       </ContentContainer>
       <motion.div animate={navBarAnimationController}>
         <Navbar nav_bar_width={nav_bar_width} disabled={disabled} onSelectTab={onSelectTab} selectedTab={selectedTab} />

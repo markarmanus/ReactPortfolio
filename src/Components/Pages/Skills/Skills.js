@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import DoubleText from "../../DoubleText";
 import { COLORS } from "../../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
-import { biggestIcon, technologies } from "./TechnologisConfig";
+import { biggestIcon, technologies } from "./TechnologiesConfig";
 
 const Container = styled(motion.div)`
   width: 100%;
