@@ -94,6 +94,7 @@ function Landing() {
     await rocketAnimationController.start("idle");
   };
   React.useEffect(() => {
+    if (isMobileOnly) return;
     initialSequence();
   }, []);
 
