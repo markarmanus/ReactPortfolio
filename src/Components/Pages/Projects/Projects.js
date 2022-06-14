@@ -47,7 +47,7 @@ const Rocket = styled(motion.img)`
   top: 90%;
   width: 5%;
   height: auto;
-  cursor: pointer;
+  cursor: ${(props) => (props.clicked ? "default" : "pointer")};
   -webkit-transform-origin-y: 5%;
   z-index: 1;
 `;
@@ -145,7 +145,7 @@ function Projects(props) {
     rocketY.onChange(() => {
       scrollToRocket();
     });
-  });
+  }, []);
   const dotProperties = {
     margin: "0 -30px",
     textOnRight: true,
@@ -189,6 +189,7 @@ function Projects(props) {
               initial={{ translateX: "-50%", translateY: "-50%" }}
               animate={rocketController}
               style={{ y: rocketY }}
+              clicked={clickedRocket}
               onTap={onTapRocket}
               src={process.env.PUBLIC_URL + "/Images/Background/Rocket.png"}
             />

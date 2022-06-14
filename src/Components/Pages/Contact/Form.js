@@ -63,11 +63,21 @@ const Submit = styled.button`
   margin: 10px;
   padding-left: 10px;
   border-style: solid;
+  cursor: ${(props) => (props.inputsValid ? "pointer" : "no-drop")};
   border-color: ${COLORS["main-yellow"]};
   border-width: 2px;
+  opacity: ${(props) => (props.inputsValid ? 1 : 0.3)};
   background-color: rgba(0, 0, 0, 0);
 `;
-function Form(props) {
+const toastProps = {
+  position: "top-center",
+  autoClose: 1000,
+  theme: "dark",
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: true,
+};
+function Form() {
   const [name, setName] = useState("");
   const [subject, setSubject] = useState("");
   const [email, setEmail] = useState("");
@@ -94,25 +104,52 @@ function Form(props) {
     },
   };
   const sendEmail = (e) => {
-    e.preventDefault();
-    const emailData = {
-      subject,
-      email,
-      message,
-      name,
-    };
-    const toastProps = {
-      position: "top-center",
-      autoClose: 1000,
-      theme: "dark",
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-    };
-    emailjs.send("service_yurinir", "template_ltm5fyi", emailData, "bbL_yI-thngmg5zmg").then(
-      () => toast.success(" Email Sent! Thank you 🙏", toastProps),
-      () => toast.error("Something went wrong!", toastProps)
-    );
+    if (inputsValid()) {
+      toast.info("Trying To Send the Email!", toastProps);
+      e.preventDefault();
+      const emailData = {
+        subject,
+        email,
+        message,
+        name,
+      };
+      emailjs.send("service_yurinir", "template_ltm5fyi", emailData, "bbL_yI-thngmg5zmg").then(
+        () => toast.success(" Email Sent! Thank you 🙏", toastProps),
+        () => toast.error("Something went wrong!", toastProps)
+      );
+    } else {
+      showValidationError();
+    }
+  };
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+  const isEmpty = (value) => {
+    console.log(value !== "" && value.length > 0);
+
+    return value === "" || value.length === 0;
+  };
+  const showValidationError = () => {
+    if (!validateEmail(email)) {
+      return toast.error("Email Is Not Valid!", toastProps);
+    }
+    if (isEmpty(name)) {
+      return toast.error("Name Cant be Empty!", toastProps);
+    }
+    if (isEmpty(subject)) {
+      return toast.error("Subject Cant be Empty!", toastProps);
+    }
+    if (isEmpty(message)) {
+      return toast.error("Message Cant be Empty!", toastProps);
+    }
+  };
+  const inputsValid = () => {
+    if (validateEmail(email) && !isEmpty(name) && !isEmpty(subject) && !isEmpty(message)) return true;
+    return false;
   };
 
   return (
@@ -128,7 +165,9 @@ function Form(props) {
         <TextArea onChange={(e) => setMessage(e.target.value)} placeholder="Message"></TextArea>
       </InputGroup>
       <InputGroup variants={variants} custom={3} style={{ justifyContent: "start" }} flex={0.1}>
-        <Submit onClick={sendEmail}>Send</Submit>
+        <Submit inputsValid={inputsValid()} onClick={sendEmail}>
+          Send
+        </Submit>
       </InputGroup>
     </Container>
   );

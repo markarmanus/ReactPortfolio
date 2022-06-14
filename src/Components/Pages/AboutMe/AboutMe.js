@@ -76,7 +76,7 @@ const Rocket = styled(motion.img)`
   top: 50%;
   width: 12%;
   height: auto;
-  cursor: pointer;
+  cursor: ${(props) => (props.clicked ? "default" : "pointer")};
   transform: translate(-50%, -50%);
   -webkit-transform-origin-y: 5%;
   z-index: 1;
@@ -185,7 +185,7 @@ function AboutMe(props) {
   };
   useEffect(() => {
     initialSequence();
-  });
+  }, []);
   const linedOfCodeRef = React.useRef(null);
   const hoursRef = React.useRef(null);
   const cupsOfCoffeeRef = React.useRef(null);
@@ -223,7 +223,7 @@ function AboutMe(props) {
     pauseResumeCoffee();
     pauseResumeHours();
   };
-  const onTapRocket = async () => {
+  const onClickRocket = async () => {
     if (clickedRocket) return;
     setClickedRocket(true);
     const barWidth = progressBar.current.offsetWidth;
@@ -302,7 +302,8 @@ function AboutMe(props) {
               <Rocket
                 initial={{ translateX: "-50%", translateY: "-50%" }}
                 animate={rocketController}
-                onTap={onTapRocket}
+                clicked={clickedRocket}
+                onTap={onClickRocket}
                 src={process.env.PUBLIC_URL + "/Images/Background/Rocket-Right.png"}
               />
               <DotWithText title="Sept 2016" left="0%" radius={dotSize} bgColor={COLORS["main-yellow"]} />

@@ -34,6 +34,7 @@ function DoubleText(props) {
       translateAnimation,
       animationColor,
       delayBetweenLetters,
+      delayBetweenRepeats,
     } = animationProps;
     const delay = absoluteDelay
       ? absoluteDelay + key * (delayBetweenLetters || 0.1)
@@ -49,7 +50,7 @@ function DoubleText(props) {
         duration: duration || 1,
         repeat: repeat || 0,
         type: "spring",
-        repeatDelay: absoluteDelay ? absoluteDelay : 0,
+        repeatDelay: delayBetweenRepeats ? delayBetweenRepeats : absoluteDelay ? absoluteDelay : 0,
       },
     };
   };

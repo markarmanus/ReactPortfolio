@@ -1,4 +1,4 @@
-import Landing from "./Components/Pages/Landing";
+import Landing from "./Components/Pages/Landing/Landing";
 import styled from "styled-components";
 import React from "react";
 import { UIContextProvider } from "./Contexts/UI";

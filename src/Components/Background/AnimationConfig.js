@@ -11,7 +11,7 @@ const opacityAnimation = (delay) => {
 };
 const scaleAnimation = (delay) => {
   return {
-    scale: [0.8, 1, 0.8],
+    scale: [0.7, 1, 0.7],
     transition: { duration: 4, ease: "linear", repeat: "Infinity", delay },
   };
 };

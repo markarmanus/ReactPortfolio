@@ -56,7 +56,7 @@ const TextContainer = styled(motion.div)`
 function PagesContainer(props) {
   useEffect(() => {
     navBarController.start("textAnimation");
-  });
+  }, []);
 
   const uiContext = React.useContext(UiContext);
 
