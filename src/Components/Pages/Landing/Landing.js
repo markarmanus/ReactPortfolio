@@ -84,17 +84,18 @@ function Landing() {
     pageContentController.start("textAnimation");
     await rocketAnimationController.start(AnimationConfig.rocketAppearAnimation);
     setTimeout(() => {
-      const id = toast.info("Hint: Try Clicking the Rocket!", {
-        position: "top-center",
-        autoClose: false,
-        theme: "dark",
-      });
-      setToastId(id);
+      if (!isMobileOnly) {
+        const id = toast.info("Hint: Try Clicking the Rocket!", {
+          position: "top-center",
+          autoClose: false,
+          theme: "dark",
+        });
+        setToastId(id);
+      }
     }, 1500);
     await rocketAnimationController.start("idle");
   };
   React.useEffect(() => {
-    if (isMobileOnly) return;
     initialSequence();
   }, []);
 
