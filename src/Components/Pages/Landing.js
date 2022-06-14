@@ -5,7 +5,7 @@ import React from "react";
 import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
-import PagesContainer from "../PagesContainer/PagesCotnainer";
+import PagesContainer from "../PagesContainer/PagesContainer";
 import { TABS } from "../../Constants/PAGES";
 
 const Container = styled(motion.div)`

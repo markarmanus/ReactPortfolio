@@ -55,12 +55,6 @@ const Moon = styled(motion.div)`
   z-index: -100;
 `;
 
-const BlueBackground = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-color: ${COLORS["main-blue"]};
-`;
 const Star = styled.div`
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
