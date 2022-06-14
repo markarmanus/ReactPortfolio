@@ -23,6 +23,14 @@ const Earth = styled.div`
   left: 10%;
   background-repeat: no-repeat;
 `;
+const MoonContainer = styled(motion.div)`
+  width: ${({ smaller_dimension }) => (earthSize / 100) * smaller_dimension}px;
+  height: ${({ smaller_dimension }) => (earthSize / 100) * smaller_dimension}px;
+  position: absolute;
+  top: 90%;
+  transform: translate(0%, -100%);
+  left: 10%;
+`;
 const Astronaut = styled.div`
   background-image: url(${process.env.PUBLIC_URL + "/Images/Background/Astronaut.png"});
   position: relative;
@@ -34,16 +42,16 @@ const Astronaut = styled.div`
   width: 40%;
   height: 40%;
 `;
-const Moon = styled.div`
+
+const Moon = styled(motion.div)`
   background-image: url(${process.env.PUBLIC_URL + "/Images/Background/Moon.png"});
   position: relative;
   background-size: contain;
   background-repeat: no-repeat;
   transform: translate(-50%, -50%);
-  top: -40%;
-  left: 5%;
-  width: 65%;
-  height: 65%;
+  width: 30%;
+  height: 30%;
+  z-index: -100;
 `;
 
 const BlueBackground = styled.div`
@@ -63,10 +71,18 @@ function Background(props) {
     <BlueBackground>
       <AnimatedContainer variants={props.animate ? variants : {}}>
         {props.showPlanets && (
-          <Earth smaller_dimension={uiContext.dimensions.smaller}>
-            <Astronaut />
-            <Moon />
-          </Earth>
+          <span>
+            <MoonContainer
+              initial={{ translateY: "-100%" }}
+              animate={{ rotate: ["0deg", "360deg"], transition: { duration: 15, repeat: "Infinity", ease: "linear" } }}
+              smaller_dimension={uiContext.dimensions.smaller}
+            >
+              <Moon />
+            </MoonContainer>
+            <Earth smaller_dimension={uiContext.dimensions.smaller}>
+              <Astronaut />
+            </Earth>
+          </span>
         )}
       </AnimatedContainer>
     </BlueBackground>

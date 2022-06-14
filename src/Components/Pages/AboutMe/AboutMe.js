@@ -46,14 +46,14 @@ const LeftContainer = styled.div`
   justify-content: center;
   align-items: center;
   align-content: center;
-  flex: 0.4;
+  flex: 0.3;
   padding-left: 3%;
 `;
 const TitleContainer = styled.div`
   height: 8vmin;
 `;
 const RightContainer = styled.div`
-  flex: 1;
+  flex: 0.7;
   width: 100%;
   height: 100%;
   display: flex;
@@ -75,7 +75,7 @@ const Rocket = styled(motion.img)`
   position: absolute;
   left: 0;
   top: 50%;
-  width: 8%;
+  width: 12%;
   height: auto;
   cursor: pointer;
   transform: translate(-50%, -50%);
@@ -297,7 +297,7 @@ function AboutMe(props) {
           </CardsContainer>
         </TopRightHalf>
         <BottomRightContainer>
-          <div style={{ width: "100%", flex: 0.6 }}>
+          <div style={{ width: "90%", flex: 0.6 }}>
             <div style={{ position: "relative", width: "100%" }}>
               <Rocket
                 initial={{ translateX: "-50%", translateY: "-50%" }}
