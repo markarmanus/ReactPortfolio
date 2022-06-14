@@ -55,13 +55,6 @@ export const technologies = [
     experience: "40%",
   },
   {
-    imgSrc: process.env.PUBLIC_URL + "/Images/Technologies/Jest.png",
-    name: "jest",
-    color: "#99424F",
-    size: "8",
-    experience: "40%",
-  },
-  {
     imgSrc: process.env.PUBLIC_URL + "/Images/Technologies/HTML.png",
     name: "HTML",
     color: "#DD512A",

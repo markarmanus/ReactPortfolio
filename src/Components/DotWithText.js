@@ -11,8 +11,8 @@ function DotWithText(props) {
     color: ${props.bgColor};
     position: absolute;
     transform: translate(-50%, -50%);
-    top: ${(props) => (props.textOnSide ? "50%" : "100%")};
-    left: ${(props) => (props.textOnSide ? "-150%" : "50%")};
+    top: ${(props) => (props.textOnRight ? "50%" : "100%")};
+    left: ${(props) => (props.textOnRight ? "-150%" : "50%")};
     width: max-content;
     margin: ${(props) => props.margin || " 20px 0"};
   `;
@@ -26,7 +26,7 @@ function DotWithText(props) {
   return (
     <CircleTitleContainer top={props.top} left={props.left}>
       <Circle {...props} />
-      <CircleTitle margin={props.margin} textOnSide={props.textOnSide}>
+      <CircleTitle margin={props.margin} textOnRight={props.textOnRight}>
         {props.title}
       </CircleTitle>
     </CircleTitleContainer>

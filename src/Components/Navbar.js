@@ -1,22 +1,20 @@
 import styled from "styled-components";
 import React from "react";
-import UiContext from "../Contexts/UI";
 import { COLORS } from "../Constants/COLOR";
 import DoubleText from "./DoubleText";
 import { TABS } from "../Constants/PAGES";
 import { FaGithubSquare, FaFacebookSquare, FaLinkedin } from "react-icons/fa";
-import { IconContext } from "react-icons";
+import { CUSTOM_NAV_BAR_WIDTHS, NAV_BAR_WIDTH } from "./Config";
 
 const Container = styled.div`
-  width: ${({ width }) => width.default};
+  width: ${NAV_BAR_WIDTH.default};
+  ${CUSTOM_NAV_BAR_WIDTHS.map((width) => {
+    return `@media (max-width: ${width}) {
+      width: ${NAV_BAR_WIDTH[width]};
+    }`;
+  })}
   height: 100%;
   flex-direction: column;
-  @media (max-width: 1000px) {
-    width: ${({ width }) => width["1000px"]};
-  }
-  @media (max-width: 700px) {
-    width: ${({ width }) => width["700px"]};
-  }
   display: flex;
   position: absolute;
   left: 0%;
@@ -70,9 +68,8 @@ const Link = styled.a`
   height: fit-content;
 `;
 function Navbar(props) {
-  const uiContext = React.useContext(UiContext);
   return (
-    <Container width={props.nav_bar_width}>
+    <Container>
       <InitialsContainer>
         <DoubleText
           offset={8}
@@ -86,7 +83,7 @@ function Navbar(props) {
             animationColor: COLORS["main-green"],
             delayBetweenLetters: 0.02,
           }}
-          size={"12vmin"}
+          size={"7em"}
           font="Pixeboy"
           height="100%"
           text="M.A"
@@ -96,28 +93,28 @@ function Navbar(props) {
         <Tab
           disabled={props.disabled}
           onClick={() => props.onSelectTab(TABS.ABOUT_ME)}
-          selected={props.selectedTab == TABS.ABOUT_ME}
+          selected={props.currentSelectedTab === TABS.ABOUT_ME}
         >
           About me
         </Tab>
         <Tab
           disabled={props.disabled}
           onClick={() => props.onSelectTab(TABS.SKILLS)}
-          selected={props.selectedTab == TABS.SKILLS}
+          selected={props.currentSelectedTab === TABS.SKILLS}
         >
           Skills
         </Tab>
         <Tab
           disabled={props.disabled}
           onClick={() => props.onSelectTab(TABS.PROJECTS)}
-          selected={props.selectedTab == TABS.PROJECTS}
+          selected={props.currentSelectedTab === TABS.PROJECTS}
         >
           Projects
         </Tab>
         <Tab
           disabled={props.disabled}
           onClick={() => props.onSelectTab(TABS.CONTACT)}
-          selected={props.selectedTab == TABS.CONTACT}
+          selected={props.currentSelectedTab === TABS.CONTACT}
         >
           Contact
         </Tab>

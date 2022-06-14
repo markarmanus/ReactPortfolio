@@ -4,12 +4,11 @@ import React, { useEffect, useRef } from "react";
 import DoubleText from "../../DoubleText";
 import { COLORS } from "../../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
-import Navbar from "../../Navbar";
 import DotWithText from "../../DotWithText";
 import Card from "./InformationCard";
 import { AiOutlineFieldTime, AiOutlineCoffee } from "react-icons/ai";
 import { BsCodeSlash } from "react-icons/bs";
-import Icon from "./Icon";
+
 const Container = styled(motion.div)`
   width: 100%;
   height: 100%;

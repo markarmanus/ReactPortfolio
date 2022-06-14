@@ -1,49 +1,34 @@
 import styled from "styled-components";
-import UiContext from "../Contexts/UI";
-import Background from "./Background";
 import React from "react";
-import DoubleText from "./DoubleText";
-import { COLORS } from "../Constants/COLOR";
-import { motion, useAnimation } from "framer-motion";
-import Navbar from "./Navbar";
 import AboutMe from "./Pages/AboutMe/AboutMe";
 import { TABS } from "../Constants/PAGES";
 import Skills from "./Pages/Skills/Skills";
 import Projects from "./Pages/Projects/Projects";
 import Contact from "./Pages/Contact/Contact";
+import { CUSTOM_NAV_BAR_WIDTHS, NAV_BAR_WIDTH } from "./Config";
 
-const Container = styled(motion.div)`
+const Container = styled.div`
   width: 100%;
   height: 100%;
   justify-content: end;
   align-content: flex-end;
   margin: auto;
   position: relative;
-  padding-left: ${({ nav_bar_width }) => nav_bar_width.default};
-  @media (max-width: 1000px) {
-    width: ${({ nav_bar_width }) => nav_bar_width["1000px"]};
-  }
-  @media (max-width: 700px) {
-    width: ${({ nav_bar_width }) => nav_bar_width["700px"]};
-  }
+  padding-left: ${NAV_BAR_WIDTH.default};
+  ${CUSTOM_NAV_BAR_WIDTHS.map((width) => {
+    return `@media (max-width: ${width}) {
+      padding-left: ${NAV_BAR_WIDTH[width]};
+    }`;
+  })}
 `;
 
 function TabsContainer(props) {
-  React.useEffect(() => {});
-  const variants = {
-    show: {
-      scaleX: 1,
-      originX: "0%",
-      transition: { scaleX: { duration: 0.75, delay: 0 }, originX: { duration: 0 } },
-    },
-    hide: { scaleX: 0, originX: "100%", transition: { scaleX: { duration: 0.75 }, originX: { duration: 0 } } },
-  };
   return (
-    <Container nav_bar_width={props.nav_bar_width} variants={variants}>
-      {props.selectedTab === TABS.ABOUT_ME && <AboutMe />}
-      {props.selectedTab === TABS.CONTACT && <Contact />}
-      {props.selectedTab === TABS.PROJECTS && <Projects />}
-      {props.selectedTab === TABS.SKILLS && <Skills />}
+    <Container>
+      {props.tabToRender === TABS.ABOUT_ME && <AboutMe />}
+      {props.tabToRender === TABS.CONTACT && <Contact />}
+      {props.tabToRender === TABS.PROJECTS && <Projects />}
+      {props.tabToRender === TABS.SKILLS && <Skills />}
     </Container>
   );
 }

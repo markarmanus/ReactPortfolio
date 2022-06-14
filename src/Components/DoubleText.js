@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-import UiContext from "../Contexts/UI";
-import { motion, useAnimation } from "framer-motion";
-import { COLORS } from "../Constants/COLOR";
+import { motion } from "framer-motion";
 const Container = styled.div`
   width: ${({ width }) => width || "100%"};
   height: ${({ height }) => height || "100%"};

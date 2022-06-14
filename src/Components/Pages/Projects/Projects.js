@@ -149,7 +149,7 @@ function Projects(props) {
   }, []);
   const dotProperties = {
     margin: "0 -30px",
-    textOnSide: true,
+    textOnRight: true,
     radius: "2em",
     left: "50%",
     bgColor: COLORS["main-yellow"],
