@@ -98,7 +98,6 @@ const iconProps = {
   size: 30,
 };
 function ProjectCard(props) {
-  console.log(props.technologies);
   return (
     <Container top={props.top}>
       <InformationContainer>

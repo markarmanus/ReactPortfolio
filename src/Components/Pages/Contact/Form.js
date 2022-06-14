@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import { COLORS } from "../../../Constants/COLOR";
 import emailjs from "@emailjs/browser";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useState } from "react";
 const Container = styled.div`
   width: 100%;
@@ -101,7 +101,6 @@ function Form(props) {
       message,
       name,
     };
-    console.log(emailData);
     const toastProps = {
       position: "top-center",
       autoClose: 1000,

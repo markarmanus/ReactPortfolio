@@ -106,9 +106,10 @@ const IconProps = {
   color: COLORS["main-yellow"],
 };
 
-const IconTitle = styled.p`
+const IconTitle = styled.div`
   color: ${COLORS["main-yellow"]};
   font-size: large;
+  display: inline;
 `;
 const popInAnimation = {
   scale: [0, 1.15, 1],
@@ -184,7 +185,7 @@ function AboutMe(props) {
   };
   useEffect(() => {
     initialSequence();
-  }, []);
+  });
   const linedOfCodeRef = React.useRef(null);
   const hoursRef = React.useRef(null);
   const cupsOfCoffeeRef = React.useRef(null);

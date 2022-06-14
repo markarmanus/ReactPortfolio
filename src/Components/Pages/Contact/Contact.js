@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import DoubleText from "../../DoubleText";
 import { COLORS } from "../../../Constants/COLOR";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import Form from "./Form";
 import UiContext from "../../../Contexts/UI";
 

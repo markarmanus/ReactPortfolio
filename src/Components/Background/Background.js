@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import React from "react";
-import UiContext from "../Contexts/UI";
+import UiContext from "../../Contexts/UI";
 import { motion } from "framer-motion";
-import { COLORS } from "../Constants/COLOR";
-import { EARTH_SIZE } from "./Config";
-import { randomIntFromInterval } from "../Helpers/Math";
+import { COLORS } from "../../Constants/COLOR";
+import { EARTH_SIZE } from "../Config";
+import { randomIntFromInterval } from "../../Helpers/Math";
+import { containerVariants, starAnimations } from "./AnimationConfig";
 
 const AnimatedContainer = styled(motion.div)`
   width: 100%;
@@ -55,10 +56,10 @@ const Moon = styled(motion.div)`
   z-index: -100;
 `;
 
-const Star = styled.div`
+const Star = styled(motion.div)`
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
-  background-image: url(${(props) => process.env.PUBLIC_URL + `/Images/Background/Star${props.imageNumber}.png`});
+  background-image: url(${(props) => process.env.PUBLIC_URL + `/Images/Background/Star${props.image_number}.png`});
   transform: translate(-50%, -50%);
   background-size: contain;
   background-repeat: no-repeat;
@@ -75,15 +76,14 @@ const StarsContainer = styled.div`
   top: 0;
   left: 0;
 `;
-const variants = {
-  hidden: { opacity: 0, transition: { duration: 2 } },
-  rocketClicked: { opacity: 1, transition: { duration: 5 } },
-};
+
 const generateStars = (screenHeigh, screenWidth) => {
   let stars = [];
   let currentX = 0;
   let currentY = 0;
-  const chanceToRenderStar = 0.15;
+  let index = 0;
+  const chanceToRenderStar = 0.2;
+  const chanceToAnimateStar = 0.95;
   const interval = 60;
   const padding = 10;
   while (currentY < screenHeigh) {
@@ -93,16 +93,26 @@ const generateStars = (screenHeigh, screenWidth) => {
         const rotation = randomIntFromInterval(0, 360);
         const imageNumber = randomIntFromInterval(1, 5);
         const width = randomIntFromInterval(10, 35);
+        let animation;
+        if (Math.random() < chanceToAnimateStar) {
+          const delay = Math.random() * 3;
+          const animationIndex = randomIntFromInterval(0, starAnimations.length - 1);
+          const animationFunction = starAnimations[animationIndex];
+          animation = animationFunction(delay);
+        }
         stars.push(
           <Star
             top={currentY}
+            key={index}
             rotation={rotation}
-            imageNumber={imageNumber}
+            animate={animation}
+            image_number={imageNumber}
             left={currentX}
             width={width}
             height={width}
           />
         );
+        index++;
       }
       currentX += randomIntFromInterval(interval, interval + padding);
     }
@@ -115,7 +125,7 @@ function Background(props) {
   const [stars] = React.useState(generateStars(uiContext.dimensions.height, uiContext.dimensions.width));
 
   return (
-    <AnimatedContainer variants={props.animate ? variants : {}}>
+    <AnimatedContainer variants={props.animate ? containerVariants : {}}>
       <StarsContainer>{stars}</StarsContainer>
       {props.showPlanets && (
         <span>

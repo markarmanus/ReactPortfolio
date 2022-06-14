@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import UiContext from "../../Contexts/UI";
-import Background from "../Background";
+import Background from "../Background/Background";
 import React from "react";
 import DoubleText from "../DoubleText";
 import { COLORS } from "../../Constants/COLOR";

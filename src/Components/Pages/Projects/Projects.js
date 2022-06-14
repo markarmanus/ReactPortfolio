@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import UiContext from "../../../Contexts/UI";
 import React, { useEffect } from "react";
 import { COLORS } from "../../../Constants/COLOR";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
@@ -120,7 +119,7 @@ function Projects(props) {
     const stops = PROJECTS.map((_, i) => (-1 * (i + 1) * DOTS_INTERVAL * barHeight) / 100);
     projectCardsController.start(projectCardsAnimation);
     for (let i = 0; i < stops.length; i++) {
-      await rocketController.start(getRocketAnimation.generateStop(stops[i], i == 0 ? 0 : 0.75));
+      await rocketController.start(getRocketAnimation.generateStop(stops[i], i === 0 ? 0 : 0.75));
     }
     await rocketController.start(getRocketAnimation.stop());
   };
@@ -146,7 +145,7 @@ function Projects(props) {
     rocketY.onChange(() => {
       scrollToRocket();
     });
-  }, []);
+  });
   const dotProperties = {
     margin: "0 -30px",
     textOnRight: true,

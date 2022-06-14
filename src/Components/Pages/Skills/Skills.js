@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import DoubleText from "../../DoubleText";
 import { COLORS } from "../../../Constants/COLOR";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { biggestIcon, technologies } from "./TechnologiesConfig";
 
 const Container = styled(motion.div)`
@@ -15,15 +15,6 @@ const Container = styled(motion.div)`
   top: 0%;
   left: 0%;
   background-color: ${COLORS["main-blue-rgba"](0.4)};
-`;
-
-const BottomRightContainer = styled.div`
-  flex: 1.2;
-  padding-right: 5%;
-  align-items: center;
-  flex-direction: column;
-  display: flex;
-  width: 65%;
 `;
 
 const LeftContainer = styled.div`

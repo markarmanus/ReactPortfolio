@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import UiContext from "../../Contexts/UI";
-import Background from "../Background";
+import Background from "../Background/Background";
 import React, { useEffect, useState } from "react";
 import { COLORS } from "../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
@@ -56,7 +56,7 @@ const TextContainer = styled(motion.div)`
 function PagesContainer(props) {
   useEffect(() => {
     navBarController.start("textAnimation");
-  }, []);
+  });
 
   const uiContext = React.useContext(UiContext);
 

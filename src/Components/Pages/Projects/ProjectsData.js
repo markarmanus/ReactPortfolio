@@ -1,14 +1,9 @@
 import { AiFillHtml5 } from "react-icons/ai";
 import { FaAws, FaReact } from "react-icons/fa";
 import { SiJest, SiMongodb } from "react-icons/si";
-const generateTechIconLinks = (techs) => {
-  return techs.map((tech) => {
-    return `${process.env.PUBLIC_URL}/Images/Technologies/${tech}.png`;
-  });
-};
+
 export const PROJECTS = [
   {
-    title: "Sept 2019",
     bulletPoints: ["Lead Team to do things and thingsn and things", "Lead Team to do things and thingsn and things"],
     title: "MY FLEX",
     top: "30%",
@@ -21,7 +16,6 @@ export const PROJECTS = [
     projectLink: "",
   },
   {
-    title: "Sept 2019",
     bulletPoints: ["Lead Team to do things and thingsn and things", "Lead Team to do things and thingsn and things"],
     title: "MY FLEX",
     top: "30%",
@@ -34,7 +28,6 @@ export const PROJECTS = [
     projectLink: "",
   },
   {
-    title: "Sept 2019",
     bulletPoints: ["Lead Team to do things and thingsn and things", "Lead Team to do things and thingsn and things"],
     title: "MY FLEX",
     top: "30%",
@@ -47,7 +40,6 @@ export const PROJECTS = [
     projectLink: "",
   },
   {
-    title: "Sept 2019",
     bulletPoints: ["Lead Team to do things and thingsn and things", "Lead Team to do things and thingsn and things"],
     title: "MY FLEX",
     top: "30%",

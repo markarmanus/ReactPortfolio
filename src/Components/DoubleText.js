@@ -8,13 +8,14 @@ const Container = styled.div`
   position: relative;
 `;
 
-const Layer = styled.p`
+const Layer = styled.div`
   font-family: ${({ props }) => props.font};
   font-size: ${({ props }) => props.size};
   position: absolute;
   top: ${({ offset }) => offset || "50%"}px;
   left: ${({ offset }) => offset || "50%"}px;
   margin: 0;
+  display: inline;
 `;
 const Letter = styled(motion.span)`
   color: ${({ color }) => color};
@@ -42,7 +43,7 @@ function DoubleText(props) {
       opacity: opacityAnimation ? [0, 1] : 1,
       translateX: translateAnimation ? ["-100%", "-50%", "0%"] : 0,
       translateY: translateAnimation ? ["50%", "0%", "-50%", "0%"] : 0,
-      color: originalColor && animationColor ? [null, animationColor, originalColor] : null,
+      color: originalColor && animationColor ? [null, animationColor, originalColor] : [],
       transition: {
         delay,
         duration: duration || 1,
