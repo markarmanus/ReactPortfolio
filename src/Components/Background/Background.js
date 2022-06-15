@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import UiContext from "../../Contexts/UI";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { COLORS } from "../../Constants/COLOR";
 import { EARTH_SIZE } from "../Config";
 import { randomIntFromInterval } from "../../Helpers/Math";
@@ -76,7 +76,17 @@ const StarsContainer = styled.div`
   top: 0;
   left: 0;
 `;
-
+const Meteor = styled(motion.div)`
+  background-image: url(${process.env.PUBLIC_URL + "/Images/Background/Meteor.png"});
+  position: absolute;
+  top: ${(props) => props.top};
+  left: ${(props) => props.left};
+  width: ${(props) => props.width};
+  height: ${(props) => props.width};
+  transform: translate(-50%, -50%);
+  background-size: contain;
+  background-repeat: no-repeat;
+`;
 const generateStars = (screenHeigh, screenWidth) => {
   let stars = [];
   let currentX = 0;
@@ -123,10 +133,50 @@ const generateStars = (screenHeigh, screenWidth) => {
 function Background(props) {
   const uiContext = React.useContext(UiContext);
   const [stars] = React.useState(generateStars(uiContext.dimensions.height, uiContext.dimensions.width));
+  const meteorController = useAnimation();
+  const generateMeteor = (delay) => {
+    const scale = randomIntFromInterval(0.3, 0.4);
+    const speed = randomIntFromInterval(2, 3);
+    let top, left, finalTop, finalLeft, rotate, scaleX;
+    const unit = "%";
+    if (Math.random() < 0.5) {
+      // Falls from right
+      top = randomIntFromInterval(-25, 0) + unit;
+      left = randomIntFromInterval(100, 125) + unit;
+      finalTop = randomIntFromInterval(100, 125) + unit;
+      finalLeft = randomIntFromInterval(-25, 0) + unit;
+      scaleX = 1;
+      rotate = 0;
+    } else {
+      // Falls from left
+      top = randomIntFromInterval(-25, 0) + unit;
+      left = randomIntFromInterval(-25, 0) + unit;
+      finalTop = randomIntFromInterval(100, 125) + unit;
+      finalLeft = randomIntFromInterval(100, 125) + unit;
+      scaleX = -1;
+      rotate = "0deg";
+    }
+    meteorController.start({
+      left: [left, finalLeft],
+      top: [top, finalTop],
+      scale: [scale, 1],
+      scaleX,
+      rotate,
+      transition: { duration: speed, delay, rotate: { duration: 0 }, scaleX: { duration: 0 } },
+    });
+  };
 
+  React.useEffect(() => {
+    generateMeteor(1);
+    setInterval(() => generateMeteor(randomIntFromInterval(0, 3)), 8000);
+  }, []);
   return (
     <AnimatedContainer variants={props.animate ? containerVariants : {}}>
-      <StarsContainer>{stars}</StarsContainer>
+      <StarsContainer>
+        {stars}
+        <Meteor animate={meteorController} width={"90px"} />
+      </StarsContainer>
+
       {props.showPlanets && (
         <span>
           <MoonContainer
