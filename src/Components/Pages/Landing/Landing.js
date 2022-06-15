@@ -79,13 +79,14 @@ function Landing() {
   const mainController = useAnimation();
   const pageContentController = useAnimation();
   const [toastId, setToastId] = React.useState();
+  const [rocketClicked, setRocketClicked] = React.useState(false);
 
   const initialSequence = async () => {
     mainController.start("visible");
     pageContentController.start("textAnimation");
     await rocketAnimationController.start(AnimationConfig.rocketAppearAnimation);
     setTimeout(() => {
-      if (!isMobileOnly) {
+      if (!isMobileOnly && !rocketClicked) {
         const id = toast.info("Hint: Try Clicking the Rocket!", {
           position: "top-center",
           autoClose: false,
@@ -101,6 +102,7 @@ function Landing() {
   }, []);
 
   const onClickRocket = () => {
+    setRocketClicked(true);
     toast.dismiss(toastId);
     rocketAnimationController.start("rocketClicked");
     mainController.start("rocketClicked");
