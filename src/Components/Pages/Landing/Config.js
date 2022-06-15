@@ -195,7 +195,7 @@ const rocketIdleAnimation = {
 const rocketFlyUpAnimation = {
   rotateZ: [0, 5, 0, -5, 0],
   rotateX: [0, 20, 0],
-  translateY: [null, -1080],
+  translateY: [null, window.innerHeight * -1],
   transition: {
     rotateZ: { ease: "linear", duration: 1, repeat: 3 },
     rotateX: { duration: 0.75, repeat: 4 },

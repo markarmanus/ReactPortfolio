@@ -8,9 +8,10 @@ import DotWithText from "../../DotWithText";
 import Card from "./InformationCard";
 import { AiOutlineFieldTime, AiOutlineCoffee } from "react-icons/ai";
 import { BsCodeSlash } from "react-icons/bs";
+import { NAVBAR_MAX_WIDTH, NAVBAR_WIDTH } from "../../Config";
 
 const Container = styled(motion.div)`
-  width: 100%;
+  width: calc(100% - min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH}));
   height: 100%;
   display: flex;
   justify-content: center;
@@ -26,6 +27,7 @@ const Rectangle = styled.div`
   display: inline-block;
   transform: translate(0, -50%);
   top: 50%;
+  position: absolute;
   background-color: ${(props) => props.bgColor};
 `;
 
@@ -35,7 +37,7 @@ const BottomRightContainer = styled.div`
   align-items: center;
   flex-direction: column;
   display: flex;
-  width: 65%;
+  width: 90%;
 `;
 const AnimatedCard = styled(motion.div)`
   width: 100%;
@@ -45,14 +47,14 @@ const LeftContainer = styled.div`
   justify-content: center;
   align-items: center;
   align-content: center;
-  flex: 0.3;
+  flex: 0.4;
   padding-left: 3%;
 `;
 const TitleContainer = styled.div`
   height: 8vmin;
 `;
 const RightContainer = styled.div`
-  flex: 0.7;
+  flex: 0.6;
   width: 100%;
   height: 100%;
   display: flex;
@@ -63,12 +65,12 @@ const RightContainer = styled.div`
 const Description = styled.p`
   color: white;
   font-family: "Puritan";
-  font-size: 23px;
+  font-size: 1.4vmax;
 `;
 const Quote = styled.p`
   color: ${COLORS["main-yellow"]};
   font-family: "Puritan";
-  font-size: 18px;
+  font-size: 1.2vmax;
 `;
 const Rocket = styled(motion.img)`
   position: absolute;
@@ -90,12 +92,12 @@ const CardsContainer = styled.div`
 `;
 const TopRightHalf = styled(BottomRightContainer)`
   justify-content: flex-end;
-  padding-bottom: 6%;
+  padding-bottom: 10%;
   flex: 0.6;
 `;
 const Numbers = styled.div`
   font-weight: bold;
-  font-size: 25px;
+  font-size: 1.2vmax;
 `;
 const IconContainer = styled.div`
   position: relative;
@@ -108,7 +110,7 @@ const IconProps = {
 
 const IconTitle = styled.div`
   color: ${COLORS["main-yellow"]};
-  font-size: large;
+  font-size: 1.2vmax;
   display: inline;
 `;
 const popInAnimation = {
@@ -244,7 +246,9 @@ function AboutMe(props) {
     await rocketController.start(getRocketAnimation.stop());
   };
 
-  const dotSize = "25px";
+  const dotSize = "1.8vmax";
+  const dotFontSize = "1vmax";
+  const dotTextMargin = "3vh 0";
   return (
     <Container>
       <LeftContainer>
@@ -253,7 +257,7 @@ function AboutMe(props) {
             offset={4}
             firstColor={COLORS["main-black"]}
             secondColor={COLORS["main-yellow"]}
-            size={"6vmin"}
+            size={"3.5vw"}
             font="Prompt"
             height="100%"
             animationProps={{
@@ -284,9 +288,11 @@ function AboutMe(props) {
             <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={graduationCardController}>
               <Card
                 title="Computer Science - Honours"
+                titleFontSize="1.1vw"
+                bulletPointFontSize="0.9vw"
                 details={[
-                  { fontSize: "20px", text: "Memorial University Of Newfoundland", bold: true },
-                  { fontSize: "16px", text: "Sept 2016 - Apr 2021" },
+                  { fontSize: "0.8vw", text: "Memorial University Of Newfoundland", bold: true },
+                  { fontSize: "0.7vw", text: "Sept 2016 - Apr 2021" },
                 ]}
                 bulletPoints={[
                   "Graduated With Honours",
@@ -306,21 +312,58 @@ function AboutMe(props) {
                 onTap={onClickRocket}
                 src={process.env.PUBLIC_URL + "/Images/Background/Rocket-Right.png"}
               />
-              <DotWithText title="Sept 2016" left="0%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
-              <DotWithText title="Heyorca - Jan 2018" left="25%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
-              <DotWithText title="Mysa - Jan 2020" left="50%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
-              <DotWithText title="Graduation - Apr 2021" left="75%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
-              <Rectangle ref={progressBar} width="100%" height="6px" bgColor={COLORS["main-yellow"]} />
-              <DotWithText title="Present" left="100%" radius={dotSize} bgColor={COLORS["main-yellow"]} />
+              <DotWithText
+                fontSize={dotFontSize}
+                title="Sept 2016"
+                left="0%"
+                radius={dotSize}
+                margin={dotTextMargin}
+                bgColor={COLORS["main-yellow"]}
+              />
+              <DotWithText
+                fontSize={dotFontSize}
+                title="Heyorca - Jan 2018"
+                left="25%"
+                radius={dotSize}
+                margin={dotTextMargin}
+                bgColor={COLORS["main-yellow"]}
+              />
+              <DotWithText
+                fontSize={dotFontSize}
+                title="Mysa - Jan 2020"
+                left="50%"
+                radius={dotSize}
+                margin={dotTextMargin}
+                bgColor={COLORS["main-yellow"]}
+              />
+              <DotWithText
+                fontSize={dotFontSize}
+                title="Graduation - Apr 2021"
+                left="75%"
+                radius={dotSize}
+                margin={dotTextMargin}
+                bgColor={COLORS["main-yellow"]}
+              />
+              <Rectangle ref={progressBar} width="100%" height="0.5vmax" bgColor={COLORS["main-yellow"]} />
+              <DotWithText
+                fontSize={dotFontSize}
+                title="Present"
+                left="100%"
+                radius={dotSize}
+                margin={dotTextMargin}
+                bgColor={COLORS["main-yellow"]}
+              />
             </div>
           </div>
           <CardsContainer>
             <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={heyorcaCardController}>
               <Card
                 title="Web Developer"
+                titleFontSize="1.1vw"
+                bulletPointFontSize="0.9vw"
                 details={[
-                  { fontSize: "20px", text: "Heyorca", bold: true },
-                  { fontSize: "16px", text: "Jan 2018 - Oct 2019" },
+                  { fontSize: "0.8vw", text: "Heyorca", bold: true },
+                  { fontSize: "0.7vw", text: "Jan 2018 - Oct 2019" },
                 ]}
                 bulletPoints={[
                   "Worked Heavily With PHP, Laravel, AWS and React",
@@ -331,10 +374,12 @@ function AboutMe(props) {
             <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={mysaCardController}>
               <Card
                 title="Intermediate Software Developer"
+                titleFontSize="1.1vw"
+                bulletPointFontSize="0.9vw"
                 details={[
-                  { fontSize: "20px", text: "App Architecture Lead", bold: true },
-                  { fontSize: "20px", text: "Mysa Thermostat", bold: true },
-                  { fontSize: "16px", text: "Jan 2020 - Present" },
+                  { fontSize: "0.8vw", text: "App Architecture Lead", bold: true },
+                  { fontSize: "0.8vw", text: "Mysa Thermostat", bold: true },
+                  { fontSize: "0.7vw", text: "Jan 2020 - Present" },
                 ]}
                 bulletPoints={[
                   "Worked as something and bla",

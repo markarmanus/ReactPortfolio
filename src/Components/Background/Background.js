@@ -135,7 +135,6 @@ function Background(props) {
   const [stars] = React.useState(generateStars(uiContext.dimensions.height, uiContext.dimensions.width));
   const meteorController = useAnimation();
   const generateMeteor = (delay) => {
-    const scale = randomIntFromInterval(0.3, 0.4);
     const speed = randomIntFromInterval(2, 3);
     let top, left, finalTop, finalLeft, rotate, scaleX;
     const unit = "%";
@@ -159,7 +158,7 @@ function Background(props) {
     meteorController.start({
       left: [left, finalLeft],
       top: [top, finalTop],
-      scale: [scale, 1],
+      scale: [0.2, 1],
       scaleX,
       rotate,
       transition: { duration: speed, delay, rotate: { duration: 0 }, scaleX: { duration: 0 } },

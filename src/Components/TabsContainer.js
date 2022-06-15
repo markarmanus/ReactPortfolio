@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import React from "react";
 import AboutMe from "./Pages/AboutMe/AboutMe";
-import { TABS } from "../Constants/PAGES";
+import { TABS } from "../Constants/TABS";
 import Skills from "./Pages/Skills/Skills";
 import Projects from "./Pages/Projects/Projects";
 import Contact from "./Pages/Contact/Contact";
-import { CUSTOM_NAV_BAR_WIDTHS, NAV_BAR_WIDTH } from "./Config";
+import { NAVBAR_WIDTH } from "./Config";
 
 const Container = styled.div`
   width: 100%;
@@ -14,12 +14,7 @@ const Container = styled.div`
   align-content: flex-end;
   margin: auto;
   position: relative;
-  padding-left: ${NAV_BAR_WIDTH.default};
-  ${CUSTOM_NAV_BAR_WIDTHS.map((width) => {
-    return `@media (max-width: ${width}) {
-      padding-left: ${NAV_BAR_WIDTH[width]};
-    }`;
-  })}
+  padding-left: ${NAVBAR_WIDTH};
 `;
 
 function TabsContainer(props) {

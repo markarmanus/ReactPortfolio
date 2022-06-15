@@ -5,9 +5,10 @@ import { COLORS } from "../../../Constants/COLOR";
 import { motion } from "framer-motion";
 import Form from "./Form";
 import UiContext from "../../../Contexts/UI";
+import { NAVBAR_MAX_WIDTH, NAVBAR_WIDTH } from "../../Config";
 
 const Container = styled(motion.div)`
-  width: 100%;
+  width: calc(100% - min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH}));
   height: 100%;
   display: flex;
   justify-content: center;
@@ -39,12 +40,12 @@ const RightContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding-left: 10%;
-  padding-right: 15%;
+  padding-right: 10%;
   align-items: center;
 
   flex-direction: column;
 `;
-const earthSize = 55;
+const earthSize = 60;
 const Earth = styled(motion.div)`
   background-image: url(${process.env.PUBLIC_URL + "/Images/Background/Earth.png"});
   width: ${({ smaller_dimension }) => (earthSize / 100) * smaller_dimension}px;

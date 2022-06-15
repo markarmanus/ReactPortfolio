@@ -28,7 +28,7 @@ const loadingRocketSecondHalf = {
     rotateZ: { duration: 0.75, repeat: 2, delay: 0, ease: "linear" },
   },
 };
-const loadingRocketInitial = { translateX: "-1vw" };
+const loadingRocketInitial = { translateX: "-10vw" };
 
 const mainContainerVariants = {
   hidden: { translateY: "100vh" },

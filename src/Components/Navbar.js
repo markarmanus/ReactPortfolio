@@ -2,17 +2,15 @@ import styled from "styled-components";
 import React from "react";
 import { COLORS } from "../Constants/COLOR";
 import DoubleText from "./DoubleText";
-import { TABS } from "../Constants/PAGES";
+import { TABS } from "../Constants/TABS";
 import { FaGithubSquare, FaFacebookSquare, FaLinkedin } from "react-icons/fa";
-import { CUSTOM_NAV_BAR_WIDTHS, NAV_BAR_WIDTH } from "./Config";
+import { UIContextConsumer } from "../Contexts/UI";
+import { NAVBAR_MIN_WIDTH, NAVBAR_MAX_WIDTH, NAVBAR_WIDTH } from "./Config";
 
 const Container = styled.div`
-  width: ${NAV_BAR_WIDTH.default};
-  ${CUSTOM_NAV_BAR_WIDTHS.map((width) => {
-    return `@media (max-width: ${width}) {
-      width: ${NAV_BAR_WIDTH[width]};
-    }`;
-  })}
+  min-width: ${NAVBAR_MIN_WIDTH};
+  width: ${NAVBAR_WIDTH};
+  max-width: ${NAVBAR_MAX_WIDTH};
   height: 100%;
   flex-direction: column;
   display: flex;
@@ -24,9 +22,9 @@ const Container = styled.div`
 
 const Tab = styled.p`
   color: ${(props) => (props.selected ? COLORS["main-yellow"] : "white")};
-  font-size: 1.5em;
+  font-size: 1.2vw;
   font-family: "Poly";
-  height: 50px;
+  height: 3.5vh;
   opacity: ${(props) => (props.disabled ? 0.7 : 1)};
   width: 100%;
   border-bottom: 1px ${COLORS["main-yellow"]} solid;
@@ -62,7 +60,7 @@ const TabsContainer = styled.div`
 `;
 const IconProps = {
   color: "white",
-  size: 30,
+  size: "1.3vw",
 };
 const Link = styled.a`
   height: fit-content;
@@ -83,7 +81,7 @@ function Navbar(props) {
             animationColor: COLORS["main-green"],
             delayBetweenLetters: 0.02,
           }}
-          size={"7em"}
+          size={"5vw"}
           font="Pixeboy"
           height="100%"
           text="M.A"

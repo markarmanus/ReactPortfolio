@@ -20,7 +20,6 @@ const defaultDimensions = {
 
 function App() {
   const [dimensions] = React.useState(defaultDimensions);
-
   return (
     <UIContextProvider value={{ dimensions }}>
       <ToastContainer />

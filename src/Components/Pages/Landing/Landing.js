@@ -6,7 +6,7 @@ import DoubleText from "../../DoubleText";
 import { COLORS } from "../../../Constants/COLOR";
 import { motion, useAnimation } from "framer-motion";
 import PagesContainer from "../../PagesContainer/PagesContainer";
-import { TABS } from "../../../Constants/PAGES";
+import { TABS } from "../../../Constants/TABS";
 import { isMobileOnly } from "react-device-detect";
 import { AnimationConfig, TextConfig } from "./Config";
 import { toast } from "react-toastify";

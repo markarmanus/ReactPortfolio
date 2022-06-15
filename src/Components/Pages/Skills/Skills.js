@@ -4,9 +4,10 @@ import DoubleText from "../../DoubleText";
 import { COLORS } from "../../../Constants/COLOR";
 import { motion } from "framer-motion";
 import { biggestIcon, technologies } from "./TechnologiesConfig";
+import { NAVBAR_MAX_WIDTH, NAVBAR_WIDTH } from "../../Config";
 
 const Container = styled(motion.div)`
-  width: 100%;
+  width: calc(100% - min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH}));
   height: 100%;
   display: flex;
   justify-content: center;
@@ -28,28 +29,26 @@ const TitleContainer = styled.div`
   height: 8vmin;
 `;
 const RightContainer = styled.div`
-  flex: 0.65;
+  flex: 0.6;
   width: 100%;
   height: 90%;
   display: flex;
   justify-content: space-between;
-  padding-left: 10%;
-  padding-right: 15%;
+  padding-left: 5%;
+  padding-right: 5%;
   align-items: center;
-
   flex-direction: column;
 `;
 const Description = styled.p`
   color: white;
   font-family: "Puritan";
-  font-size: 23px;
+  font-size: 1.4vmax;
 `;
 const Quote = styled.p`
   color: ${COLORS["main-yellow"]};
   font-family: "Puritan";
-  font-size: 18px;
+  font-size: 1.2vmax;
 `;
-
 const TechContainer = styled(motion.div)`
   width: 100%;
   display: flex;
@@ -105,7 +104,7 @@ function Skills(props) {
             offset={4}
             firstColor={COLORS["main-black"]}
             secondColor={COLORS["main-yellow"]}
-            size={"6vmin"}
+            size={"3.5vw"}
             font="Prompt"
             height="100%"
             animationProps={{

@@ -12,6 +12,7 @@ const CircleTitle = styled.p`
   top: ${(props) => (props.textOnRight ? "50%" : "100%")};
   left: ${(props) => (props.textOnRight ? "-150%" : "50%")};
   width: max-content;
+  font-size: ${(props) => props.fontSize};
   margin: ${(props) => props.margin || " 20px 0"};
 `;
 const CircleTitleContainer = styled.div`
@@ -25,7 +26,12 @@ function DotWithText(props) {
   return (
     <CircleTitleContainer top={props.top} left={props.left}>
       <Circle radius={props.radius} bgColor={props.bgColor} />
-      <CircleTitle bgColor={props.bgColor} margin={props.margin} textOnRight={props.textOnRight}>
+      <CircleTitle
+        fontSize={props.fontSize}
+        bgColor={props.bgColor}
+        margin={props.margin}
+        textOnRight={props.textOnRight}
+      >
         {props.title}
       </CircleTitle>
     </CircleTitleContainer>
