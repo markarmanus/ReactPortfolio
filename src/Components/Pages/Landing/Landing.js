@@ -10,7 +10,7 @@ import { TABS } from "../../../Constants/TABS";
 import { isMobileOnly } from "react-device-detect";
 import { AnimationConfig, TextConfig } from "./Config";
 import { toast } from "react-toastify";
-import { randomIntFromInterval } from "../../../Helpers/Math";
+
 const Container = styled(motion.div)`
   width: 100%;
   height: 100%;

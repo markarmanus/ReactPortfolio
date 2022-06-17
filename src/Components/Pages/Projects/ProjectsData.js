@@ -13,7 +13,7 @@ export const PROJECTS = [
     detail: "Team Project - Jan 2018",
     technologies: [FaReact, FaAws, AiFillHtml5, SiMongodb, SiJest, FaReact, FaAws, AiFillHtml5, SiMongodb, SiJest],
     projectImage: `${process.env.PUBLIC_URL}/Images/Projects/SortingVisualizer.png`,
-    projectLink: "",
+    projectLink: "https://google.com",
   },
   {
     bulletPoints: ["Lead Team to do things and thingsn and things", "Lead Team to do things and thingsn and things"],
@@ -25,7 +25,7 @@ export const PROJECTS = [
     detail: "Team Project - Jan 2018",
     technologies: [FaReact, FaAws, AiFillHtml5, SiMongodb, SiJest, FaReact, FaAws, AiFillHtml5, SiMongodb, SiJest],
     projectImage: `${process.env.PUBLIC_URL}/Images/Projects/RunChicken.png`,
-    projectLink: "",
+    projectLink: "https://google.com",
   },
   {
     bulletPoints: ["Lead Team to do things and thingsn and things", "Lead Team to do things and thingsn and things"],
@@ -37,7 +37,7 @@ export const PROJECTS = [
     detail: "Team Project - Jan 2018",
     technologies: [FaReact, FaAws, AiFillHtml5, SiMongodb, SiJest, FaReact, FaAws, AiFillHtml5, SiMongodb, SiJest],
     projectImage: `${process.env.PUBLIC_URL}/Images/Projects/SortingVisualizer.png`,
-    projectLink: "",
+    projectLink: "https://google.com",
   },
   {
     bulletPoints: ["Lead Team to do things and thingsn and things", "Lead Team to do things and thingsn and things"],
@@ -49,6 +49,6 @@ export const PROJECTS = [
     date: "Sept 2016",
     technologies: [FaReact, FaAws, AiFillHtml5, SiMongodb, SiJest, FaReact, FaAws, AiFillHtml5, SiMongodb, SiJest],
     projectImage: `${process.env.PUBLIC_URL}/Images/Projects/MatchLine.png`,
-    projectLink: "",
+    projectLink: "https://google.com",
   },
 ];

@@ -76,7 +76,7 @@ function Navbar(props) {
     <Container>
       <InitialsContainer>
         <DoubleText
-          offset={8}
+          offset={0.35}
           firstColor={COLORS["main-brown"]}
           width={"80%"}
           secondColor={COLORS["main-yellow"]}

@@ -267,7 +267,7 @@ function AboutMe(props) {
       <LeftContainer>
         <TitleContainer>
           <DoubleText
-            offset={4}
+            offset={0.3}
             firstColor={COLORS["main-black"]}
             secondColor={COLORS["main-yellow"]}
             size={"3.5vmax"}

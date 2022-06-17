@@ -12,8 +12,8 @@ const Layer = styled.div`
   font-family: ${({ props }) => props.font};
   font-size: ${({ props }) => props.size};
   position: absolute;
-  top: ${({ offset }) => offset || "50%"}px;
-  left: ${({ offset }) => offset || "50%"}px;
+  top: ${({ offset }) => offset || "50%"}vmax;
+  left: ${({ offset }) => offset || "50%"}vmax;
   margin: 0;
   display: inline;
 `;

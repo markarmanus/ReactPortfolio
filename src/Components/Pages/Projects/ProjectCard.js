@@ -1,21 +1,36 @@
 import { FaGithubSquare } from "react-icons/fa";
 import styled from "styled-components";
 import { COLORS } from "../../../Constants/COLOR";
+import { motion } from "framer-motion";
+import { projectImageVariants, projectInformationCardVariants } from "./AnimationConfig";
+const IMAGE_RIGHT = "25%";
+const IMAGE_RIGHT_PORTRAIT = "25%";
+
 const Container = styled.div`
   width: 100%;
   height: 50vh;
-  background-color: ${COLORS["third-blue"]};
   display: flex;
-
   transform: translate(0, -50%);
+  padding-left: 3vw;
   left: 0%;
+  @media screen and (orientation: portrait) {
+    height: 35vh;
+  }
 `;
-const InformationContainer = styled.div`
+const InformationContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
+  background-color: ${COLORS["third-blue"]};
+  position: relative;
+  top: calc(25% - 2vmax);
+  justify-content: center;
   flex: 0.35;
-  height: 100%;
-  padding: 15px;
+  height: 75%;
+  z-index: 1;
+  padding: 1vmax;
+  @media screen and (orientation: portrait) {
+    min-width: 30vw;
+  }
 `;
 const TechIconsContainer = styled.div`
   flex: 0.4;
@@ -35,36 +50,44 @@ const TitleContainer = styled.div`
 const Title = styled.span`
   color: ${COLORS["main-yellow"]};
   font-family: "Pixeboy";
-  font-size: 2em;
+  font-size: 2.2vmax;
+`;
+const Dot = styled.span`
+  background-color: white;
+  margin: 0 0.5vmax;
+  border-radius: 50%;
+  width: 0.3vmax;
+  height: 0.3vmax;
 `;
 const TitleExtension = styled.span`
   color: white;
   font-family: "Pixeboy";
-  font-size: 1em;
-  margin-left: 10px;
+  font-size: 1.2vmax;
 `;
 const Detail = styled.span`
   color: ${COLORS["main-gray"]};
-  margin-left: 15px;
   position: relative;
-  top: -5px;
+  left: 1vmax;
   font-family: "Prompt";
-  font-size: 0.9em;
+  font-size: 1.1vmax;
 `;
 const BulletPointContainer = styled.div`
   color: white;
-  margin: 10px 0;
+  display: flex;
+  align-items: baseline;
+  margin: 1vh;
 `;
+
 const BulletPointCircle = styled.div`
-  width: 0.5em;
-  height: 0.5em;
+  width: 0.4vmax;
+  height: 0.4vmax;
   display: inline-block;
-  margin-right: 10px;
+  margin-right: 0.8vmax;
   background-color: white;
   border-radius: 50%;
 `;
 const BulletPointsContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 1vh;
 `;
 const TechnologiesContainer = styled.div`
   flex: 0.5;
@@ -74,42 +97,58 @@ const TechnologiesContainer = styled.div`
 
 const TechnologiesTitle = styled.p`
   color: white;
-  font-size: 1.6em;
+  font-size: 1.5vmax;
   font-family: "Pixeboy";
   margin-bottom: 10px;
 `;
 
 const Link = styled.a`
   height: fit-content;
+  border: 0;
+  text-decoration: none;
 `;
-const TechIconContainer = styled.span`
-  margin: 0.5em 0.5em;
-`;
-const ImageContainer = styled.div`
+
+const ImageContainer = styled(motion.div)`
   flex: 0.65;
+  position: relative;
+  right: ${IMAGE_RIGHT};
+  @media screen and (orientation: portrait) {
+    right: ${IMAGE_RIGHT_PORTRAIT};
+  }
 `;
 const ProjectImage = styled.img`
-  width: 100%;
-  height: 100%;
+  height: 80%;
+  width: calc(90% + ${IMAGE_RIGHT});
   object-fit: cover;
+  @media screen and (orientation: portrait) {
+    min-width: calc(40vw + ${IMAGE_RIGHT_PORTRAIT});
+  }
+`;
+const BulletPointText = styled.span`
+  color: white;
+  font-size: 1vmax;
 `;
 const iconProps = {
   color: "white",
-  size: 30,
+  size: "2.2vmax",
 };
+
 function ProjectCard(props) {
   return (
     <Container top={props.top}>
-      <InformationContainer>
+      <InformationContainer variants={projectInformationCardVariants} custom={props.reverseIndex}>
         <TextInformationContainer>
           <TitleIconContainer>
             <TitleContainer>
-              <Title>{props.title}</Title>
+              <Link target="_blank" href={props.projectLink}>
+                <Title>{props.title}</Title>{" "}
+              </Link>
+              <Dot />
               <TitleExtension>{props.titleExt}</TitleExtension>
             </TitleContainer>
 
             <Link target="_blank" href={props.githubLink}>
-              <FaGithubSquare color="white" size={30} />
+              <FaGithubSquare color="white" size={"2vmax"} />
             </Link>
           </TitleIconContainer>
           <Detail>{props.detail}</Detail>
@@ -119,7 +158,7 @@ function ProjectCard(props) {
                 return (
                   <BulletPointContainer key={i}>
                     <BulletPointCircle />
-                    <span>{bulletPoint}</span>
+                    <BulletPointText>{bulletPoint}</BulletPointText>
                   </BulletPointContainer>
                 );
               })}
@@ -132,16 +171,18 @@ function ProjectCard(props) {
             {props.technologies &&
               props.technologies.map((IconComp, i) => {
                 return (
-                  <TechIconContainer key={i}>
-                    <IconComp {...iconProps} />
-                  </TechIconContainer>
+                  <span key={i}>
+                    <IconComp style={{ margin: "0.5vmax" }} {...iconProps} />
+                  </span>
                 );
               })}
           </TechIconsContainer>
         </TechnologiesContainer>
       </InformationContainer>
-      <ImageContainer>
-        <ProjectImage src={props.projectImage} />
+      <ImageContainer custom={props.reverseIndex} variants={projectImageVariants}>
+        <Link target="_blank" href={props.projectLink}>
+          <ProjectImage src={props.projectImage} />
+        </Link>
       </ImageContainer>
     </Container>
   );

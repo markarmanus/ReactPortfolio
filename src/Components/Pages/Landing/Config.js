@@ -1,10 +1,10 @@
 import { COLORS } from "../../../Constants/COLOR";
-const titleFontSize = "6.5vmax";
-const describeFontSize = "5vmax";
-const extFontSize = "2vmax";
+const titleFontSize = "6.5vw";
+const describeFontSize = "5vw";
+const extFontSize = "2vw";
 const TextConfig = {
   Name: {
-    offset: 7,
+    offset: 0.55,
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-yellow"],
     size: titleFontSize,
@@ -22,7 +22,7 @@ const TextConfig = {
     text: "Mark Armanious",
   },
   Hi: {
-    offset: 7,
+    offset: 0.55,
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-green"],
     size: describeFontSize,
@@ -39,7 +39,7 @@ const TextConfig = {
     text: "Hi,",
   },
   IamMark: {
-    offset: 7,
+    offset: 0.55,
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-yellow"],
     size: describeFontSize,
@@ -56,7 +56,7 @@ const TextConfig = {
     text: "I'am Mark,",
   },
   SoftwareDeveloper: {
-    offset: 7,
+    offset: 0.55,
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-yellow"],
     size: describeFontSize,
@@ -90,7 +90,7 @@ const TextConfig = {
     text: "React - React Native Expert",
   },
   NotSupportedTitleProps: {
-    offset: 3,
+    offset: 0.25,
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-yellow"],
     size: "20px",
@@ -163,7 +163,7 @@ const TextConfig = {
     text: "Please revisit the website on a desktop.",
   },
   NotSupportedFinalMsg: {
-    offset: 3,
+    offset: 0.25,
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-yellow"],
     size: "16px",

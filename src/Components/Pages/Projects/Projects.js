@@ -6,7 +6,11 @@ import DotWithText from "../../DotWithText";
 import { PROJECTS } from "./ProjectsData";
 import ProjectCard from "./ProjectCard";
 import { NAVBAR_MAX_WIDTH, NAVBAR_MIN_WIDTH, NAVBAR_WIDTH } from "../../Config";
+import { rocketAnimations } from "./AnimationConfig";
+
+// Distance between dots
 const DOTS_INTERVAL = 100 / (PROJECTS.length + 1);
+
 const Container = styled(motion.div)`
   width: calc(100% - max(${NAVBAR_MIN_WIDTH}, min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH})));
   height: 100%;
@@ -38,7 +42,6 @@ const RocketBarContainer = styled.div`
 `;
 const ProjectBoxesContainer = styled.div`
   flex: 0.8;
-  padding-right: 10%;
   position: relative;
   top: -10%;
 `;
@@ -46,14 +49,14 @@ const Rocket = styled(motion.img)`
   position: absolute;
   left: 15%;
   top: 90%;
-  width: 5%;
+  width: 5vw;
   height: auto;
   cursor: ${(props) => (props.clicked ? "default" : "pointer")};
   -webkit-transform-origin-y: 5%;
   z-index: 1;
 `;
 const Bar = styled.div`
-  width: 10px;
+  width: 0.8vw;
   background-color: ${COLORS["main-yellow"]};
   height: 100%;
   position: absolute;
@@ -64,11 +67,11 @@ const Bar = styled.div`
 const ProjectCardContainer = styled(motion.div)`
   position: absolute;
   top: ${(props) => props.top};
-  width: 90%;
+  width: 95%;
   transform-origin: top;
 `;
 
-function Projects(props) {
+function Projects() {
   const rocketController = useAnimation();
   const projectCardsController = useAnimation();
   const [clickedRocket, setClickedRocket] = React.useState(false);
@@ -76,70 +79,36 @@ function Projects(props) {
   const rocketRef = React.useRef(null);
   const containerRef = React.useRef(null);
   const rocketY = useMotionValue(0);
-  const getRocketAnimation = {
-    idle: () => {
-      return {
-        rotateX: [0, 20, 0],
-        rotateZ: [0, 5, 0, -5, 0],
-        transition: {
-          rotateX: { duration: 1, ease: "linear", delay: 1, repeat: "Infinity" },
-          rotateZ: { duration: 1, ease: "linear", delay: 1, repeat: "Infinity" },
-        },
-      };
-    },
-    generateStop: (newY, delay) => {
-      return {
-        y: newY,
-        rotateX: [0, 20, 0, 0],
-        rotateZ: [0, 5, 0, -5, 0],
-        transition: {
-          y: { duration: 2, delay: delay },
-          rotateX: { duration: 1, ease: "linear", delay: delay, repeat: 1 },
-          rotateZ: { duration: 1, ease: "linear", delay: delay, repeat: 1 },
-        },
-      };
-    },
-    stop: () => {
-      return {
-        rotateX: [null, 0],
-        rotateZ: [null, 0],
-        transition: {
-          rotateX: { duration: 2, ease: "easeIn" },
-          rotateZ: { duration: 2, ease: "easeIn" },
-        },
-      };
-    },
-  };
+
   const initialSequence = async () => {
-    await rocketController.start(getRocketAnimation.idle());
+    await rocketController.start(rocketAnimations.idle());
   };
+
+  const startRocketAnimation = async () => {
+    const barHeight = progressBar.current.offsetHeight;
+    // stops is an array of new y location to go to.
+    const stops = PROJECTS.map((_, i) => (-1 * (i + 1) * DOTS_INTERVAL * barHeight) / 100);
+    projectCardsController.start("rocketClicked");
+    for (let i = 0; i < stops.length; i++) {
+      const delay = i === 0 ? 0 : 0.75; // if first no delay
+      await rocketController.start(rocketAnimations.generateStop(stops[i], delay));
+    }
+    await rocketController.start(rocketAnimations.stop());
+  };
+
   const onTapRocket = async () => {
     if (clickedRocket) return;
     setClickedRocket(true);
-    const barHeight = progressBar.current.offsetHeight;
-    const stops = PROJECTS.map((_, i) => (-1 * (i + 1) * DOTS_INTERVAL * barHeight) / 100);
-    projectCardsController.start(projectCardsAnimation);
-    for (let i = 0; i < stops.length; i++) {
-      await rocketController.start(getRocketAnimation.generateStop(stops[i], i === 0 ? 0 : 0.75));
-    }
-    await rocketController.start(getRocketAnimation.stop());
+    startRocketAnimation();
   };
+
   const scrollToRocket = () => {
     const rect = rocketRef.current.getBoundingClientRect();
     containerRef.current.scroll({
       top: containerRef.current.scrollTop + rect.top - window.innerHeight / 2,
     });
   };
-  const projectCardsAnimation = (i) => {
-    return {
-      opacity: [0, 1],
-      scale: [0, 1.1, 1],
-      transition: {
-        duration: 0.75,
-        delay: 2 + (i - 1) * 2.75,
-      },
-    };
-  };
+
   useEffect(() => {
     initialSequence();
     scrollToRocket();
@@ -147,31 +116,28 @@ function Projects(props) {
       scrollToRocket();
     });
   }, []);
-  const dotProperties = {
-    margin: "0 -30px",
-    textOnRight: true,
-    radius: "2em",
-    left: "50%",
-    bgColor: COLORS["main-yellow"],
-  };
+
   const generateDots = () => {
-    return PROJECTS.map((projectData, i) => {
+    const dotProperties = {
+      margin: "0 -2vw",
+      textOnRight: true,
+      radius: "2vw",
+      left: "50%",
+      bgColor: COLORS["main-yellow"],
+    };
+    const allDots = PROJECTS.map((projectData, i) => {
       const top = (i + 1) * DOTS_INTERVAL + "%";
-      return <DotWithText key={i} {...dotProperties} title={projectData.date} top={top} />;
+      return <DotWithText fontSize={"1.3vw"} key={i} {...dotProperties} title={projectData.date} top={top} />;
     });
+    allDots.push(<DotWithText {...dotProperties} key={PROJECTS.length + 1} top="100%" />);
+    return allDots;
   };
   const generateProjectCards = () => {
     return PROJECTS.map((projectData, i) => {
       const top = (i + 1) * DOTS_INTERVAL + "%";
       return (
-        <ProjectCardContainer
-          initial={{ opacity: 0, scale: 0 }}
-          animate={projectCardsController}
-          custom={PROJECTS.length - i}
-          key={i}
-          top={top}
-        >
-          <ProjectCard {...projectData} />
+        <ProjectCardContainer animate={projectCardsController} key={i} top={top}>
+          <ProjectCard reverseIndex={PROJECTS.length - i} {...projectData} />
         </ProjectCardContainer>
       );
     });
@@ -181,10 +147,7 @@ function Projects(props) {
       <InnerContainer height={PROJECTS.length * 120}>
         <FlexContainer>
           <RocketBarContainer>
-            <Bar ref={progressBar}>
-              {generateDots()}
-              <DotWithText {...dotProperties} top="100%" />
-            </Bar>
+            <Bar ref={progressBar}>{generateDots()}</Bar>
             <Rocket
               ref={rocketRef}
               initial={{ translateX: "-50%", translateY: "-50%" }}
