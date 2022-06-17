@@ -4,7 +4,6 @@ import { COLORS } from "../Constants/COLOR";
 import DoubleText from "./DoubleText";
 import { TABS } from "../Constants/TABS";
 import { FaGithubSquare, FaFacebookSquare, FaLinkedin } from "react-icons/fa";
-import { UIContextConsumer } from "../Contexts/UI";
 import { NAVBAR_MIN_WIDTH, NAVBAR_MAX_WIDTH, NAVBAR_WIDTH } from "./Config";
 
 const Container = styled.div`
@@ -64,6 +63,13 @@ const IconProps = {
 };
 const Link = styled.a`
   height: fit-content;
+`;
+const CopyRight = styled.p`
+  color: ${COLORS["main-yellow"]};
+  margin: 10px 5%;
+  font-family: "Poly";
+  font-size: 0.65vw;
+  text-align: center;
 `;
 function Navbar(props) {
   return (
@@ -128,6 +134,9 @@ function Navbar(props) {
           <FaGithubSquare {...IconProps} />
         </Link>
       </IconContainer>
+      <CopyRight>
+        Handcrafted By<br></br> Mark Armanious © 2022{" "}
+      </CopyRight>
     </Container>
   );
 }
