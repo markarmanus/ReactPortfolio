@@ -26,7 +26,7 @@ const Container = styled(motion.div)`
 const PleaseHoldTight = styled.p`
   font-family: "Poly";
   width: fit-content;
-  font-size: 1vmax;
+  font-size: 1.1vmax;
   color: ${COLORS["main-yellow"]};
   margin: 0;
   font-weight: bold;

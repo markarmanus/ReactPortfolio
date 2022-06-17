@@ -270,7 +270,7 @@ function AboutMe(props) {
             offset={4}
             firstColor={COLORS["main-black"]}
             secondColor={COLORS["main-yellow"]}
-            size={"3.5vw"}
+            size={"3.5vmax"}
             font="Prompt"
             height="100%"
             animationProps={{
@@ -301,11 +301,11 @@ function AboutMe(props) {
             <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={graduationCardController}>
               <Card
                 title="Computer Science - Honours"
-                titleFontSize="1.1vw"
-                bulletPointFontSize="0.9vw"
+                titleFontSize="1.1vmax"
+                bulletPointFontSize="0.9vmax"
                 details={[
-                  { fontSize: "0.8vw", text: "Memorial University Of Newfoundland", bold: true },
-                  { fontSize: "0.7vw", text: "Sept 2016 - Apr 2021" },
+                  { fontSize: "0.8vmax", text: "Memorial University Of Newfoundland", bold: true },
+                  { fontSize: "0.7vmax", text: "Sept 2016 - Apr 2021" },
                 ]}
                 bulletPoints={[
                   "Graduated With Honours",
@@ -372,11 +372,11 @@ function AboutMe(props) {
             <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={heyorcaCardController}>
               <Card
                 title="Web Developer"
-                titleFontSize="1.1vw"
-                bulletPointFontSize="0.9vw"
+                titleFontSize="1.1vmax"
+                bulletPointFontSize="0.9vmax"
                 details={[
-                  { fontSize: "0.8vw", text: "Heyorca", bold: true },
-                  { fontSize: "0.7vw", text: "Jan 2018 - Oct 2019" },
+                  { fontSize: "0.8vmax", text: "Heyorca", bold: true },
+                  { fontSize: "0.7vmax", text: "Jan 2018 - Oct 2019" },
                 ]}
                 bulletPoints={[
                   "Worked Heavily With PHP, Laravel, AWS and React",
@@ -387,12 +387,12 @@ function AboutMe(props) {
             <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={mysaCardController}>
               <Card
                 title="Intermediate Software Developer"
-                titleFontSize="1.1vw"
-                bulletPointFontSize="0.9vw"
+                titleFontSize="1.1vmax"
+                bulletPointFontSize="0.9vmax"
                 details={[
-                  { fontSize: "0.8vw", text: "App Architecture Lead", bold: true },
-                  { fontSize: "0.8vw", text: "Mysa Thermostat", bold: true },
-                  { fontSize: "0.7vw", text: "Jan 2020 - Present" },
+                  { fontSize: "0.8vmax", text: "App Architecture Lead", bold: true },
+                  { fontSize: "0.8vmax", text: "Mysa Thermostat", bold: true },
+                  { fontSize: "0.7vmax", text: "Jan 2020 - Present" },
                 ]}
                 bulletPoints={[
                   "Worked as something and bla",

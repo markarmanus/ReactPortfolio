@@ -34,6 +34,10 @@ const LeftContainer = styled.div`
   justify-content: center;
   flex: 1;
   padding: 0 3%;
+  @media screen and (orientation: portrait) {
+    width: 95%;
+    padding: 0;
+  }
 `;
 const TitleContainer = styled.div`
   height: 10vmin;
@@ -113,7 +117,7 @@ function Skills(props) {
             offset={4}
             firstColor={COLORS["main-black"]}
             secondColor={COLORS["main-yellow"]}
-            size={"3.5vw"}
+            size={"3.5vmax"}
             font="Prompt"
             height="100%"
             animationProps={{

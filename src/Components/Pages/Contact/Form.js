@@ -29,12 +29,12 @@ const Input = styled.input`
   width: 100%;
   color: white;
   margin: 10px;
-  font-size: 1.1vw;
+  font-size: 1.1vmax;
   font-family: "Poly";
   padding-left: 10px;
   ::placeholder {
     color: white;
-    font-size: 1.1vw;
+    font-size: 1.1vmax;
   }
   background-color: ${COLORS["secondary-blue"]};
 `;
@@ -45,13 +45,13 @@ const TextArea = styled.textarea`
   width: 100%;
   color: white;
   margin: 10px;
-  font-size: 1.1vw;
+  font-size: 1.1vmax;
   padding-top: 2.5%;
   font-family: "Poly";
   padding-left: 10px;
   ::placeholder {
     color: white;
-    font-size: 1.1vw;
+    font-size: 1.1vmax;
   }
   background-color: ${COLORS["secondary-blue"]};
 `;
@@ -60,12 +60,12 @@ const Submit = styled.button`
   border: 0;
   width: 25%;
   color: ${COLORS["main-yellow"]};
-  font-size: 1vw;
+  font-size: 1vmax;
   margin: 10px;
   border-style: solid;
   cursor: ${(props) => (props.inputsValid ? "pointer" : "no-drop")};
   border-color: ${COLORS["main-yellow"]};
-  border-width: 0.13vw;
+  border-width: 0.13vmax;
   opacity: ${(props) => (props.inputsValid ? 1 : 0.3)};
   background-color: rgba(0, 0, 0, 0);
 `;

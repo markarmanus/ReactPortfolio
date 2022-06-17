@@ -112,7 +112,7 @@ function Skills(props) {
             offset={4}
             firstColor={COLORS["main-black"]}
             secondColor={COLORS["main-yellow"]}
-            size={"3.5vw"}
+            size={"3.5vmax"}
             font="Prompt"
             height="100%"
             animationProps={{

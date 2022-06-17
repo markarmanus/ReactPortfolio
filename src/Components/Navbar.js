@@ -21,7 +21,7 @@ const Container = styled.div`
 
 const Tab = styled.p`
   color: ${(props) => (props.selected ? COLORS["main-yellow"] : "white")};
-  font-size: 1.2vw;
+  font-size: 1.2vmax;
   font-family: "Poly";
   height: 3.5vh;
   opacity: ${(props) => (props.disabled ? 0.7 : 1)};
@@ -59,7 +59,7 @@ const TabsContainer = styled.div`
 `;
 const IconProps = {
   color: "white",
-  size: "1.3vw",
+  size: "1.3vmax",
 };
 const Link = styled.a`
   height: fit-content;
@@ -68,7 +68,7 @@ const CopyRight = styled.p`
   color: ${COLORS["main-yellow"]};
   margin: 10px 5%;
   font-family: "Poly";
-  font-size: 0.65vw;
+  font-size: 0.65vmax;
   text-align: center;
 `;
 function Navbar(props) {
@@ -87,7 +87,7 @@ function Navbar(props) {
             animationColor: COLORS["main-green"],
             delayBetweenLetters: 0.02,
           }}
-          size={"5vw"}
+          size={"5vmax"}
           font="Pixeboy"
           height="100%"
           text="M.A"
