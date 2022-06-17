@@ -5,10 +5,10 @@ import { motion, useAnimation, useMotionValue } from "framer-motion";
 import DotWithText from "../../DotWithText";
 import { PROJECTS } from "./ProjectsData";
 import ProjectCard from "./ProjectCard";
-import { NAVBAR_MAX_WIDTH, NAVBAR_WIDTH } from "../../Config";
+import { NAVBAR_MAX_WIDTH, NAVBAR_MIN_WIDTH, NAVBAR_WIDTH } from "../../Config";
 const DOTS_INTERVAL = 100 / (PROJECTS.length + 1);
 const Container = styled(motion.div)`
-  width: calc(100% - min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH}));
+  width: calc(100% - max(${NAVBAR_MIN_WIDTH}, min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH})));
   height: 100%;
   position: relative;
   top: 0%;

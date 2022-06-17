@@ -9,7 +9,7 @@ const loadingTextSecond = {
 const loadingTextInitial = { opacity: 0 };
 
 const loadingRocketFirstHalf = {
-  translateX: ["-1vw", "50vw"],
+  translateX: ["-3vw", "50vw"],
   rotateX: [0, 20, 0],
   rotateZ: [0, 5, 0, -5, 0],
   transition: {

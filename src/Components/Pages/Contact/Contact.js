@@ -5,18 +5,24 @@ import { COLORS } from "../../../Constants/COLOR";
 import { motion } from "framer-motion";
 import Form from "./Form";
 import UiContext from "../../../Contexts/UI";
-import { NAVBAR_MAX_WIDTH, NAVBAR_WIDTH } from "../../Config";
+import { NAVBAR_MAX_WIDTH, NAVBAR_MIN_WIDTH, NAVBAR_WIDTH } from "../../Config";
 
 const Container = styled(motion.div)`
-  width: calc(100% - min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH}));
+  width: calc(100% - max(${NAVBAR_MIN_WIDTH}, min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH})));
   height: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: row;
   align-items: center;
   position: relative;
   top: 0%;
   left: 0%;
   background-color: ${COLORS["main-blue-rgba"](0.4)};
+  @media screen and (orientation: portrait) {
+    flex-direction: column;
+    height: 90%;
+    align-self: center;
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -27,7 +33,7 @@ const LeftContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  padding-left: 3%;
+  padding: 0 3%;
 `;
 const TitleContainer = styled.div`
   height: 10vmin;
@@ -39,10 +45,8 @@ const RightContainer = styled.div`
   height: 90%;
   display: flex;
   justify-content: space-between;
-  padding-left: 10%;
-  padding-right: 10%;
+  padding: 0 8%;
   align-items: center;
-
   flex-direction: column;
 `;
 const earthSize = 60;
@@ -56,6 +60,9 @@ const Earth = styled(motion.div)`
   transform: translate(0%, -100%);
   left: 10%;
   background-repeat: no-repeat;
+  @media screen and (orientation: portrait) {
+    left: 0%;
+  }
 `;
 const Astronaut = styled.div`
   background-image: url(${process.env.PUBLIC_URL + "/Images/Background/AstronautWithSaturn.png"});
@@ -106,7 +113,7 @@ function Skills(props) {
             offset={4}
             firstColor={COLORS["main-black"]}
             secondColor={COLORS["main-yellow"]}
-            size={"6vmin"}
+            size={"3.5vw"}
             font="Prompt"
             height="100%"
             animationProps={{

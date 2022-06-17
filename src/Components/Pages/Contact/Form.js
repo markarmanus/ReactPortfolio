@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 const Container = styled.div`
   width: 100%;
-  height: 300px;
+  height: 40%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,7 +20,7 @@ const InputGroup = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: space-around;
-  margin: 8px;
+  margin: 1.5%;
   flex: ${(props) => props.flex};
 `;
 const Input = styled.input`
@@ -29,12 +29,12 @@ const Input = styled.input`
   width: 100%;
   color: white;
   margin: 10px;
-  font-size: 1em;
+  font-size: 1.1vw;
   font-family: "Poly";
   padding-left: 10px;
   ::placeholder {
     color: white;
-    font-size: 15px;
+    font-size: 1.1vw;
   }
   background-color: ${COLORS["secondary-blue"]};
 `;
@@ -45,27 +45,27 @@ const TextArea = styled.textarea`
   width: 100%;
   color: white;
   margin: 10px;
-  font-size: 1em;
+  font-size: 1.1vw;
   padding-top: 2.5%;
   font-family: "Poly";
   padding-left: 10px;
   ::placeholder {
     color: white;
-    font-size: 15px;
+    font-size: 1.1vw;
   }
   background-color: ${COLORS["secondary-blue"]};
 `;
 const Submit = styled.button`
   height: 100%;
   border: 0;
-  width: 20%;
+  width: 25%;
   color: ${COLORS["main-yellow"]};
+  font-size: 1vw;
   margin: 10px;
-  padding-left: 10px;
   border-style: solid;
   cursor: ${(props) => (props.inputsValid ? "pointer" : "no-drop")};
   border-color: ${COLORS["main-yellow"]};
-  border-width: 2px;
+  border-width: 0.13vw;
   opacity: ${(props) => (props.inputsValid ? 1 : 0.3)};
   background-color: rgba(0, 0, 0, 0);
 `;

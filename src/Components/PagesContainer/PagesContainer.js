@@ -26,7 +26,7 @@ const Container = styled(motion.div)`
 const PleaseHoldTight = styled.p`
   font-family: "Poly";
   width: fit-content;
-  font-size: 1vw;
+  font-size: 1vmax;
   color: ${COLORS["main-yellow"]};
   margin: 0;
   font-weight: bold;
@@ -37,8 +37,6 @@ const ContentContainer = styled(motion.div)`
   width: 100%;
 `;
 const Rocket = styled(motion.img)`
-  top: 50%;
-  left: -20%;
   transform: translate(0, -50%);
   width: ${({ smaller_dimension }) => 0.2 * smaller_dimension}px;
   height: auto;
@@ -51,8 +49,12 @@ const RocketContainer = styled(motion.div)`
 `;
 const TextContainer = styled(motion.div)`
   position: absolute;
-  transform: translate(20%, -50%);
+  transform: translate(-50%, -50%);
   top: 60%;
+  left: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 function PagesContainer(props) {
   useEffect(() => {

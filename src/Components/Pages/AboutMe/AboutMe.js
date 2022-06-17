@@ -8,18 +8,24 @@ import DotWithText from "../../DotWithText";
 import Card from "./InformationCard";
 import { AiOutlineFieldTime, AiOutlineCoffee } from "react-icons/ai";
 import { BsCodeSlash } from "react-icons/bs";
-import { NAVBAR_MAX_WIDTH, NAVBAR_WIDTH } from "../../Config";
+import { NAVBAR_MAX_WIDTH, NAVBAR_MIN_WIDTH, NAVBAR_WIDTH } from "../../Config";
 
 const Container = styled(motion.div)`
-  width: calc(100% - min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH}));
+  width: calc(100% - max(${NAVBAR_MIN_WIDTH}, min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH})));
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  flex-direction: row;
   top: 0%;
   left: 0%;
   background-color: ${COLORS["main-blue-rgba"](0.4)};
+  @media screen and (orientation: portrait) {
+    flex-direction: column;
+    height: 90%;
+    align-self: center;
+  }
 `;
 const Rectangle = styled.div`
   width: ${(props) => props.width};
@@ -49,6 +55,10 @@ const LeftContainer = styled.div`
   align-content: center;
   flex: 0.4;
   padding-left: 3%;
+  @media screen and (orientation: portrait) {
+    flex: 0.2;
+    padding: 0 3%;
+  }
 `;
 const TitleContainer = styled.div`
   height: 8vmin;
@@ -61,6 +71,9 @@ const RightContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media screen and (orientation: portrait) {
+    flex: 0.8;
+  }
 `;
 const Description = styled.p`
   color: white;

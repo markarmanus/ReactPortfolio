@@ -87,7 +87,6 @@ function Landing() {
     pageContentController.start("textAnimation");
     await rocketAnimationController.start(AnimationConfig.rocketAppearAnimation);
     const timer = setTimeout(() => {
-      console.log(rocketClickedRef.current);
       if (!isMobileOnly && !rocketClickedRef.current) {
         const id = toast.info("Hint: Try Clicking the Rocket!", {
           position: "top-center",

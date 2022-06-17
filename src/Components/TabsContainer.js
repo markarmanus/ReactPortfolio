@@ -5,7 +5,6 @@ import { TABS } from "../Constants/TABS";
 import Skills from "./Pages/Skills/Skills";
 import Projects from "./Pages/Projects/Projects";
 import Contact from "./Pages/Contact/Contact";
-import { NAVBAR_WIDTH } from "./Config";
 
 const Container = styled.div`
   width: 100%;
@@ -14,7 +13,7 @@ const Container = styled.div`
   align-content: flex-end;
   margin: auto;
   position: relative;
-  padding-left: ${NAVBAR_WIDTH};
+  display: flex;
 `;
 
 function TabsContainer(props) {

@@ -4,10 +4,10 @@ import DoubleText from "../../DoubleText";
 import { COLORS } from "../../../Constants/COLOR";
 import { motion } from "framer-motion";
 import { biggestIcon, technologies } from "./TechnologiesConfig";
-import { NAVBAR_MAX_WIDTH, NAVBAR_WIDTH } from "../../Config";
+import { NAVBAR_MAX_WIDTH, NAVBAR_MIN_WIDTH, NAVBAR_WIDTH } from "../../Config";
 
 const Container = styled(motion.div)`
-  width: calc(100% - min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH}));
+  width: calc(100% - max(${NAVBAR_MIN_WIDTH}, min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH})));
   height: 100%;
   display: flex;
   justify-content: center;
@@ -16,6 +16,11 @@ const Container = styled(motion.div)`
   top: 0%;
   left: 0%;
   background-color: ${COLORS["main-blue-rgba"](0.4)};
+  @media screen and (orientation: portrait) {
+    flex-direction: column;
+    height: 90%;
+    align-self: center;
+  }
 `;
 
 const LeftContainer = styled.div`
@@ -38,6 +43,9 @@ const RightContainer = styled.div`
   padding-right: 5%;
   align-items: center;
   flex-direction: column;
+  @media screen and (orientation: portrait) {
+    width: 90%;
+  }
 `;
 const Description = styled.p`
   color: white;
@@ -59,17 +67,17 @@ const TechContainer = styled(motion.div)`
 const TechBar = styled(motion.div)`
   display: inline-block;
   width: ${(props) => props.width};
-  height: 1.1vh;
+  height: 1.1vmin;
   -webkit-perspective-origin-x: 0%;
   -webkit-transform-origin-x: 0%;
   background-color: ${(props) => props.color};
 `;
 const TechImage = styled.img`
-  width: ${(props) => props.size}vh;
+  width: ${(props) => props.size}vmin;
   height: auto;
 `;
 const TechImageContainer = styled.div`
-  width: ${biggestIcon + "vh"};
+  width: ${biggestIcon + "vmin"};
 `;
 const loadInAnimation = (i) => {
   return {
