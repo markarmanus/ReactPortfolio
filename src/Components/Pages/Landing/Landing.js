@@ -80,13 +80,15 @@ function Landing() {
   const pageContentController = useAnimation();
   const [toastId, setToastId] = React.useState();
   const [rocketClicked, setRocketClicked] = React.useState(false);
+  const rocketClickedRef = React.useRef(""); // using ref because setTimeout uses value from initialization
 
   const initialSequence = async () => {
     mainController.start("visible");
     pageContentController.start("textAnimation");
     await rocketAnimationController.start(AnimationConfig.rocketAppearAnimation);
-    setTimeout(() => {
-      if (!isMobileOnly && !rocketClicked) {
+    const timer = setTimeout(() => {
+      console.log(rocketClickedRef.current);
+      if (!isMobileOnly && !rocketClickedRef.current) {
         const id = toast.info("Hint: Try Clicking the Rocket!", {
           position: "top-center",
           autoClose: false,
@@ -96,10 +98,15 @@ function Landing() {
       }
     }, 1500);
     await rocketAnimationController.start("idle");
+    return () => clearTimeout(timer);
   };
   React.useEffect(() => {
     initialSequence();
   }, []);
+
+  React.useEffect(() => {
+    rocketClickedRef.current = rocketClicked;
+  }, [rocketClicked]);
 
   const onClickRocket = () => {
     setRocketClicked(true);
