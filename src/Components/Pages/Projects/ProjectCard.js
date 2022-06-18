@@ -136,7 +136,11 @@ const iconProps = {
 function ProjectCard(props) {
   return (
     <Container top={props.top}>
-      <InformationContainer variants={projectInformationCardVariants} custom={props.reverseIndex}>
+      <InformationContainer
+        initial={{ opacity: 0 }}
+        variants={projectInformationCardVariants}
+        custom={props.reverseIndex}
+      >
         <TextInformationContainer>
           <TitleIconContainer>
             <TitleContainer>
@@ -179,7 +183,7 @@ function ProjectCard(props) {
           </TechIconsContainer>
         </TechnologiesContainer>
       </InformationContainer>
-      <ImageContainer custom={props.reverseIndex} variants={projectImageVariants}>
+      <ImageContainer initial={{ opacity: 0 }} custom={props.reverseIndex} variants={projectImageVariants}>
         <Link target="_blank" href={props.projectLink}>
           <ProjectImage src={props.projectImage} />
         </Link>
