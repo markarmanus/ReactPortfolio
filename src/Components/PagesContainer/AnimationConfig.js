@@ -9,7 +9,7 @@ const loadingTextSecond = {
 const loadingTextInitial = { opacity: 0 };
 
 const loadingRocketFirstHalf = {
-  translateX: ["-3vw", "50vw"],
+  translateX: ["-8vw", "50vw"],
   rotateX: [0, 20, 0],
   rotateZ: [0, 5, 0, -5, 0],
   transition: {
@@ -28,7 +28,7 @@ const loadingRocketSecondHalf = {
     rotateZ: { duration: 0.75, repeat: 2, delay: 0, ease: "linear" },
   },
 };
-const loadingRocketInitial = { translateX: "-10vw" };
+const loadingRocketInitial = { translateX: "-100vw" };
 
 const mainContainerVariants = {
   hidden: { translateY: "100vh" },
