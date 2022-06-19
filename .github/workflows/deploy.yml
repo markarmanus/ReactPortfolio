@@ -31,5 +31,8 @@ jobs:
           git config --global user.email "markarmanus@gmail.com"
           git config --global user.name "Mark Armanious"
 
-      - name: Deploy
-        run: npm run deploy
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages
+          folder: build
