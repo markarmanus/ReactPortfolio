@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - deploy
+
+jobs:
+  deploy-website:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Run Npm Install
+        run: npm install
+
+      - name: Install JQ
+        run: sudo apt-get install jq
+
+      - name: Add Home Page
+        run: |
+          cat package.json | jq '. * {"homepage": "https://markarmanus.github.io/ReactPortfolio",}' | tee package.json
+
+      - name: Deploy
+        run: npm run deploy
