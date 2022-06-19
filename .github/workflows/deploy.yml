@@ -16,6 +16,9 @@ jobs:
           node-version: "16.13.1"
           cache: "npm"
 
+      - name: Run npm Install
+        run: npm ci
+
       - name: Install JQ
         run: sudo apt-get install jq
 
