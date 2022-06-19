@@ -10,8 +10,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Run Npm Install
-        run: npm install
+      - name: Install Node and cache npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.13.1"
+          cache: "npm"
 
       - name: Install JQ
         run: sudo apt-get install jq
