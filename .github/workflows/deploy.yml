@@ -26,5 +26,10 @@ jobs:
         run: |
           cat package.json | jq '. * {"homepage": "https://markarmanus.github.io/ReactPortfolio",}' | tee package.json
 
+      - name: Set Github Config
+        run: |
+          git config --global user.email "markarmanus@gmail.com"
+          git config --global user.name "Mark Armanious"
+
       - name: Deploy
         run: npm run deploy
