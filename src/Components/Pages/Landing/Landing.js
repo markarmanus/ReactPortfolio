@@ -107,12 +107,19 @@ function Landing() {
     rocketClickedRef.current = rocketClicked;
   }, [rocketClicked]);
 
-  const onClickRocket = () => {
+  const onClickRocket = async () => {
     setRocketClicked(true);
     toast.dismiss(toastId);
     rocketAnimationController.start("rocketClicked");
     mainController.start("rocketClicked");
-    pageContentController.start("hidden");
+    await pageContentController.start("hidden");
+    setTimeout(() => {
+      toast.info("Hint: To navigate use left navigation bar!", {
+        position: "top-center",
+        autoClose: false,
+        theme: "dark",
+      });
+    }, 1000);
   };
 
   const renderPage = () => {

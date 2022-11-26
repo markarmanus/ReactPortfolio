@@ -50,7 +50,7 @@ const TitleContainer = styled.div`
 const Title = styled.span`
   color: ${COLORS["main-yellow"]};
   font-family: "Pixeboy";
-  font-size: 2.2vmax;
+  font-size: 2vmax;
 `;
 const Dot = styled.span`
   background-color: white;
@@ -62,14 +62,14 @@ const Dot = styled.span`
 const TitleExtension = styled.span`
   color: white;
   font-family: "Pixeboy";
-  font-size: 1.2vmax;
+  font-size: 1vmax;
 `;
 const Detail = styled.span`
   color: ${COLORS["main-gray"]};
   position: relative;
   left: 1vmax;
   font-family: "Prompt";
-  font-size: 1.1vmax;
+  font-size: 0.9vmax;
 `;
 const BulletPointContainer = styled.div`
   color: white;
@@ -97,9 +97,10 @@ const TechnologiesContainer = styled.div`
 
 const TechnologiesTitle = styled.p`
   color: white;
-  font-size: 1.5vmax;
+  font-size: 1.3vmax;
   font-family: "Pixeboy";
-  margin-bottom: 10px;
+  margin-bottom: 0.7vh;
+  margin-top: 0.3vh;
 `;
 
 const Link = styled.a`
@@ -126,11 +127,11 @@ const ProjectImage = styled.img`
 `;
 const BulletPointText = styled.span`
   color: white;
-  font-size: 1vmax;
+  font-size: 0.8vmax;
 `;
 const iconProps = {
   color: "white",
-  size: "2.2vmax",
+  size: "1.8vmax",
 };
 
 function ProjectCard(props) {
