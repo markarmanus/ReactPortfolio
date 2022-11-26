@@ -25,7 +25,7 @@ const InformationContainer = styled(motion.div)`
   top: calc(25% - 2vmax);
   justify-content: center;
   flex: 0.35;
-  height: 75%;
+  height: 45%;
   z-index: 1;
   padding: 1vmax;
   @media screen and (orientation: portrait) {
@@ -169,8 +169,8 @@ function ProjectCard(props) {
               })}
           </BulletPointsContainer>
         </TextInformationContainer>
-
-        <TechnologiesContainer>
+        {/* Hide temporary as most projects only use React */}
+        {/* <TechnologiesContainer>
           <TechnologiesTitle>Technologies Used:</TechnologiesTitle>
           <TechIconsContainer>
             {props.technologies &&
@@ -182,7 +182,7 @@ function ProjectCard(props) {
                 );
               })}
           </TechIconsContainer>
-        </TechnologiesContainer>
+        </TechnologiesContainer> */}
       </InformationContainer>
       <ImageContainer initial={{ opacity: 0 }} custom={props.reverseIndex} variants={projectImageVariants}>
         <Link target="_blank" href={props.projectLink}>

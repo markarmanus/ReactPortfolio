@@ -41,7 +41,7 @@ const projectInformationCardVariants = {
       translateX: ["-30%", "0%"],
       transition: {
         duration: 0.75,
-        delay: 2 + (i - 1) * 2.75,
+        delay: 2 + (i - 1) * 3.25, //3.25 is 2 + 1.25 (duration)
       },
     };
   },
@@ -53,7 +53,7 @@ const projectImageVariants = {
       translateX: ["30%", "0%"],
       transition: {
         duration: 0.75,
-        delay: 2 + (i - 1) * 2.75 + 0.25,
+        delay: 2 + (i - 1) * 3.25 + 0.25,
       },
     };
   },
