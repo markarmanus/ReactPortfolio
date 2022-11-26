@@ -14,21 +14,6 @@ const extFontSize = {
   max: "70px",
   min: "15px",
 };
-// const titleFontSize = {
-//   default: "6.5vw",
-//   max: "6.5vw",
-//   min: "6.5vw",
-// };
-// const describeFontSize = {
-//   default: "5vw",
-//   max: "5vw",
-//   min: "5vw",
-// };
-// const extFontSize = {
-//   default: "2vw",
-//   max: "2vw",
-//   min: "2vw",
-// };
 const TextConfig = {
   Name: {
     offset: 0.55,
@@ -52,7 +37,6 @@ const TextConfig = {
   },
   Hi: {
     offset: 0.55,
-
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-green"],
     size: describeFontSize.default,
@@ -74,7 +58,6 @@ const TextConfig = {
   },
   IamMark: {
     offset: 0.55,
-
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-yellow"],
     size: describeFontSize.default,
@@ -96,7 +79,6 @@ const TextConfig = {
   },
   SoftwareDeveloper: {
     offset: 0.55,
-
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-yellow"],
     size: describeFontSize.default,

@@ -3,7 +3,6 @@ import React from "react";
 import { motion } from "framer-motion";
 const Container = styled.div`
   width: ${({ props }) => props.width || "100%"};
-  /* height: ${({ height }) => height || "100%"}; */
   height: ${({ props }) =>
     props.minHeight && props.maxHeight
       ? `min(max(${props.height},${props.minHeight}),${props.maxHeight})`
