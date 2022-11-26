@@ -7,7 +7,7 @@ const titleFontSize = {
 const describeFontSize = {
   default: "5vw",
   max: "120px",
-  min: "50px",
+  min: "40px",
 };
 const extFontSize = {
   default: "2vw",

@@ -98,15 +98,15 @@ const Rocket = styled(motion.img)`
 `;
 const CardsContainer = styled.div`
   width: 95%;
-  flex: 1.3;
+
   display: flex;
   justify-content: center;
   align-content: center;
 `;
 const TopRightHalf = styled(BottomRightContainer)`
   justify-content: flex-end;
-  padding-bottom: 10%;
-  flex: 0.6;
+  padding-bottom: 5vh;
+  flex: 0.5;
 `;
 const Numbers = styled.div`
   font-weight: bold;
@@ -287,11 +287,11 @@ function AboutMe(props) {
         </TitleContainer>
 
         <Description>
-          Well-organised person, problem solver, independent employee with high attention to detail. Fan of MMA, outdoor
-          activities, TV series and English literature. A family person and father of two fractious boys.
+          Passionate about all things technology related. I pride my self in my work, with experience building
+          sustainable, scalable and redundant systems. A heavy focus on Frontend technologies with experience in backend
+          and Devops infrastructure.
           <br></br>
-          <br></br> Well-organised person, problem solver, independent employee with high attention to detail. Fan of
-          MMA, outdoor activities, TV series and English literature. A family person and father of two fractious boys,
+          <br></br>Always looking for opportunities to grow and hopefully make an impact in the industry.
         </Description>
         <Quote>Favorite Quote: “Programming is a social activity.” - Uncle Bob</Quote>
       </LeftContainer>
@@ -308,15 +308,15 @@ function AboutMe(props) {
                   { fontSize: "0.7vmax", text: "Sept 2016 - Apr 2021" },
                 ]}
                 bulletPoints={[
-                  "Graduated With Honours",
-                  "Research In Evolutionary Machine Learning To Create Semester University Schedule",
+                  "Graduated with honours.",
+                  "Wrote a research paper on utilizing evolutionary machine learning to create university course offerings schedule.",
                 ]}
               />
             </AnimatedCard>
           </CardsContainer>
         </TopRightHalf>
         <BottomRightContainer>
-          <div style={{ width: "90%", flex: 0.6 }}>
+          <div style={{ width: "90%", flex: 0.2 }}>
             <div style={{ position: "relative", width: "100%" }}>
               <Rocket
                 initial={{ translateX: "-50%", translateY: "-50%" }}
@@ -368,7 +368,7 @@ function AboutMe(props) {
               />
             </div>
           </div>
-          <CardsContainer>
+          <CardsContainer style={{ flex: 0.6 }}>
             <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={heyorcaCardController}>
               <Card
                 title="Web Developer"
@@ -379,30 +379,31 @@ function AboutMe(props) {
                   { fontSize: "0.7vmax", text: "Jan 2018 - Oct 2019" },
                 ]}
                 bulletPoints={[
-                  "Worked Heavily With PHP, Laravel, AWS and React",
-                  "Member of the Devops team to create Internal dev tools",
+                  "Develop and maintain Laravel PHP app.",
+                  "Develop and maintain a serverless AWS infrastructure.",
+                  "Worked as a member on the devops team to create internal tooling.",
                 ]}
               />
             </AnimatedCard>
             <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={mysaCardController}>
               <Card
-                title="Intermediate Software Developer"
+                title="App Architecture Lead"
                 titleFontSize="1.1vmax"
                 bulletPointFontSize="0.9vmax"
                 details={[
-                  { fontSize: "0.8vmax", text: "App Architecture Lead", bold: true },
+                  { fontSize: "0.8vmax", text: "Devops Team Lead", bold: true },
                   { fontSize: "0.8vmax", text: "Mysa Thermostat", bold: true },
                   { fontSize: "0.7vmax", text: "Jan 2020 - Present" },
                 ]}
                 bulletPoints={[
-                  "Worked as something and bla",
-                  "App Arch we 7agat kter yala edenea b2a",
-                  "Employe of the Week ",
+                  "Technical Lead responsible over React Native app architecture.",
+                  "Lead devops team.",
+                  "Selected Employee of the week multiple times.",
                 ]}
               />
             </AnimatedCard>
           </CardsContainer>
-          <div style={{ width: "90%", flex: 1.3 }}>
+          <div style={{ width: "90%", flex: 0.3 }}>
             <div style={{ display: "flex", justifyContent: "space-between", paddingTop: "5%" }}>
               <IconContainer>
                 <BsCodeSlash {...IconProps} />
