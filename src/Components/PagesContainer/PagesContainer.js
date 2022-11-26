@@ -52,7 +52,7 @@ const TextContainer = styled(motion.div)`
   transform: translate(-50%, -50%);
   top: 60%;
   left: 50%;
-  width: 100%;
+  width: 150%;
   display: flex;
   justify-content: center;
 `;
