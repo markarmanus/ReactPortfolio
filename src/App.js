@@ -1,6 +1,6 @@
 import Landing from "./Components/Pages/Landing/Landing";
 import styled from "styled-components";
-import React from "react";
+import React, { useEffect } from "react";
 import { UIContextProvider } from "./Contexts/UI";
 import { COLORS } from "./Constants/COLOR";
 import { ToastContainer } from "react-toastify";

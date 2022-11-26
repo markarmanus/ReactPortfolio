@@ -1,13 +1,42 @@
 import { COLORS } from "../../../Constants/COLOR";
-const titleFontSize = "6.5vw";
-const describeFontSize = "5vw";
-const extFontSize = "2vw";
+const titleFontSize = {
+  default: "6.5vw",
+  max: "170px",
+  min: "60px",
+};
+const describeFontSize = {
+  default: "5vw",
+  max: "120px",
+  min: "50px",
+};
+const extFontSize = {
+  default: "2vw",
+  max: "70px",
+  min: "15px",
+};
+// const titleFontSize = {
+//   default: "6.5vw",
+//   max: "6.5vw",
+//   min: "6.5vw",
+// };
+// const describeFontSize = {
+//   default: "5vw",
+//   max: "5vw",
+//   min: "5vw",
+// };
+// const extFontSize = {
+//   default: "2vw",
+//   max: "2vw",
+//   min: "2vw",
+// };
 const TextConfig = {
   Name: {
     offset: 0.55,
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-yellow"],
-    size: titleFontSize,
+    size: titleFontSize.default,
+    maxSize: titleFontSize.max,
+    minSize: titleFontSize.min,
     font: "Pixeboy",
     height: "100%",
     animationProps: {
@@ -23,11 +52,16 @@ const TextConfig = {
   },
   Hi: {
     offset: 0.55,
+
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-green"],
-    size: describeFontSize,
+    size: describeFontSize.default,
+    maxSize: describeFontSize.max,
+    minSize: describeFontSize.min,
     font: "Pixeboy",
-    height: describeFontSize,
+    height: describeFontSize.default,
+    maxHeight: describeFontSize.max,
+    minHeight: describeFontSize.min,
     animationProps: {
       animationColor: COLORS["main-yellow"],
       duration: 0.3,
@@ -40,11 +74,16 @@ const TextConfig = {
   },
   IamMark: {
     offset: 0.55,
+
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-yellow"],
-    size: describeFontSize,
+    size: describeFontSize.default,
+    maxSize: describeFontSize.max,
+    minSize: describeFontSize.min,
     font: "Pixeboy",
-    height: describeFontSize,
+    height: describeFontSize.default,
+    maxHeight: describeFontSize.max,
+    minHeight: describeFontSize.min,
     animationProps: {
       animationColor: COLORS["main-green"],
       duration: 0.3,
@@ -57,11 +96,16 @@ const TextConfig = {
   },
   SoftwareDeveloper: {
     offset: 0.55,
+
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-yellow"],
-    size: describeFontSize,
+    size: describeFontSize.default,
+    maxSize: describeFontSize.max,
+    minSize: describeFontSize.min,
     font: "Pixeboy",
-    height: describeFontSize,
+    height: describeFontSize.default,
+    maxHeight: describeFontSize.max,
+    minHeight: describeFontSize.min,
     animationProps: {
       animationColor: COLORS["main-yellow"],
       duration: 0.3,
@@ -76,9 +120,13 @@ const TextConfig = {
     offset: 0,
     firstColor: COLORS["main-black"],
     secondColor: COLORS["main-green"],
-    size: extFontSize,
+    size: extFontSize.default,
+    maxSize: extFontSize.max,
+    minSize: extFontSize.min,
     font: "Pixeboy",
-    height: extFontSize,
+    height: extFontSize.default,
+    maxHeight: extFontSize.max,
+    minHeight: extFontSize.min,
     animationProps: {
       animationColor: COLORS["main-yellow"],
       duration: 0.3,

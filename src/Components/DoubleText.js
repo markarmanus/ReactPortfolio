@@ -2,18 +2,23 @@ import styled from "styled-components";
 import React from "react";
 import { motion } from "framer-motion";
 const Container = styled.div`
-  width: ${({ width }) => width || "100%"};
-  height: ${({ height }) => height || "100%"};
+  width: ${({ props }) => props.width || "100%"};
+  /* height: ${({ height }) => height || "100%"}; */
+  height: ${({ props }) =>
+    props.minHeight && props.maxHeight
+      ? `min(max(${props.height},${props.minHeight}),${props.maxHeight})`
+      : props.height};
   display: block;
   position: relative;
 `;
 
 const Layer = styled.div`
   font-family: ${({ props }) => props.font};
-  font-size: ${({ props }) => props.size};
+  font-size: ${({ props }) =>
+    props.minSize && props.maxSize ? `min(max(${props.size},${props.minSize}),${props.maxSize})` : props.size};
   position: absolute;
-  top: ${({ offset }) => offset || "50%"}vmax;
-  left: ${({ offset }) => offset || "50%"}vmax;
+  top: ${({ offset, offsetUnit }) => `${offset}${offsetUnit || "vmax"}`};
+  left: ${({ offset, offsetUnit }) => `${offset}${offsetUnit || "vmax"}`};
   margin: 0;
   display: inline;
 `;
@@ -59,7 +64,7 @@ function DoubleText(props) {
   };
 
   return (
-    <Container width={props.width} height={props.height}>
+    <Container props={props}>
       <Layer offset={props.offset} props={props}>
         {props.text.split("").map((letter, i) => {
           return (

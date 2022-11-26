@@ -31,11 +31,11 @@ const Rocket = styled(motion.img)`
 const TextContainer = styled.div`
   width: 50%;
   height: 100%;
-  @media (max-width: 1000px) {
+  @media (max-width: 1000px) and (-webkit-device-pixel-ratio: 1) {
     width: 100%;
     height: 70%;
   }
-  @media (max-height: 600px) {
+  @media (max-height: 600px) and (-webkit-device-pixel-ratio: 1) {
     width: 100%;
     height: 70%;
   }
