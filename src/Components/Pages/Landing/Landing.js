@@ -31,11 +31,11 @@ const Rocket = styled(motion.img)`
 const TextContainer = styled.div`
   width: 50%;
   height: 100%;
-  @media (max-width: 1000px) {
+  @media (max-width: 1000px) and (-webkit-device-pixel-ratio: 1) {
     width: 100%;
     height: 70%;
   }
-  @media (max-height: 600px) {
+  @media (max-height: 600px) and (-webkit-device-pixel-ratio: 1) {
     width: 100%;
     height: 70%;
   }
@@ -107,12 +107,19 @@ function Landing() {
     rocketClickedRef.current = rocketClicked;
   }, [rocketClicked]);
 
-  const onClickRocket = () => {
+  const onClickRocket = async () => {
     setRocketClicked(true);
     toast.dismiss(toastId);
     rocketAnimationController.start("rocketClicked");
     mainController.start("rocketClicked");
-    pageContentController.start("hidden");
+    await pageContentController.start("hidden");
+    setTimeout(() => {
+      toast.info("Hint: To navigate use left navigation bar!", {
+        position: "top-center",
+        autoClose: false,
+        theme: "dark",
+      });
+    }, 1000);
   };
 
   const renderPage = () => {

@@ -4,5 +4,6 @@
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "prettier.printWidth": 120
+  "prettier.printWidth": 120,
+  "cSpell.words": ["insfrastcutrue"]
 }

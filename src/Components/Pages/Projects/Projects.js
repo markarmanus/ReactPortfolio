@@ -7,6 +7,7 @@ import { PROJECTS } from "./ProjectsData";
 import ProjectCard from "./ProjectCard";
 import { NAVBAR_MAX_WIDTH, NAVBAR_MIN_WIDTH, NAVBAR_WIDTH } from "../../Config";
 import { rocketAnimations } from "./AnimationConfig";
+import { toast } from "react-toastify";
 
 // Distance between dots
 const DOTS_INTERVAL = 100 / (PROJECTS.length + 1);
@@ -90,10 +91,19 @@ function Projects() {
     const stops = PROJECTS.map((_, i) => (-1 * (i + 1) * DOTS_INTERVAL * barHeight) / 100);
     projectCardsController.start("rocketClicked");
     for (let i = 0; i < stops.length; i++) {
-      const delay = i === 0 ? 0 : 0.75; // if first no delay
+      const delay = i === 0 ? 0 : 1.25; // if first no delay
       await rocketController.start(rocketAnimations.generateStop(stops[i], delay));
     }
+    const id = toast.info("Hint: You can scroll down!", {
+      position: "top-center",
+      autoClose: false,
+      theme: "dark",
+    });
     await rocketController.start(rocketAnimations.stop());
+
+    containerRef.current.addEventListener("scroll", () => {
+      toast.dismiss(id);
+    });
   };
 
   const onTapRocket = async () => {

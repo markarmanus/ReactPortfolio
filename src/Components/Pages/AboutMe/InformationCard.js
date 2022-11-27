@@ -2,9 +2,8 @@ import styled from "styled-components";
 import { COLORS } from "../../../Constants/COLOR";
 const Container = styled.div`
   width: 100%;
-  height: 80%;
-  margin: 10px;
-  padding: 20px;
+  margin: 0 10px;
+  padding: 1vw;
   background-color: ${COLORS["secondary-blue"]};
 `;
 const Title = styled.p`
@@ -18,26 +17,30 @@ const Title = styled.p`
 const Detail = styled.p`
   margin: 0;
   color: white;
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => `min(${props.fontSize},1.7vh)`};
   font-weight: ${(props) => props.bold && "bold"};
 `;
 const BulletPoint = styled.p`
   color: ${COLORS["main-yellow"]};
-  display: inline;
-  font-size: ${(props) => props.fontSize};
+  display: inline-block;
+  margin: 0;
+  font-size: ${(props) => `min(${props.fontSize},2vh)`};
 `;
 const PointCircle = styled.div`
-  width: 6px;
+  width: 0.5vh;
   margin-right: 5px;
   transform: translate(-50%, -50%);
   display: inline-block;
-  height: 6px;
+  height: 0.5vh;
   background-color: ${COLORS["main-yellow"]};
   border-radius: 50%;
 `;
 const BulletPointContainer = styled.div`
-  margin-bottom: 8px;
-  margin-top: 8px;
+  margin-bottom: 0.5vh;
+  margin-top: 0.5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
 `;
 function Card(props) {
   return (
@@ -53,6 +56,7 @@ function Card(props) {
         props.bulletPoints.map((point, i) => (
           <BulletPointContainer key={i}>
             <PointCircle />
+
             <BulletPoint fontSize={props.bulletPointFontSize}>{point}</BulletPoint>
           </BulletPointContainer>
         ))}
