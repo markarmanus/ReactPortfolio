@@ -129,13 +129,17 @@ function Skills(props) {
         </TitleContainer>
 
         <Description>
-          Well-organised person, problem solver, independent employee with high attention to detail. Fan of MMA, outdoor
-          activities, TV series and English literature. A family person and father of two fractious boys.
+          Through my role as architecture lead, i have developed a strong in depth understanding of React/Native. Using
+          component design patterns and SOLID principles in building solutions allows for building performant and
+          scalable products.
           <br></br>
-          <br></br> Well-organised person, problem solver, independent employee with high attention to detail. Fan of
-          MMA, outdoor activities, TV series and English literature. A family person and father of two fractious boys,
+          <br></br> Along with that i have build and designed many scalable, reliable and available systems in the
+          backend considering all the trade-offs of different approaches.
+          <br></br>
+          <br></br>During my leadership of the devops team i have worked with release and automation pipelines in all
+          different layers of software. This has developed my skills devops technologies including but not limited to,
+          Iac, containerization, unit testing and CICD.
         </Description>
-        <Quote>Quote: “Programming is a social activity.” - Uncle Bob</Quote>
       </LeftContainer>
       <RightContainer>
         {technologies.map((tech, i) => {

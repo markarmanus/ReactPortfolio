@@ -293,6 +293,8 @@ function AboutMe(props) {
           and Devops infrastructure.
           <br></br>
           <br></br>Always looking for opportunities to grow and hopefully make an impact in the industry.
+          <br></br>
+          <br></br>Hint: Don't forget to click the rocket!
         </Description>
         <Quote>Favorite Quote: “Programming is a social activity.” - Uncle Bob</Quote>
       </LeftContainer>
