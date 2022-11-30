@@ -199,9 +199,7 @@ function AboutMe(props) {
   const initialSequence = async () => {
     await rocketController.start(getRocketAnimation.idle());
   };
-  useEffect(() => {
-    initialSequence();
-  }, []);
+
   const linedOfCodeRef = React.useRef(null);
   const hoursRef = React.useRef(null);
   const cupsOfCoffeeRef = React.useRef(null);
@@ -239,6 +237,11 @@ function AboutMe(props) {
     pauseResumeCoffee();
     pauseResumeHours();
   };
+  useEffect(() => {
+    initialSequence();
+    startNumbers();
+    pauseResumeNumbers();
+  }, []);
   const onClickRocket = async () => {
     if (clickedRocket) return;
     setClickedRocket(true);
