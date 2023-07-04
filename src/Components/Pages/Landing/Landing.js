@@ -101,7 +101,7 @@ function Landing() {
   };
   React.useEffect(() => {
     initialSequence();
-  }, []);
+  });
 
   React.useEffect(() => {
     rocketClickedRef.current = rocketClicked;
