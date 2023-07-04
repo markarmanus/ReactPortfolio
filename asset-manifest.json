@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/ReactPortfolio/static/css/main.b41816de.css",
-    "main.js": "/ReactPortfolio/static/js/main.91c9a719.js",
-    "static/js/787.a2cb61a6.chunk.js": "/ReactPortfolio/static/js/787.a2cb61a6.chunk.js",
-    "static/media/Prompt.ttf": "/ReactPortfolio/static/media/Prompt.a8979f5fddba897421a7.ttf",
-    "static/media/Poly-Regular.ttf": "/ReactPortfolio/static/media/Poly-Regular.ea05f170d79450a0e423.ttf",
-    "static/media/Puritan.ttf": "/ReactPortfolio/static/media/Puritan.0f570028156bb7336d64.ttf",
-    "static/media/Pixeboy.ttf": "/ReactPortfolio/static/media/Pixeboy.143c9dc71d2a56d4bc46.ttf",
-    "index.html": "/ReactPortfolio/index.html",
-    "main.b41816de.css.map": "/ReactPortfolio/static/css/main.b41816de.css.map",
-    "main.91c9a719.js.map": "/ReactPortfolio/static/js/main.91c9a719.js.map",
-    "787.a2cb61a6.chunk.js.map": "/ReactPortfolio/static/js/787.a2cb61a6.chunk.js.map"
+    "main.css": "/static/css/main.2c2ae408.css",
+    "main.js": "/static/js/main.ca9b98c4.js",
+    "static/js/787.7a9c1812.chunk.js": "/static/js/787.7a9c1812.chunk.js",
+    "static/media/Prompt.ttf": "/static/media/Prompt.a8979f5fddba897421a7.ttf",
+    "static/media/Poly-Regular.ttf": "/static/media/Poly-Regular.ea05f170d79450a0e423.ttf",
+    "static/media/Puritan.ttf": "/static/media/Puritan.0f570028156bb7336d64.ttf",
+    "static/media/Pixeboy.ttf": "/static/media/Pixeboy.143c9dc71d2a56d4bc46.ttf",
+    "index.html": "/index.html",
+    "main.2c2ae408.css.map": "/static/css/main.2c2ae408.css.map",
+    "main.ca9b98c4.js.map": "/static/js/main.ca9b98c4.js.map",
+    "787.7a9c1812.chunk.js.map": "/static/js/787.7a9c1812.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b41816de.css",
-    "static/js/main.91c9a719.js"
+    "static/css/main.2c2ae408.css",
+    "static/js/main.ca9b98c4.js"
   ]
 }
