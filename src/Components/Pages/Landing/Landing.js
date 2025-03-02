@@ -10,6 +10,7 @@ import { TABS } from "../../../Constants/TABS";
 import { isMobileOnly } from "react-device-detect";
 import { AnimationConfig, TextConfig } from "./Config";
 import { toast } from "react-toastify";
+import ReactGA from "react-ga4";
 
 const Container = styled(motion.div)`
   width: 100%;
@@ -100,6 +101,7 @@ function Landing() {
     return () => clearTimeout(timer);
   };
   React.useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/landing", title: "Landing Page" });
     initialSequence();
   }, []);
 

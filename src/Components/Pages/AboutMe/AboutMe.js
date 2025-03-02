@@ -9,7 +9,7 @@ import Card from "./InformationCard";
 import { AiOutlineFieldTime, AiOutlineCoffee } from "react-icons/ai";
 import { BsCodeSlash } from "react-icons/bs";
 import { NAVBAR_MAX_WIDTH, NAVBAR_MIN_WIDTH, NAVBAR_WIDTH } from "../../Config";
-import { toast } from "react-toastify";
+import ReactGA from "react-ga4";
 
 const Container = styled(motion.div)`
   width: calc(100% - max(${NAVBAR_MIN_WIDTH}, min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH})));
@@ -238,6 +238,7 @@ function AboutMe(props) {
     pauseResumeHours();
   };
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/about-me", title: "About Me" });
     initialSequence();
     startNumbers();
     pauseResumeNumbers();

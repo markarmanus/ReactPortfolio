@@ -8,6 +8,7 @@ import ProjectCard from "./ProjectCard";
 import { NAVBAR_MAX_WIDTH, NAVBAR_MIN_WIDTH, NAVBAR_WIDTH } from "../../Config";
 import { rocketAnimations } from "./AnimationConfig";
 import { toast } from "react-toastify";
+import ReactGA from "react-ga4";
 
 // Distance between dots
 const DOTS_INTERVAL = 100 / (PROJECTS.length + 1);
@@ -120,6 +121,7 @@ function Projects() {
   };
 
   useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/projects", title: "Projects" });
     initialSequence();
     scrollToRocket();
     rocketY.onChange(() => {

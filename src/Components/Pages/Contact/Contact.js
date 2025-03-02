@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useEffect } from "react";
 import DoubleText from "../../DoubleText";
 import { COLORS } from "../../../Constants/COLOR";
 import { motion } from "framer-motion";
 import Form from "./Form";
 import UiContext from "../../../Contexts/UI";
 import { NAVBAR_MAX_WIDTH, NAVBAR_MIN_WIDTH, NAVBAR_WIDTH } from "../../Config";
+import ReactGA from "react-ga4";
 
 const Container = styled(motion.div)`
   width: calc(100% - max(${NAVBAR_MIN_WIDTH}, min(${NAVBAR_WIDTH}, ${NAVBAR_MAX_WIDTH})));
@@ -106,9 +107,11 @@ const earthVariants = {
   },
 };
 
-function Skills(props) {
+function Skills() {
   const uiContext = React.useContext(UiContext);
-
+  useEffect(() => {
+    ReactGA.send({ hitType: "pageview", page: "/contact", title: "Contact" });
+  }, []);
   return (
     <Container>
       <LeftContainer>
