@@ -1,8 +1,25 @@
 import { AiFillHtml5 } from "react-icons/ai";
-import { FaAws, FaReact } from "react-icons/fa";
+import { FaAws, FaReact, FaPython } from "react-icons/fa";
 import { SiJest, SiMongodb } from "react-icons/si";
 
 export const PROJECTS = [
+  {
+    bulletPoints: [
+      "AI-powered workout tracker using Apple Watch sensors",
+      "Automatically recognizes 75+ exercises and counts reps",
+      "Trained ML models on 94-subject dataset with dual IMU sensors",
+      "Built with React Native + watchOS for real-time tracking",
+    ],
+    title: "Motus",
+    top: "30%",
+    date: "Nov 2025",
+    githubLink: "",
+    titleExt: "AI Fitness Tracker (In Progress)",
+    detail: "IMU ML Tracker - Nov 2025",
+    technologies: [],
+    projectImage: `${process.env.PUBLIC_URL}/Images/Projects/Motus.png`,
+    projectLink: "",
+  },
   {
     bulletPoints: [
       "Full Stack app to help you select your next movie",
@@ -18,7 +35,7 @@ export const PROJECTS = [
     detail: "Team Project - Jun, 2020",
     technologies: [FaReact, FaAws, SiMongodb, FaReact],
     projectImage: `${process.env.PUBLIC_URL}/Images/Projects/MyFlex.png`,
-    projectLink: "http://ec2-3-141-165-79.us-east-2.compute.amazonaws.com:3333/login",
+    projectLink: "https://main.d3acsmjhy3g5jo.amplifyapp.com/",
   },
   {
     bulletPoints: [

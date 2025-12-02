@@ -1,28 +1,34 @@
-export const defaultTechIconSize = "10";
-export const biggestIcon = "11";
+export const defaultTechIconSize = "9";
+export const biggestIcon = "10";
 
 export const technologies = [
   {
     imgSrc: process.env.PUBLIC_URL + "/Images/Technologies/GithubActions.png",
     name: "github",
     color: "#2289FF",
-    size: "11",
-    experience: "70%",
+    size: "10",
+    experience: "60%",
   },
   {
     imgSrc: process.env.PUBLIC_URL + "/Images/Technologies/AWS.png",
     name: "aws",
     color: "#FF9A00",
-    size: "11",
+    size: "10",
 
     experience: "50%",
+  },
+  {
+    imgSrc: process.env.PUBLIC_URL + "/Images/Technologies/SalesForce.png",
+    name: "github",
+    color: "#2289FF",
+    size: "7.5",
+    experience: "40%",
   },
   {
     imgSrc: process.env.PUBLIC_URL + "/Images/Technologies/React.png",
     name: "react",
     color: "#61DAFB",
     size: defaultTechIconSize,
-
     experience: "90%",
   },
   {
@@ -36,8 +42,7 @@ export const technologies = [
     imgSrc: process.env.PUBLIC_URL + "/Images/Technologies/Laravel.png",
     name: "laravel",
     color: "#F35045",
-    size: "9",
-
+    size: "8",
     experience: "20%",
   },
   {
@@ -51,14 +56,14 @@ export const technologies = [
     imgSrc: process.env.PUBLIC_URL + "/Images/Technologies/Jest.png",
     name: "jest",
     color: "#99424F",
-    size: "8",
-    experience: "40%",
+    size: "7",
+    experience: "60%",
   },
   {
     imgSrc: process.env.PUBLIC_URL + "/Images/Technologies/HTML.png",
     name: "HTML",
     color: "#DD512A",
-    size: "9",
+    size: "8",
 
     experience: "65%",
   },
@@ -69,5 +74,12 @@ export const technologies = [
     size: "8",
 
     experience: "90%",
+  },
+  {
+    imgSrc: process.env.PUBLIC_URL + "/Images/Technologies/TS.png",
+    name: "github",
+    color: "#2289FF",
+    size: "7.5",
+    experience: "75%",
   },
 ];

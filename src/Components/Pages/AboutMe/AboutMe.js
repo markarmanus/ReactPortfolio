@@ -140,6 +140,7 @@ function AboutMe(props) {
   const graduationCardController = useAnimation();
   const mysaCardController = useAnimation();
   const heyorcaCardController = useAnimation();
+  const plusGradeCardController = useAnimation();
   const progressBar = useRef(null);
   const [clickedRocket, setClickedRocket] = React.useState(false);
   const getRocketAnimation = {
@@ -155,7 +156,7 @@ function AboutMe(props) {
     },
     toHeyOrca: (width) => {
       return {
-        x: [0, 0.25 * width],
+        x: [0, 0.2 * width],
         transition: {
           x: { duration: 0.75 },
         },
@@ -163,7 +164,7 @@ function AboutMe(props) {
     },
     toMysa: (width) => {
       return {
-        x: 0.5 * width,
+        x: 0.4 * width,
         transition: {
           x: { duration: 0.75, delay: 0.1 },
         },
@@ -171,7 +172,15 @@ function AboutMe(props) {
     },
     toGraduation: (width) => {
       return {
-        x: 0.75 * width,
+        x: 0.6 * width,
+        transition: {
+          x: { duration: 0.75, delay: 0.1 },
+        },
+      };
+    },
+    toPlusGrade: (width) => {
+      return {
+        x: 0.8 * width,
         transition: {
           x: { duration: 0.75, delay: 0.1 },
         },
@@ -206,17 +215,17 @@ function AboutMe(props) {
   const { start: startHours, pauseResume: pauseResumeHours } = useCountUp({
     ref: hoursRef,
     start: 0,
-    end: 8000,
+    end: 16000,
     startOnMount: false,
     suffix: "+",
-    duration: 10,
+    duration: 22,
   });
   const { start: startCoffee, pauseResume: pauseResumeCoffee } = useCountUp({
     ref: cupsOfCoffeeRef,
     start: 0,
-    end: 1500,
+    end: 2000,
     suffix: "+",
-    duration: 10,
+    duration: 22,
     startOnMount: false,
   });
   const { start: startLines, pauseResume: pauseResumeLines } = useCountUp({
@@ -225,7 +234,7 @@ function AboutMe(props) {
     end: 1000000,
     suffix: "+",
     startOnMount: false,
-    duration: 10,
+    duration: 22,
   });
   const startNumbers = () => {
     startLines();
@@ -260,12 +269,16 @@ function AboutMe(props) {
     pauseResumeNumbers();
     await graduationCardController.start(popInAnimation);
     pauseResumeNumbers();
+    await rocketController.start(getRocketAnimation.toPlusGrade(barWidth));
+    pauseResumeNumbers();
+    await plusGradeCardController.start(popInAnimation);
+    pauseResumeNumbers();
     await rocketController.start(getRocketAnimation.toStop(barWidth));
     await rocketController.start(getRocketAnimation.stop());
   };
 
   const dotSize = "1.8vmax";
-  const dotFontSize = "1vmax";
+  const dotFontSize = "0.75vmax";
   const dotTextMargin = "3vh 0";
   return (
     <Container>
@@ -320,6 +333,22 @@ function AboutMe(props) {
                 ]}
               />
             </AnimatedCard>
+            <AnimatedCard initial={{ opacity: 0, scale: 0 }} animate={plusGradeCardController}>
+              <Card
+                title="Team/Technical Lead"
+                titleFontSize="1.1vmax"
+                bulletPointFontSize="0.9vmax"
+                details={[
+                  { fontSize: "0.8vmax", text: "Plusgrade", bold: true },
+                  { fontSize: "0.7vmax", text: "Nov 2023 - Present" },
+                ]}
+                bulletPoints={[
+                  "Led design of A/B experimentation system.",
+                  "Architected high-scale systems for millions of users.",
+                  "Drove 15% revenue increase via experimentation.",
+                ]}
+              />
+            </AnimatedCard>
           </CardsContainer>
         </TopRightHalf>
         <BottomRightContainer>
@@ -343,7 +372,7 @@ function AboutMe(props) {
               <DotWithText
                 fontSize={dotFontSize}
                 title="Heyorca - Jan 2018"
-                left="25%"
+                left="20%"
                 radius={dotSize}
                 margin={dotTextMargin}
                 bgColor={COLORS["main-yellow"]}
@@ -351,7 +380,7 @@ function AboutMe(props) {
               <DotWithText
                 fontSize={dotFontSize}
                 title="Mysa - Jan 2020"
-                left="50%"
+                left="40%"
                 radius={dotSize}
                 margin={dotTextMargin}
                 bgColor={COLORS["main-yellow"]}
@@ -359,12 +388,20 @@ function AboutMe(props) {
               <DotWithText
                 fontSize={dotFontSize}
                 title="Graduation - Apr 2021"
-                left="75%"
+                left="60%"
                 radius={dotSize}
                 margin={dotTextMargin}
                 bgColor={COLORS["main-yellow"]}
               />
               <Rectangle ref={progressBar} width="100%" height="0.5vmax" bgColor={COLORS["main-yellow"]} />
+              <DotWithText
+                fontSize={dotFontSize}
+                title="Plusgrade - Nov 2023"
+                left="80%"
+                radius={dotSize}
+                margin={dotTextMargin}
+                bgColor={COLORS["main-yellow"]}
+              />
               <DotWithText
                 fontSize={dotFontSize}
                 title="Present"

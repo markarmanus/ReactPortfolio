@@ -27,7 +27,7 @@ const InformationContainer = styled(motion.div)`
   flex: 0.35;
   height: 45%;
   z-index: 1;
-  padding: 1vmax;
+  padding: 1.25vmax;
   @media screen and (orientation: portrait) {
     min-width: 30vw;
   }
@@ -145,16 +145,22 @@ function ProjectCard(props) {
         <TextInformationContainer>
           <TitleIconContainer>
             <TitleContainer>
-              <Link target="_blank" href={props.projectLink}>
-                <Title>{props.title}</Title>{" "}
-              </Link>
+              {props.projectLink ? (
+                <Link target="_blank" href={props.projectLink}>
+                  <Title>{props.title}</Title>{" "}
+                </Link>
+              ) : (
+                <Title>{props.title}</Title>
+              )}
               <Dot />
               <TitleExtension>{props.titleExt}</TitleExtension>
             </TitleContainer>
 
-            <Link target="_blank" href={props.githubLink}>
-              <FaGithubSquare color="white" size={"2vmax"} />
-            </Link>
+            {props.githubLink && (
+              <Link target="_blank" href={props.githubLink}>
+                <FaGithubSquare color="white" size={"2vmax"} />
+              </Link>
+            )}
           </TitleIconContainer>
           <Detail>{props.detail}</Detail>
           <BulletPointsContainer>
@@ -185,9 +191,13 @@ function ProjectCard(props) {
         </TechnologiesContainer> */}
       </InformationContainer>
       <ImageContainer initial={{ opacity: 0 }} custom={props.reverseIndex} variants={projectImageVariants}>
-        <Link target="_blank" href={props.projectLink}>
+        {props.projectLink ? (
+          <Link target="_blank" href={props.projectLink}>
+            <ProjectImage src={props.projectImage} />
+          </Link>
+        ) : (
           <ProjectImage src={props.projectImage} />
-        </Link>
+        )}
       </ImageContainer>
     </Container>
   );
